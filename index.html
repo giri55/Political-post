@@ -648,7 +648,6 @@
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-    const ADMIN_PASSWORD = "Om@shambo*5";
 
     let loggedInSubscriberId = localStorage.getItem("current_sub_id") || null;
     let listenerUnsubscribe = null;
@@ -670,14 +669,36 @@
         }
     });
 
-    // 2. Tab & Page Navigation
-    function switchPage(pageName) {
+    // 2. Tab & Page Navigation with Secure Serverless Authentication
+    async function switchPage(pageName) {
         if (pageName === 'admin') {
             const enteredPass = prompt("ಅಡ್ಮಿನ್ ಪ್ರವೇಶಕ್ಕಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ:");
-            if (enteredPass !== ADMIN_PASSWORD) {
-                if (enteredPass !== null) alert("ತಪ್ಪಾದ ಪಾಸ್‌ವರ್ಡ್!");
+            if (enteredPass === null) return;
+            if (!enteredPass.trim()) {
+                alert("ದಯವಿಟ್ಟು ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ!");
                 return;
             }
+
+            try {
+                // Netlify Functions ಮೂಲಕ ಸರ್ವರ್‌ನಲ್ಲಿ ಪಾಸ್‌ವರ್ಡ್ ಪರಿಶೀಲನೆ
+                const response = await fetch('/.netlify/functions/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: enteredPass })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    alert("ತಪ್ಪಾದ ಪಾಸ್‌ವರ್ಡ್!");
+                    return;
+                }
+            } catch (err) {
+                console.error("Auth error:", err);
+                alert("ದೃಢೀಕರಣದಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ! ದಯವಿಟ್ಟು ಸರ್ವರ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ.");
+                return;
+            }
+
             loadAdminRequests();
             loadAdminSubscribers();
         }
