@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POLITICAL POST - ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್</title>
-    <!-- Manifest Link -->
     <link rel="manifest" href="manifest.json">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Firebase SDKs (Compat Version for Direct Browser Script) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
@@ -58,7 +54,6 @@
             flex-direction: column;
         }
 
-        /* View Switching */
         .page-view {
             display: none;
             flex-direction: column;
@@ -66,18 +61,15 @@
             animation: fadeIn 0.22s ease-in-out;
         }
 
-        .page-view.active {
-            display: flex;
-        }
+        .page-view.active { display: flex; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ---------------- PAGE 1: HOME STYLES ---------------- */
         .home-bg {
-            background: linear-gradient(180deg, #ff9933 0%, #ffffff 26%, #ffffff 70%, #eef7ee 100%);
+            background: linear-gradient(180deg, #ff9933 0%, #ffffff 22%, #ffffff 70%, #eef7ee 100%);
             min-height: 840px;
         }
 
@@ -90,908 +82,466 @@
             z-index: 2;
         }
 
+        .header-title-panel {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--green-dark);
+        }
+
         .icon-btn {
-            background: none;
-            border: none;
-            font-size: 22px;
-            color: #1a4d2e;
-            cursor: pointer;
-            position: relative;
+            background: none; border: none; font-size: 22px; color: #1a4d2e; cursor: pointer; position: relative;
         }
 
-        .notification-dot {
-            width: 8px;
-            height: 8px;
-            background: #ff3b30;
-            border-radius: 50%;
-            position: absolute;
-            top: 1px;
-            right: 1px;
-            border: 2px solid #fff;
-        }
-
-        .brand-section {
-            padding: 6px 16px 10px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
+        .brand-section { padding: 6px 16px 6px; position: relative; z-index: 2; }
+        .logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; }
         .logo-badge {
-            position: relative;
-            width: 64px;
-            height: 64px;
-            background: #ffffff;
-            border: 3px solid #ff7700;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(255, 119, 0, 0.25);
+            position: relative; width: 60px; height: 60px; background: #ffffff; border: 3px solid #ff7700; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 119, 0, 0.25);
         }
-
-        .logo-badge .pen-icon {
-            font-size: 26px;
-            color: #0b6623;
-            transform: rotate(-45deg);
-            z-index: 2;
-        }
-
+        .logo-badge .pen-icon { font-size: 24px; color: #0b6623; transform: rotate(-45deg); z-index: 2; }
         .mini-soudha-badge {
-            position: absolute;
-            bottom: -3px;
-            right: -5px;
-            width: 26px;
-            height: 26px;
-            background: #0b6623;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-            z-index: 3;
+            position: absolute; bottom: -3px; right: -5px; width: 24px; height: 24px; background: #0b6623; border: 2px solid #ffffff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.25); z-index: 3;
         }
-
-        .mini-soudha-badge svg {
-            width: 15px;
-            height: 15px;
-            fill: #ffffff;
-        }
-
-        .brand-title {
-            text-align: left;
-            line-height: 1.15;
-        }
-
-        .brand-title .en {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-        }
-
+        .mini-soudha-badge svg { width: 14px; height: 14px; fill: #ffffff; }
+        .brand-title { text-align: left; line-height: 1.15; }
+        .brand-title .en { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
         .brand-title .en .green, .brand-title .kn .green { color: #075e2f; }
         .brand-title .en .orange, .brand-title .kn .orange { color: #ff6600; }
-        .brand-title .kn { font-size: 22px; font-weight: 800; }
+        .brand-title .kn { font-size: 20px; font-weight: 800; }
 
-        .vidhana-soudha-art {
-            text-align: center;
-            margin: 4px auto 0;
-            width: 100%;
-            max-width: 320px;
-            opacity: 0.9;
-        }
+        .vidhana-soudha-art { text-align: center; margin: 4px auto 0; width: 100%; max-width: 320px; opacity: 0.9; }
+        .vidhana-soudha-art svg { width: 100%; height: auto; }
 
-        .vidhana-soudha-art svg {
-            width: 100%;
-            height: auto;
-        }
+        .slogan-box { text-align: center; padding: 6px 20px; position: relative; z-index: 2; }
+        .star-divider { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; color: #ff9933; }
+        .star-divider span { width: 45px; height: 1.5px; background: #d8c3a5; }
+        .slogan-quote { font-size: 15.5px; font-weight: 800; color: #1a1a1a; }
+        .slogan-sub { font-size: 11px; color: #4a5568; font-weight: 600; line-height: 1.4; margin-top: 2px; }
 
-        .slogan-box {
-            text-align: center;
-            padding: 8px 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .star-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 6px;
-            color: #ff9933;
-        }
-
-        .star-divider span {
-            width: 45px;
-            height: 1.5px;
-            background: #d8c3a5;
-        }
-
-        .slogan-quote {
-            font-size: 16.5px;
-            font-weight: 800;
-            color: #1a1a1a;
-        }
-
-        .slogan-sub {
-            font-size: 12px;
-            color: #4a5568;
-            font-weight: 600;
-            line-height: 1.45;
-            margin-top: 4px;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 9px;
-            padding: 10px 14px;
-            position: relative;
-            z-index: 2;
-        }
-
+        .cards-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 14px; position: relative; z-index: 2; }
         .card {
-            background: linear-gradient(180deg, #ffffff 0%, #f4faf4 100%);
-            border: 1px solid rgba(0,0,0,0.07);
-            border-radius: 16px;
-            padding: 12px 7px 10px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.04);
-            position: relative;
-            min-height: 205px;
-            cursor: pointer;
+            background: #ffffff; border: 1.5px solid #e2ece5; border-radius: 14px;
+            padding: 10px 6px 8px; text-align: center; display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); position: relative; min-height: 180px; cursor: pointer;
         }
-
         .card-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 18px;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+            width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 15px; margin-bottom: 6px; box-shadow: 0 3px 6px rgba(0,0,0,0.12);
         }
-
         .card:nth-child(1) .card-icon { background: #0b6623; }
         .card:nth-child(2) .card-icon { background: #115740; }
         .card:nth-child(3) .card-icon { background: #ff6f00; }
-
-        .card-title {
-            font-size: 12.5px;
-            font-weight: 800;
-            margin-bottom: 5px;
-            line-height: 1.25;
-        }
-
+        .card-title { font-size: 11.5px; font-weight: 800; margin-bottom: 4px; line-height: 1.2; }
         .card:nth-child(1) .card-title { color: #0b6623; }
         .card:nth-child(2) .card-title { color: #115740; }
         .card:nth-child(3) .card-title { color: #d85a00; }
-
-        .card-desc {
-            font-size: 9.6px;
-            color: #4a5568;
-            font-weight: 600;
-            line-height: 1.35;
-            margin-bottom: auto;
-        }
-
-        .card-soudha-icon {
-            position: absolute;
-            bottom: 30px;
-            width: 48px;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-
+        .card-desc { font-size: 9.2px; color: #4a5568; font-weight: 600; line-height: 1.35; margin-bottom: auto; }
         .card-btn {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 1px solid #d1d5db;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 6px;
-            font-size: 9px;
-            color: #374151;
+            width: 20px; height: 20px; border-radius: 50%; border: 1px solid #d1d5db; background: #fff;
+            display: flex; align-items: center; justify-content: center; margin-top: 4px; font-size: 8px; color: #374151;
         }
 
-        .vip-banner {
-            margin: 10px 14px;
-            background: linear-gradient(135deg, #022312 0%, #084323 100%);
+        .simple-subscribe-prompt {
+            margin: 12px 14px 10px;
+            background: linear-gradient(145deg, #ffffff 0%, #f4faf4 100%);
             border-radius: 16px;
-            padding: 12px 14px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #ffd700;
-            box-shadow: 0 6px 16px rgba(2, 35, 18, 0.3);
+            padding: 14px;
+            border: 1.5px solid #d0e5d5;
+            box-shadow: 0 4px 14px rgba(27,94,58,0.07);
             z-index: 2;
+            text-align: center;
+        }
+        .prompt-text {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1a3d28;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .prompt-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
             cursor: pointer;
-        }
-
-        .vip-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .crown-badge {
-            width: 46px;
-            height: 46px;
-            border: 1.5px dashed #f9c74f;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle, #0e5c30, #032b16);
-            flex-shrink: 0;
+            gap: 6px;
+            box-shadow: 0 3px 8px rgba(15,61,38,0.2);
         }
 
-        .crown-badge i { color: #ffd700; font-size: 20px; }
-
-        .vip-text h4 {
-            font-size: 11px;
-            font-weight: 700;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .vip-text h3 {
-            font-size: 14px;
-            color: #ffd700;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.1;
-            margin: 1px 0;
-        }
-
-        .vip-text p {
-            font-size: 9.5px;
-            color: #c6e2d3;
-            line-height: 1.25;
-        }
-
-        .subscribe-btn {
-            background: linear-gradient(180deg, #ffca28 0%, #f57f17 100%);
-            border: none;
-            padding: 8px 10px;
-            border-radius: 18px;
-            color: #111;
-            font-weight: 800;
-            font-size: 10.5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        /* ---------------- SUB & ADMIN SHARED STYLES ---------------- */
-        .sub-bg, .admin-bg {
-            background: var(--cream);
+        /* DYNAMIC ADVERTISEMENT BANNER BOX */
+        .ad-space-container {
+            margin: 0 14px 14px;
+            background: #fdfdfd;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 10px;
+            text-align: center;
             position: relative;
-            min-height: 840px;
+            z-index: 2;
         }
-
-        .splash-tl {
-            position: absolute; top: 0; left: 0; width: 220px; height: 180px;
-            background: linear-gradient(135deg, var(--orange) 0%, rgba(240,123,29,0) 70%);
-            opacity: 0.85; z-index: 0;
-        }
-
-        .splash-br {
-            position: absolute; bottom: 0; right: 0; width: 260px; height: 340px;
-            background: linear-gradient(315deg, #4C9A5F 0%, rgba(76,154,95,0) 65%);
-            opacity: 0.8; z-index: 0;
-        }
-
-        .back-btn, .bell {
-            width: 36px; height: 36px; border-radius: 50%;
-            background: rgba(255,255,255,0.7);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px; color: var(--green-dark); font-weight: 700;
-            border: none; cursor: pointer; position: relative;
-        }
-
-        .bell::after {
-            content: ''; position: absolute; top: 6px; right: 7px;
-            width: 7px; height: 7px; background: var(--orange); border-radius: 50%;
-            border: 1.5px solid var(--cream);
-        }
-
-        .header-title-panel {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 800; font-size: 15px;
-            color: var(--green-dark);
-        }
-
-        .hero {
-            position: relative; z-index: 2;
-            padding: 6px 20px 14px;
-            text-align: center;
-        }
-
-        .hero-icon {
-            width: 56px; height: 56px; margin: 0 auto 8px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 6px 16px rgba(15,61,38,0.3);
-        }
-
-        .hero-icon svg { width: 28px; height: 28px; }
-
-        .hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px; font-weight: 900;
-            color: var(--green-dark);
-        }
-
-        .hero h1 span { color: var(--orange); }
-
-        .hero-sub {
-            margin-top: 4px; font-size: 13px; color: var(--text);
-            font-weight: 500; line-height: 1.45;
-        }
-
-        .divider {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            margin: 10px 0 2px;
-        }
-
-        .divider .line { width: 45px; height: 2px; background: linear-gradient(90deg, var(--green), transparent); }
-        .divider .line.r { background: linear-gradient(270deg, var(--orange), transparent); }
-        .divider .star { color: var(--gold-dark); font-size: 13px; }
-
-        .section-label {
-            position: relative; z-index: 2;
-            display: flex; align-items: center; gap: 7px;
-            padding: 16px 20px 4px;
-            font-weight: 800; font-size: 15px; color: var(--green-dark);
-        }
-
-        .section-label .star { color: var(--gold-dark); }
-
-        .section-sub {
-            position: relative; z-index: 2;
-            padding: 0 20px 10px;
-            font-size: 12px; color: var(--muted); font-weight: 500;
-        }
-
-        .line-card {
-            position: relative; z-index: 2;
-            margin: 0 16px 10px;
-            padding: 13px 14px;
-            border-radius: 14px;
-            background: #fff;
-            border: 1px solid rgba(27,94,58,0.10);
-            box-shadow: 0 3px 8px rgba(43,33,24,0.04);
-        }
-
-        .line-num {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 20px; height: 20px; border-radius: 50%;
-            background: var(--green); color: #fff; font-size: 10px; font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .line-text {
-            font-size: 13.5px; color: var(--text); line-height: 1.5; font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .line-actions { display: flex; gap: 8px; }
-
-        .act-btn {
-            flex: 1;
-            display: flex; align-items: center; justify-content: center; gap: 5px;
-            padding: 7px 5px; border-radius: 8px; font-size: 11.5px; font-weight: 700;
-            border: 1.5px solid transparent; cursor: pointer;
-        }
-
-        .act-copy { background: #EAF3EC; color: var(--green-dark); border-color: rgba(27,94,58,0.25); }
-        .act-used { background: #FFF3E4; color: var(--gold-dark); border-color: rgba(184,134,43,0.3); }
-        .act-unlock { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff; }
-        .act-btn svg { width: 13px; height: 13px; }
-
-        .see-more {
-            position: relative; z-index: 2;
-            text-align: center; margin: 0 16px 8px;
-            padding: 10px; border-radius: 12px;
-            border: 1.5px dashed var(--gold-dark);
-            color: var(--gold-dark); font-size: 12.5px; font-weight: 700; cursor: pointer;
-        }
-
-        .quote-card {
-            position: relative; z-index: 2;
-            margin: 0 16px 10px;
-            padding: 16px 14px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #ffffff 0%, #F5EFE0 100%);
-            border: 1px solid rgba(27,94,58,0.12);
-            text-align: center;
-        }
-
-        .quote-mark { font-size: 22px; color: var(--gold-dark); line-height: 1; margin-bottom: 2px; }
-        .quote-text { font-size: 14.5px; font-weight: 700; color: var(--green-dark); line-height: 1.5; }
-
-        .post-display-card {
-            position: relative; z-index: 2;
-            margin: 0 16px 14px;
-            background: #fff;
-            border-radius: 16px;
-            padding: 12px;
-            border: 1px solid rgba(27,94,58,0.12);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-
-        .post-display-card img {
-            width: 100%;
-            border-radius: 12px;
+        .ad-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
             display: block;
-            margin-bottom: 8px;
         }
-
-        .post-display-title {
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--green-dark);
-            margin-bottom: 6px;
-        }
-
-        .subscribe-dashboard-banner {
-            position: relative; z-index: 2;
-            margin: 16px;
-            background: linear-gradient(135deg, var(--green-dark) 0%, #0c2f1c 100%);
-            border-radius: 16px; padding: 18px; text-align: center;
-            box-shadow: 0 8px 24px rgba(15,61,38,0.35);
-        }
-
-        .subscribe-dashboard-banner .crown {
-            width: 40px; height: 40px; margin: 0 auto 8px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .price { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 900; color: var(--gold); margin: 6px 0 10px; }
-        .price span { font-size: 12px; color: #C9E4D3; font-weight: 600; }
-
-        .custom-card {
-            position: relative; z-index: 2;
-            margin: 0 16px 14px;
-            padding: 16px; border-radius: 14px; background: #fff;
-            border: 1px solid rgba(27,94,58,0.10);
-            box-shadow: 0 3px 8px rgba(43,33,24,0.04);
-        }
-
-        .custom-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .custom-icon {
-            width: 38px; height: 38px; border-radius: 10px;
-            background: linear-gradient(135deg, var(--orange), #c9590c);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .custom-icon svg { width: 18px; height: 18px; }
-        .custom-title { font-size: 14px; font-weight: 700; color: var(--text); }
-        .custom-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-        .custom-input {
-            margin-top: 8px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2);
-            border-radius: 10px; padding: 10px 12px; font-size: 12.5px;
-            color: var(--text); resize: none; background: #FBF6EC; outline: none;
-        }
-        .custom-send {
-            margin-top: 10px; width: 100%; text-align: center;
-            background: var(--green); color: #fff; font-weight: 700; font-size: 13px;
-            padding: 10px; border-radius: 10px; cursor: pointer; border: none;
-        }
-
-        /* ---------------- PAGE 3: FULL ADMIN STYLES ---------------- */
-        .sub-panel {
-            position: relative; z-index: 2;
-            margin: 0 16px 6px;
-            background: linear-gradient(135deg, #ffffff 0%, #F5EFE0 100%);
-            border: 1px solid rgba(27,94,58,0.12);
-            border-radius: 16px; padding: 14px 14px 10px;
-        }
-
-        .sub-panel-top {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .sub-panel-top .cap { font-size: 12px; color: var(--muted); font-weight: 600; }
-        .sub-count {
-            font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 800; color: #fff;
-            background: var(--green); padding: 3px 10px; border-radius: 16px;
-        }
-
-        .sub-grid {
-            display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-bottom: 10px;
-        }
-
-        .sub-cell {
-            aspect-ratio: 1; border-radius: 6px; background: #FBF6EC;
-            border: 1px solid rgba(27,94,58,0.18);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 700; color: var(--green-dark); cursor: pointer;
-            transition: transform 0.1s ease;
-        }
-
-        .sub-cell:active {
-            transform: scale(0.92);
-        }
-
-        .sub-cell.active {
-            background: linear-gradient(135deg, var(--orange), var(--gold));
-            color: #fff; border-color: transparent;
-        }
-
-        .sub-note { font-size: 11.5px; color: var(--muted); text-align: center; padding-bottom: 4px; line-height: 1.4; }
-
-        .task-card {
-            position: relative; z-index: 2;
-            display: flex; align-items: center; gap: 12px;
-            margin: 0 16px 10px; padding: 13px 14px; border-radius: 14px;
-            background: #fff; border: 1px solid rgba(27,94,58,0.10);
-            box-shadow: 0 3px 8px rgba(43,33,24,0.04); cursor: pointer;
-            transition: background 0.15s ease;
-        }
-
-        .task-card:active {
-            background: #fdfbf7;
-        }
-
-        .task-icon {
-            width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .task-icon svg { width: 18px; height: 18px; }
-        .icon-green { background: linear-gradient(135deg,var(--green),#0c2f1c); }
-        .icon-orange { background: linear-gradient(135deg,var(--orange),#c9590c); }
-        .task-body { flex: 1; }
-        .task-title { font-size: 13.5px; font-weight: 700; color: var(--text); }
-        .task-desc { font-size: 11.5px; color: var(--muted); margin-top: 2px; line-height: 1.35; }
-        .task-chevron {
-            width: 24px; height: 24px; border-radius: 50%;
-            border: 1.5px solid var(--gold-dark);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--gold-dark); font-size: 13px; flex-shrink: 0;
-        }
-
-        .privacy-banner {
-            position: relative; z-index: 2;
-            margin: 14px 16px 18px;
-            background: linear-gradient(135deg, var(--green-dark) 0%, #0c2f1c 100%);
-            border-radius: 16px;
-            padding: 16px;
-            display: flex; gap: 12px; align-items: flex-start;
-            box-shadow: 0 8px 24px rgba(15,61,38,0.35);
-        }
-
-        .privacy-icon {
-            width: 38px; height: 38px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .privacy-icon svg { width: 18px; height: 18px; }
-        .privacy-title { color: var(--gold); font-weight: 800; font-size: 13.5px; margin-bottom: 3px; }
-        .privacy-text { color: #EDE7D8; font-size: 11.5px; line-height: 1.5; font-weight: 500; }
-
-        /* ---------------- BOTTOM NAVIGATION BAR ---------------- */
-        .bottom-nav {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 64px;
-            background: #ffffff;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
-            z-index: 100;
-        }
-
-        .nav-item {
+        .ad-content {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 10px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-decoration: none;
-            color: #6b7280;
-            font-size: 10.5px;
-            font-weight: 700;
-            gap: 3px;
+            justify-content: center;
+            gap: 6px;
+        }
+        .ad-content img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 8px; }
+        .ad-text-box h5 { font-size: 12px; font-weight: 800; color: #1e293b; text-align: center; }
+
+        .sub-bg, .admin-bg { background: var(--cream); position: relative; min-height: 840px; }
+        .splash-tl {
+            position: absolute; top: 0; left: 0; width: 220px; height: 180px;
+            background: linear-gradient(135deg, var(--orange) 0%, rgba(240,123,29,0) 70%); opacity: 0.85; z-index: 0;
+        }
+        .splash-br {
+            position: absolute; bottom: 0; right: 0; width: 260px; height: 340px;
+            background: linear-gradient(315deg, #4C9A5F 0%, rgba(76,154,95,0) 65%); opacity: 0.8; z-index: 0;
+        }
+
+        .back-btn, .bell {
+            width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.7); display: flex;
+            align-items: center; justify-content: center; font-size: 18px; color: var(--green-dark); font-weight: 700;
+            border: none; cursor: pointer; position: relative;
+        }
+
+        .section-header-box {
             position: relative;
+            z-index: 2;
+            margin: 14px 14px 8px;
+            background: #ffffff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border-left: 4px solid var(--orange);
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .content-card-box {
+            position: relative;
+            z-index: 2;
+            margin: 0 14px 10px;
+            padding: 12px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid rgba(27,94,58,0.12);
+            box-shadow: 0 3px 8px rgba(43,33,24,0.04);
+        }
+
+        .line-text { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 600; margin-bottom: 8px; word-break: break-word; }
+        .post-display-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 8px; max-height: 240px; object-fit: cover; }
+        
+        .line-actions { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 5px; }
+
+        .act-btn {
+            display: flex; align-items: center; justify-content: center; gap: 4px;
+            padding: 7px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer;
+        }
+
+        .act-copy { background: #EAF3EC; color: var(--green-dark); border-color: rgba(27,94,58,0.25); }
+        .act-whatsapp { background: #25D366; color: #fff; }
+        .act-twitter { background: #000000; color: #fff; }
+
+        .custom-card {
+            position: relative; z-index: 2; margin: 0 14px 12px; padding: 14px; border-radius: 14px;
+            background: #fff; border: 1px solid rgba(27,94,58,0.10); box-shadow: 0 3px 8px rgba(43,33,24,0.04);
+        }
+        .custom-input {
+            margin-top: 6px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2); border-radius: 8px;
+            padding: 8px 10px; font-size: 12px; color: var(--text); resize: none; background: #FBF6EC; outline: none;
+        }
+        .custom-send {
+            margin-top: 8px; width: 100%; text-align: center; background: var(--green); color: #fff;
+            font-weight: 700; font-size: 12px; padding: 9px; border-radius: 8px; cursor: pointer; border: none;
+        }
+
+        /* USER REGISTRATION / LOGIN TABS */
+        .auth-tab-switch {
+            display: flex;
+            background: #eef5f0;
+            border-radius: 8px;
+            padding: 3px;
+            margin-bottom: 10px;
+        }
+        .auth-tab {
             flex: 1;
-            cursor: pointer;
+            padding: 6px;
+            font-size: 11px;
+            font-weight: 800;
             border: none;
             background: none;
-        }
-
-        .nav-item.active {
-            color: #0b6623;
-        }
-
-        .nav-item i {
-            font-size: 18px;
-        }
-
-        .badge-new {
-            position: absolute;
-            top: -6px;
-            background: #ff5722;
-            color: white;
-            font-size: 8px;
-            padding: 1px 4px;
+            color: var(--muted);
             border-radius: 6px;
-            font-weight: bold;
+            cursor: pointer;
+        }
+        .auth-tab.active {
+            background: #fff;
+            color: var(--green-dark);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
 
-        .nav-divider {
-            width: 1px;
-            height: 20px;
-            background: #e5e7eb;
+        /* ADMIN CARDS */
+        .req-card {
+            background: #ffffff;
+            border-left: 3px solid var(--orange);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
+        .req-header { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
+        .req-body { font-size: 12px; color: var(--text); margin-bottom: 6px; }
+        .req-btn {
+            background: var(--orange); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer;
+        }
+
+        .user-badge-item {
+            background: #fff;
+            padding: 8px 10px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            border: 1px solid #e2ece5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11.5px;
+        }
+
+        .sub-panel {
+            position: relative; z-index: 2; margin: 0 14px 6px; background: linear-gradient(135deg, #ffffff 0%, #F5EFE0 100%);
+            border: 1px solid rgba(27,94,58,0.12); border-radius: 16px; padding: 12px;
+        }
+        .sub-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-bottom: 8px; }
+        .sub-cell {
+            aspect-ratio: 1; border-radius: 6px; background: #FBF6EC; border: 1px solid rgba(27,94,58,0.18);
+            display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--green-dark); cursor: pointer;
+        }
+        .sub-cell.active { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff; }
+
+        .bottom-nav {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 64px; background: #ffffff;
+            border-top: 1px solid #e5e7eb; display: flex; justify-content: space-around; align-items: center;
+            border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); z-index: 100;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280;
+            font-size: 10.5px; font-weight: 700; gap: 3px; position: relative; flex: 1; cursor: pointer; border: none; background: none;
+        }
+        .nav-item.active { color: #0b6623; }
+        .nav-item i { font-size: 18px; }
     </style>
 </head>
 <body>
 
 <div class="mobile-container">
 
-    <!-- ================= PAGE 1: HOME ================= -->
     <div id="page-home" class="page-view home-bg active">
         <div class="header">
             <button class="icon-btn" title="ಮೆನು"><i class="fa-solid fa-bars"></i></button>
-            <button class="icon-btn" title="ನೋಟಿಫಿಕೇಶನ್">
-                <i class="fa-regular fa-bell"></i>
-                <span class="notification-dot"></span>
+            <button class="icon-btn" onclick="switchPage('subscriber')" title="ಡ್ಯಾಶ್‌ಬೋರ್ಡ್">
+                <i class="fa-solid fa-crown" style="color: var(--green-dark);"></i>
             </button>
         </div>
 
-        <!-- Logo Section -->
         <div class="brand-section">
             <div class="logo-wrap">
                 <div class="logo-badge">
                     <i class="fa-solid fa-pen-nib pen-icon"></i>
                     <div class="mini-soudha-badge" title="ವಿಧಾನ ಸೌಧ">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2L13 4H19V6H5V4H11L12 2ZM3 7H21V9H3V7ZM4 10H6V17H4V10ZM8 10H10V17H8V10ZM12 10H14V17H12V10ZM16 10H18V17H16V10ZM20 10H22V17H20V10ZM2 18H22V21H2V18Z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2L13 4H19V6H5V4H11L12 2ZM3 7H21V9H3V7ZM4 10H6V17H4V10ZM8 10H10V17H8V10ZM12 10H14V17H12V10ZM16 10H18V17H16V10ZM20 10H22V17H20V10ZM2 18H22V21H2V18Z"/></svg>
                     </div>
                 </div>
-                
                 <div class="brand-title">
-                    <div class="en">
-                        <span class="green">POLITICAL</span> <span class="orange">POST</span>
-                    </div>
-                    <div class="kn">
-                        <span class="green">ಪೊಲಿಟಿಕಲ್</span> <span class="orange">ಪೋಸ್ಟ್</span>
-                    </div>
+                    <div class="en"><span class="green">POLITICAL</span> <span class="orange">POST</span></div>
+                    <div class="kn"><span class="green">ಪೊಲಿಟಿಕಲ್</span> <span class="orange">ಪೋಸ್ಟ್</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- Vidhana Soudha Graphic -->
         <div class="vidhana-soudha-art">
             <svg viewBox="0 0 300 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="150" y1="2" x2="150" y2="16" stroke="#555" stroke-width="1.5"/>
                 <path d="M150 2 H162 L158 5 L162 8 H150 Z" fill="#ff9933"/>
                 <path d="M135 22 C135 14 165 14 165 22 Z" fill="#0b6623"/>
                 <rect x="132" y="22" width="36" height="5" rx="1" fill="#075e2f"/>
-                <path d="M85 25 C85 19 105 19 105 25 Z" fill="#0b6623" opacity="0.8"/>
-                <path d="M195 25 C195 19 215 19 215 25 Z" fill="#0b6623" opacity="0.8"/>
                 <rect x="50" y="27" width="200" height="6" fill="#134e3f"/>
-                <rect x="60" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="80" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="100" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="120" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="140" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="154" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="174" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="194" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="214" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="234" y="33" width="6" height="20" fill="#0b6623" opacity="0.7"/>
-                <rect x="35" y="53" width="230" height="4" fill="#075e2f"/>
                 <rect x="20" y="57" width="260" height="4" fill="#04381b"/>
             </svg>
         </div>
 
-        <!-- Slogan Section -->
         <div class="slogan-box">
-            <div class="star-divider">
-                <span></span>
-                <i class="fa-solid fa-star"></i>
-                <span></span>
-            </div>
+            <div class="star-divider"><span></span><i class="fa-solid fa-star"></i><span></span></div>
             <div class="slogan-quote">“ಇದು ಕ್ರಿಯೇಟಿವ್ ಸಾಲುಗಳ ಸಂದೇಶ..”</div>
-            <div class="slogan-sub">
-                ಸೋಷಿಯಲ್ ಮೀಡಿಯಾಗಳಿಗಾಗಿ ನವಚಿಂತನೆಯ ಪೋಸ್ಟ್‌ಗಳು<br>ಇಲ್ಲಿ ನಿಮಗೆ ಸಿಗುತ್ತವೆ..
-            </div>
+            <div class="slogan-sub">ಸೋಷಿಯಲ್ ಮೀಡಿಯಾಗಳಿಗಾಗಿ ನವಚಿಂತನೆಯ ಪೋಸ್ಟ್‌ಗಳು ಇಲ್ಲಿ ಸಿಗುತ್ತವೆ..</div>
         </div>
 
-        <!-- 3 Action Cards -->
         <div class="cards-container">
             <div class="card" onclick="switchPage('subscriber')">
                 <div class="card-icon"><i class="fa-solid fa-bullhorn"></i></div>
                 <div class="card-title">ಸೂಪರ್ ಸಂದೇಶ</div>
-                <div class="card-desc">ದೇಶ, ರಾಜ್ಯ, ರಾಜಕೀಯ ಮತ್ತು ಸಮಾಜಕ್ಕೆ ಪ್ರೇರಣಾದಾಯಕ ಸಂದೇಶಗಳು.</div>
+                <div class="card-desc" id="homeMsg1">ದೇಶ, ರಾಜ್ಯ ಮತ್ತು ರಾಜಕೀಯ ಸಂದೇಶಗಳು.</div>
                 <div class="card-btn"><i class="fa-solid fa-chevron-right"></i></div>
             </div>
-
             <div class="card" onclick="switchPage('subscriber')">
                 <div class="card-icon"><i class="fa-solid fa-newspaper"></i></div>
                 <div class="card-title">ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ</div>
-                <div class="card-desc">ರಾಜಕೀಯ ಬೆಳವಣಿಗೆಗಳು, ನಿಜ ಸಂಗತಿಗಳು ಮತ್ತು ಪ್ರಮುಖ ವಿಷಯಗಳು.</div>
-                <svg class="card-soudha-icon" viewBox="0 0 24 24" fill="#0b6623">
-                    <path d="M12 2L13 4H19V6H5V4H11L12 2ZM3 7H21V9H3V7ZM4 10H6V17H4V10ZM8 10H10V17H8V10ZM12 10H14V17H12V10ZM16 10H18V17H16V10ZM20 10H22V17H20V10ZM2 18H22V21H2V18Z"/>
-                </svg>
+                <div class="card-desc" id="homeMsg2">ರಾಜಕೀಯ ಬೆಳವಣಿಗೆಗಳು ಮತ್ತು ನಿಜ ಸಂಗತಿಗಳು.</div>
                 <div class="card-btn"><i class="fa-solid fa-chevron-right"></i></div>
             </div>
-
             <div class="card" onclick="switchPage('subscriber')">
                 <div class="card-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
                 <div class="card-title">ಟ್ರೆಂಡಿಂಗ್...</div>
-                <div class="card-desc">ಜನಮನದ ಟ್ರೆಂಡ್‌ಗಳು, ವೈರಲ್ ವಿಷಯಗಳು ಮತ್ತು ಸಾಮಾಜಿಕ ಚರ್ಚೆಗಳು.</div>
+                <div class="card-desc" id="homeMsg3">ವೈರಲ್ ವಿಷಯಗಳು ಮತ್ತು ಸಾಮಾಜಿಕ ಚರ್ಚೆಗಳು.</div>
                 <div class="card-btn"><i class="fa-solid fa-chevron-right"></i></div>
             </div>
         </div>
 
-        <!-- VIP Subscribers Banner -->
-        <div class="vip-banner" onclick="switchPage('subscriber')">
-            <div class="vip-left">
-                <div class="crown-badge">
-                    <i class="fa-solid fa-crown"></i>
-                </div>
-                <div class="vip-text">
-                    <h4><i class="fa-solid fa-lock" style="font-size: 10px; color:#ffd700;"></i> Subscribers ಗಾಗಿ ವಿಶೇಷ</h4>
-                    <h3>Political Posts</h3>
-                    <p>ಕ್ರಿಯೇಟಿವ್ ಪೋಸ್ಟ್‌ಗಳು, ಕ್ಯಾಚಿ ಲೈನ್ಸ್‌ ಮತ್ತು ಇನ್ನಷ್ಟು...</p>
+        <div class="simple-subscribe-prompt">
+            <div class="prompt-text">
+                ಟ್ರೆಂಡ್ ಆಗುವಂತಹ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್‌ಗಳು ಹಾಗೂ ಕ್ಯಾಚಿ ಲೈನ್ಸ್‌ಗಳಿಗಾಗಿ ಈಗಲೇ Subscribe ಮಾಡಿಕೊಳ್ಳಲು ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ...
+            </div>
+            <button class="prompt-btn" onclick="switchPage('subscriber')">
+                <i class="fa-solid fa-crown"></i> ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ
+            </button>
+        </div>
+
+        <div class="ad-space-container">
+            <span class="ad-tag">Advertisement / ಪ್ರಾಯೋಜಿತ</span>
+            <div class="ad-content" id="homeAdContainer">
+                <img id="homeAdImg" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format&fit=crop&q=60" style="display:none;" />
+                <div class="ad-text-box">
+                    <h5 id="homeAdTitle">ಇಲ್ಲಿ ನಿಮ್ಮ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ</h5>
+                    <p style="font-size:10px; color:#64748b;" id="homeAdSub">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಸಂಪರ್ಕಿಸಿ: admin@politicalpost.in</p>
                 </div>
             </div>
-            <button class="subscribe-btn">
-                <i class="fa-solid fa-lock"></i> ಸಬ್‌ಸ್ಕ್ರೈಬ್ <i class="fa-solid fa-chevron-right" style="font-size: 9px;"></i>
-            </button>
         </div>
     </div>
 
-    <!-- ================= PAGE 2: SUBSCRIBER DASHBOARD ================= -->
     <div id="page-subscriber" class="page-view sub-bg">
         <div class="splash-tl"></div>
         <div class="splash-br"></div>
 
         <div class="header">
             <button class="back-btn" onclick="switchPage('home')">&#8592;</button>
-            <div class="header-title-panel">ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ಪೇಜ್</div>
-            <button class="bell">
-                <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" fill="#0F3D26"/></svg>
+            <div class="header-title-panel">ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿಭಾಗ</div>
+            <button class="bell" id="subLogoutBtn" style="display:none;" onclick="subscriberLogout()" title="Logout">
+                <i class="fa-solid fa-right-from-bracket" style="font-size: 14px; color: var(--green-dark);"></i>
             </button>
         </div>
 
-        <div class="hero">
-            <div class="hero-icon">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z" fill="#E8B84B"/></svg>
+        <div id="subscriberLoginForm" class="custom-card" style="margin-top: 10px;">
+            <div class="auth-tab-switch">
+                <button class="auth-tab active" id="tabLoginBtn" onclick="switchAuthTab('login')">Login (ಲಾಗಿನ್)</button>
+                <button class="auth-tab" id="tabRegBtn" onclick="switchAuthTab('register')">ಹೊಸ ನೋಂದಣಿ (Sign Up)</button>
             </div>
-            <h1>YOUR <span>DASHBOARD</span></h1>
-            <div class="hero-sub">ಜನಮನದ ನಾಡಿ, ನಾಯಕತ್ವದ ದಾರಿ</div>
-            <div class="divider">
-                <div class="line"></div><span class="star">&#9733;</span><div class="line r"></div>
+
+            <div id="loginView">
+                <div style="font-size: 11px; color:var(--muted); margin-bottom: 6px; text-align:center;">ನಿಮ್ಮ Subscriber ID ನಮೂದಿಸಿ ಪ್ರವೇಶಿಸಿ</div>
+                <input type="text" id="subIdInput" placeholder="ಉದಾ: SUB01 ಅಥವಾ 1" class="custom-input" style="background:#fff; text-align:center; font-weight:700;" />
+                <button onclick="subscriberLogin()" class="custom-send" style="margin-top: 8px;">
+                    <i class="fa-solid fa-unlock"></i> ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರವೇಶಿಸಿ
+                </button>
+            </div>
+
+            <div id="registerView" style="display: none;">
+                <div style="font-size: 11px; color:var(--muted); margin-bottom: 6px; text-align:center;">ವಿಶೇಷ ಸೇವೆಗಾಗಿ ನಿಮ್ಮ ವಿವರ ನಮೂದಿಸಿ</div>
+                <input type="text" id="regName" placeholder="ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು (Full Name)" class="custom-input" style="background:#fff;" />
+                <input type="tel" id="regPhone" placeholder="ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (Phone Number)" class="custom-input" style="background:#fff;" />
+                <input type="text" id="regLocation" placeholder="ಊರು / ಕ್ಷೇತ್ರ (Constituency)" class="custom-input" style="background:#fff;" />
+                <button onclick="registerSubscriber()" class="custom-send" style="margin-top: 8px; background:var(--orange);">
+                    <i class="fa-solid fa-user-plus"></i> ಈಗಲೇ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಆಗಿ ID ಪಡೆಯಿರಿ
+                </button>
             </div>
         </div>
 
-        <!-- Real-time Firestore Posts Section -->
-        <div class="section-label"><span class="star">&#9733;</span> ಇತ್ತೀಚಿನ Political Posts</div>
+        <div id="subscriberDashboardContent" style="display: none; padding: 6px 16px 0;">
+            <div style="background:#fff; border:1px solid #d8e6dc; border-radius:12px; padding:8px 12px; text-align:center;">
+                <span style="font-size:12px; font-weight:800; color:var(--green-dark);" id="currentSubscriberLabel">Subscriber ID</span>
+            </div>
+        </div>
+
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-image" style="color:var(--orange);"></i> Political Posts (ಪೋಸ್ಟರ್ & ಫೋಟೋಗಳು)</span>
+            <span style="font-size:10px; color:var(--muted);">ದೈನಂದಿನ</span>
+        </div>
         <div id="postsListContainer">
-            <!-- Dynamic Firestore Posts will load here -->
-            <div style="text-align:center; padding: 15px; font-size:12px; color:var(--muted);">ಪೋಸ್ಟ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</div>
-        </div>
-
-        <div class="section-label"><span class="star">&#9733;</span> ಕ್ಯಾಚಿ ಲೈನ್ಸ್ — Twitter & Facebook</div>
-        <div class="section-sub">ಪ್ರತಿದಿನ ವಿಶೇಷ ಕ್ಯಾಚಿ ಲೈನ್ಸ್ ನಿಮಗಾಗಿ &bull; <span style="color:#1B5E3A; font-weight:700;">ಸ್ವಯಂ ಅಪ್‌ಡೇಟ್</span></div>
-
-        <div class="line-card">
-            <div class="line-num">01</div>
-            <div class="line-text">ಬದಲಾವಣೆ ಬೇಕಿದ್ದರೆ, ಮೊದಲು ನಿಮ್ಮ ಧ್ವನಿ ಎತ್ತಿ..</div>
-            <div class="line-actions">
-                <button class="act-btn act-copy" onclick="copyText('ಬದಲಾವಣೆ ಬೇಕಿದ್ದರೆ, ಮೊದಲು ನಿಮ್ಮ ಧ್ವನಿ ಎತ್ತಿ..')">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2z" fill="#0F3D26"/></svg> Copy
-                </button>
-                <button class="act-btn act-used">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#B8862B"/></svg> Used
-                </button>
-            </div>
-        </div>
-
-        <div class="line-card">
-            <div class="line-num">02</div>
-            <div class="line-text">ಜನಮನದ ನಾಡಿ – ನಾಯಕತ್ವದ ದಾರಿ</div>
-            <div class="line-actions">
-                <button class="act-btn act-copy" onclick="copyText('ಜನಮನದ ನಾಡಿ – ನಾಯಕತ್ವದ ದಾರಿ')">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2z" fill="#0F3D26"/></svg> Copy
-                </button>
-                <button class="act-btn act-unlock">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zM9 6a3 3 0 016 0v2H9z" fill="#fff"/></svg> Unlock
-                </button>
-            </div>
-        </div>
-
-        <div class="line-card">
-            <div class="line-num">03</div>
-            <div class="line-text">ದೇಶಕ್ಕಾಗಿ ಇಂದು, ದೇಶಕ್ಕಾಗಿ ಎಂದೆಂದೂ..</div>
-            <div class="line-actions">
-                <button class="act-btn act-copy" onclick="copyText('ದೇಶಕ್ಕಾಗಿ ಇಂದು, ದೇಶಕ್ಕಾಗಿ ಎಂದೆಂದೂ..')">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2z" fill="#0F3D26"/></svg> Copy
-                </button>
-                <button class="act-btn act-unlock">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zM9 6a3 3 0 016 0v2H9z" fill="#fff"/></svg> Unlock
-                </button>
-            </div>
-        </div>
-
-        <div class="see-more">ಇನ್ನಷ್ಟು ಕ್ಯಾಚಿ ಲೈನ್ಸ್ ನೋಡಿ</div>
-
-        <div class="section-label"><span class="star">&#9733;</span> ಮುತ್ತಿನಂತ ಮಾತು</div>
-        <div class="section-sub">ಪ್ರೇರಣಾದಾಯಕ ಮತ್ತು ಪರಿಣಾಮಕಾರಿ ನುಡಿಗಳು</div>
-
-        <div class="quote-card">
-            <div class="quote-mark">&#10077;</div>
-            <div class="quote-text">ಮುತ್ತಿನಂತಹ ಮಾತು..<br>ಯಾರೂ ಮಾತಾಡದನ್ನ ನೀವು ಮಾತಾಡಿ..</div>
-        </div>
-
-        <div class="quote-card">
-            <div class="quote-mark">&#10077;</div>
-            <div class="quote-text">ಮೌನಕ್ಕಿಂತ ಮಾತು ಶ್ರೇಷ್ಠ, ಸತ್ಯದ ಮಾತು ಅದಕ್ಕಿಂತ ಶ್ರೇಷ್ಠ</div>
-        </div>
-
-        <div class="subscribe-dashboard-banner">
-            <div class="crown">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M5 16L3 6l5.5 4L12 4l3.5 6L21 6l-2 10H5zm0 2h14v2H5v-2z" fill="#0F3D26"/></svg>
-            </div>
-            <div style="color:#fff; font-weight:800; font-size:14.5px; margin-bottom:4px;">ಕ್ರಿಯೇಟಿವ್ ಪೋಸ್ಟ್‌ಗಳಿಗಾಗಿ Subscribe ಮಾಡಿಕೊಳ್ಳಿ</div>
-            <div style="color:#C9E4D3; font-size:12px; margin-bottom:10px;">ಎಲ್ಲಾ ಪ್ರೀಮಿಯಂ ಕಂಟೆಂಟ್‌ಗೆ ಸಂಪೂರ್ಣ ಪ್ರವೇಶ</div>
-            <div class="price">₹9,999 <span>/ ತಿಂಗಳು</span></div>
-            <button class="subscribe-btn" style="margin: 0 auto;">ಈಗ Subscribe ಮಾಡಿ &#8250;</button>
-        </div>
-
-        <div class="section-label"><span class="star">&#9733;</span> ನಿಮ್ಮ ಪೋಸ್ಟ್</div>
-        <div class="custom-card">
-            <div class="custom-top">
-                <div class="custom-icon">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" fill="#fff"/></svg>
+            <div class="content-card-box">
+                <div class="line-text">ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ - ಇಂದಿನ ರಾಜಕೀಯ ಬೆಳವಣಿಗೆ</div>
+                <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60" class="post-display-img" alt="Post" />
+                <div class="line-actions">
+                    <button class="act-btn act-copy" onclick="copyText('ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ\nhttps://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="act-btn act-whatsapp" onclick="shareWhatsApp('ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                    <button class="act-btn act-twitter" onclick="shareTwitter('ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ')"><i class="fa-brands fa-x-twitter"></i> Post</button>
                 </div>
-                <div class="custom-title">ನಿಮ್ಮ ವಿಷಯ, ನಿಮ್ಮ ಪೋಸ್ಟ್</div>
             </div>
-            <div class="custom-desc">ನಿಮಗೆ ಬೇಕಾದ ವಿಷಯವನ್ನು ನಮಗೆ ತಿಳಿಸಿ. ನಿಮ್ಮ ಆಸಕ್ತಿಗೆ ತಕ್ಕಂತೆ ಪೋಸ್ಟ್ ಸಿದ್ಧವಾಗಿ ನಿಮಗೆ ಸಿಗಲಿದೆ.</div>
-            <textarea class="custom-input" rows="3" placeholder="ಉದಾ: ರೈತರ ಸಮಸ್ಯೆಗಳ ಬಗ್ಗೆ ಪೋಸ್ಟ್ ಬೇಕು..."></textarea>
-            <button class="custom-send">ವಿನಂತಿ ಕಳುಹಿಸಿ</button>
+        </div>
+
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> ನಿಮಗಾಗಿ Catchy Lines (Twitter & FB)</span>
+            <span style="font-size:10px; color:var(--muted);">ಕ್ಯಾಚಿ ಸಾಲುಗಳು</span>
+        </div>
+        <div id="catchyListContainer">
+            <div class="content-card-box">
+                <div class="line-text">“ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!”</div>
+                <div class="line-actions">
+                    <button class="act-btn act-copy" onclick="copyText('ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="act-btn act-whatsapp" onclick="shareWhatsApp('ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                    <button class="act-btn act-twitter" onclick="shareTwitter('ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-quote-left" style="color:var(--orange);"></i> ಮುತ್ತಿನಂತ ಮಾತು (Quotes)</span>
+            <span style="font-size:10px; color:var(--muted);">ನುಡಿಮುತ್ತು</span>
+        </div>
+        <div id="quotesListContainer">
+            <div class="content-card-box">
+                <div class="line-text" style="font-style:italic;">“ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.”</div>
+                <div class="line-actions">
+                    <button class="act-btn act-copy" onclick="copyText('ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="act-btn act-whatsapp" onclick="shareWhatsApp('ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                    <button class="act-btn act-twitter" onclick="shareTwitter('ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="customRequestBox" style="display:none; margin-top: 10px;">
+            <div class="section-header-box">
+                <span><i class="fa-solid fa-envelope-open-text" style="color:var(--orange);"></i> ನಿಮ್ಮ ಪೋಸ್ಟ್ ವಿನಂತಿ</span>
+            </div>
+            <div class="custom-card">
+                <div style="font-size:11.5px; color:var(--muted); margin-bottom:4px;">ನಿಮಗೆ ಬೇಕಾದ ವಿಷಯವನ್ನು ತಿಳಿಸಿ, ನಾವು ಸಿದ್ಧಪಡಿಸಿ ನಿಮ್ಮ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಕಳುಹಿಸುತ್ತೇವೆ.</div>
+                <textarea id="customRequestInput" class="custom-input" rows="2" placeholder="ಉದಾ: ನಾಳಿನ ಸಮಾವೇಶದ ಬಗ್ಗೆ ಪೋಸ್ಟ್ ಬೇಕು..."></textarea>
+                <button onclick="sendUserRequest()" class="custom-send">ವಿನಂತಿ ಕಳುಹಿಸಿ</button>
+            </div>
         </div>
     </div>
 
-    <!-- ================= PAGE 3: COMPLETE ADMIN PANEL ================= -->
     <div id="page-admin" class="page-view admin-bg">
         <div class="splash-tl"></div>
         <div class="splash-br"></div>
@@ -999,119 +549,93 @@
         <div class="header">
             <button class="back-btn" onclick="switchPage('home')">&#8592;</button>
             <div class="header-title-panel">ಅಡ್ಮಿನ್ ಪ್ಯಾನಲ್</div>
-            <button class="bell">
-                <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" fill="#0F3D26"/></svg>
-            </button>
+            <button class="bell"><i class="fa-solid fa-shield-halved"></i></button>
         </div>
 
-        <div class="hero">
-            <div class="hero-icon">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 12c2.7 0 4.86-2.16 4.86-4.86S14.7 2.29 12 2.29 7.14 4.45 7.14 7.14 9.3 12 12 12zm0 2.43c-3.24 0-9.71 1.62-9.71 4.86v2.43h19.42v-2.43c0-3.24-6.47-4.86-9.71-4.86z" fill="#E8B84B"/></svg>
-            </div>
-            <h1>ADMIN <span>PANEL</span></h1>
-            <div class="hero-sub">
-                Subscribersಗಳನ್ನು ನಿರ್ವಹಿಸುವ ಸಂಪೂರ್ಣ ವ್ಯವಸ್ಥೆ.<br>
-                ಪ್ರತಿಯೊಬ್ಬ Subscriberಗೆ ಪ್ರತ್ಯೇಕ Dashboard.
-            </div>
-            <div class="divider">
-                <div class="line"></div><span class="star">&#9733;</span><div class="line r"></div>
-            </div>
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-address-book" style="color:var(--orange);"></i> ನೋಂದಾಯಿತ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳ ವಿವರ</span>
+        </div>
+        <div style="padding: 0 14px; max-height: 180px; overflow-y: auto;" id="adminSubscribersDirectory">
+            <div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿದ್ದಾರೆ...</div>
         </div>
 
-        <!-- Subscriber Grid -->
-        <div class="section-label"><span class="star">&#9733;</span> Subscriber ಪಟ್ಟಿ</div>
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-bell" style="color:var(--orange);"></i> ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿನಂತಿಗಳು (User Requests)</span>
+        </div>
+        <div style="padding: 0 14px;" id="adminRequestsList">
+            <div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ವಿನಂತಿಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</div>
+        </div>
+
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-users" style="color:var(--orange);"></i> Quick Subscriber Grid (50)</span>
+        </div>
         <div class="sub-panel">
-            <div class="sub-panel-top">
-                <span class="cap">Subscriber ಪಟ್ಟಿ</span>
-                <span class="sub-count">Active</span>
-            </div>
             <div class="sub-grid" id="subGrid"></div>
-            <div class="sub-note">ಪ್ರತಿ ಸಂಖ್ಯೆಯ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿ ಆ Subscriberನ ಪ್ರತ್ಯೇಕ Dashboard ತೆರೆಯಿರಿ</div>
+            <div style="font-size:9.5px; color:var(--muted); text-align:center;">ಯಾವುದೇ ಸಂಖ್ಯೆ ಒತ್ತಿ, ಆ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ ವಿಷಯ ಕಳುಹಿಸಿ</div>
         </div>
 
-        <!-- Admin Action Tasks -->
-        <div class="section-label"><span class="star">&#9733;</span> Admin ಮಾಡಬಹುದಾದ ಕೆಲಸಗಳು</div>
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-cloud-arrow-up" style="color:var(--orange);"></i> ವಿಷಯ & ಜಾಹೀರಾತು ಅಪ್‌ಲೋಡ್</span>
+        </div>
+        <div class="custom-card">
+            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">1. ವಿಷಯ ಎಲ್ಲಿ ಪ್ರಕಟವಾಗಬೇಕು? (Category):</label>
+            <select id="contentTypeSelect" class="custom-input" style="background:#fff; font-weight:700;" onchange="toggleUploadType()">
+                <optgroup label="ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿಭಾಗಕ್ಕೆ:">
+                    <option value="POST">🖼️ Political Post (ಫೋಟೋ + ಶೀರ್ಷಿಕೆ)</option>
+                    <option value="CATCHY">✍️ Catchy Lines (ಕ್ಯಾಚಿ ಸಾಲುಗಳು)</option>
+                    <option value="QUOTE">💎 ಮುತ್ತಿನಂತ ಮಾತು (Quotes)</option>
+                </optgroup>
+                <optgroup label="ಹೋಮ್ ಪೇಜ್ 3 ಬಾಕ್ಸ್‌ಗಳಿಗೆ:">
+                    <option value="HOME_MSG1">📢 ಹೋಮ್ ಪೇಜ್ - ಸೂಪರ್ ಸಂದೇಶ</option>
+                    <option value="HOME_MSG2">📰 ಹೋಮ್ ಪೇಜ್ - ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ</option>
+                    <option value="HOME_MSG3">🔥 ಹೋಮ್ ಪೇಜ್ - ಟ್ರೆಂಡಿಂಗ್...</option>
+                </optgroup>
+                <optgroup label="ಜಾಹೀರಾತು ಪ್ರಕಟಣೆ:">
+                    <option value="HOME_AD">📢 ಹೋಮ್ ಪೇಜ್ - ಜಾಹೀರಾತು (Ad Banner)</option>
+                </optgroup>
+            </select>
 
-        <!-- Task 1: Cloudinary + Firebase Post Upload Box -->
-        <div class="custom-card" style="margin-top: 10px;">
-            <div class="custom-top">
-                <div class="custom-icon">
-                    <i class="fa-solid fa-cloud-arrow-up" style="color:#fff; font-size:18px;"></i>
-                </div>
-                <div class="custom-title">ಹೊಸ Political Post Upload</div>
+            <div id="targetSubscriberWrapper" style="margin-top:8px;">
+                <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">2. ಯಾರಿಗೆ ಕಳುಹಿಸಬೇಕು? (Target):</label>
+                <select id="targetSubscriberSelect" class="custom-input" style="background:#fff; font-weight:700;">
+                    <option value="ALL">📢 ಎಲ್ಲರಿಗೂ (All / Public)</option>
+                </select>
             </div>
-            <div class="custom-desc">ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ, ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ಪೇಜ್‌ಗೆ ಪೋಸ್ಟ್ ಮಾಡಿ</div>
-            
-            <input type="text" id="postTitleInput" placeholder="ಪೋಸ್ಟ್ ಶೀರ್ಷಿಕೆ / ವಿವರ (Title)" class="custom-input" style="background:#fff;" />
-            <input type="file" id="imageInput" accept="image/*" class="custom-input" style="background:#fff; cursor:pointer;" />
-            
-            <button onclick="uploadPost()" class="custom-send" style="margin-top: 8px;">
-                <i class="fa-solid fa-upload"></i> ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳಿಗೆ ಪೋಸ್ಟ್ ಮಾಡಿ
+
+            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark); margin-top:8px; display:block;">3. ಶೀರ್ಷಿಕೆ / ಪಠ್ಯ (Content / Ad Text):</label>
+            <textarea id="contentText" rows="2" placeholder="ವಿಷಯ ಅಥವಾ ಜಾಹೀರಾತು ವಿವರ ಬರೆಯಿರಿ..." class="custom-input" style="background:#fff;"></textarea>
+
+            <div id="imageUploadWrapper" style="margin-top:8px;">
+                <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">4. ಫೋಟೋ / ಆ್ಯಡ್ ಬ್ಯಾನರ್ ಆಯ್ಕೆ ಮಾಡಿ:</label>
+                <input type="file" id="imageInput" accept="image/*" class="custom-input" style="background:#fff; cursor:pointer;" />
+            </div>
+
+            <button onclick="publishContent()" class="custom-send" style="margin-top: 10px;">
+                <i class="fa-solid fa-paper-plane"></i> ವಿಷಯ ಪ್ರಕಟಿಸಿ
             </button>
             
-            <p id="status" style="font-size:12px; font-weight:700; color:var(--green-dark); margin-top:8px; text-align:center;"></p>
-            <img id="uploadedImage" src="" alt="Uploaded Preview" style="max-width: 100%; border-radius: 10px; display: none; margin-top: 10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);" />
-        </div>
-
-        <!-- Task 2 -->
-        <div class="task-card" onclick="alert('20 Catchy Lines Update ಫಾರ್ಮ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-green">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H5.17L4 17.17V4z" fill="#fff"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">20 Catchy Lines Update</div>
-                <div class="task-desc">Twitter & Facebook ಗಾಗಿ ಹೊಸ ಕ್ಯಾಚಿ ಲೈನ್ಸ್ ಸೇರಿಸಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Task 3 -->
-        <div class="task-card" onclick="alert('Used / Unlocked Status ನಿರ್ವಹಣೆಗೆ ಹೋಗಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-orange">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#fff"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">Used / Unlocked Status ನಿರ್ವಹಣೆ</div>
-                <div class="task-desc">ಪ್ರತಿ ಕಂಟೆಂಟ್‌ನ ಬಳಕೆಯ ಸ್ಥಿತಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Privacy Banner -->
-        <div class="privacy-banner">
-            <div class="privacy-icon">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z" fill="#0F3D26"/></svg>
-            </div>
-            <div>
-                <div class="privacy-title">ಗೌಪ್ಯತೆ ಮತ್ತು ಭದ್ರತೆ</div>
-                <div class="privacy-text">ಪ್ರತಿಯೊಬ್ಬ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ನ ಡೇಟಾ, ವಿನಂತಿಗಳು ಮತ್ತು ವಿಷಯಗಳು ಅತ್ಯಂತ ಗೌಪ್ಯ ಹಾಗೂ ಸುರಕ್ಷಿತವಾಗಿರುತ್ತವೆ.</div>
-            </div>
+            <p id="status" style="font-size:11.5px; font-weight:700; color:var(--green-dark); margin-top:8px; text-align:center;"></p>
         </div>
     </div>
 
-    <!-- ================= BOTTOM NAVIGATION BAR ================= -->
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchPage('home')">
-            <i class="fa-solid fa-house"></i>
-            <span>ಮುಖಪುಟ</span>
+            <i class="fa-solid fa-house"></i><span>ಮುಖಪುಟ</span>
         </button>
-        <div class="nav-divider"></div>
+        <div style="width:1px; height:20px; background:#e5e7eb;"></div>
         <button class="nav-item" onclick="switchPage('subscriber')">
-            <i class="fa-solid fa-crown"></i>
-            <span>ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</span>
+            <i class="fa-solid fa-crown"></i><span>ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</span>
         </button>
-        <div class="nav-divider"></div>
+        <div style="width:1px; height:20px; background:#e5e7eb;"></div>
         <button class="nav-item" onclick="switchPage('admin')">
-            <span class="badge-new">Admin</span>
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>ಅಡ್ಮಿನ್</span>
+            <i class="fa-solid fa-shield-halved"></i><span>ಅಡ್ಮಿನ್</span>
         </button>
     </nav>
 
 </div>
 
 <script>
-    // --- 1. FIREBASE CONFIGURATION ---
+    // 1. Firebase Config
     const firebaseConfig = {
         apiKey: "AIzaSyAYTN1Ux8FHHaCPIAjkaQozIT72T1u8I9k",
         authDomain: "political-post-51649.firebaseapp.com",
@@ -1122,23 +646,40 @@
         measurementId: "G-BSD9CGC9D0"
     };
 
-    // Initialize Firebase & Firestore
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-
-    // Admin Password
     const ADMIN_PASSWORD = "1234";
 
-    // --- 2. TAB SWITCHING ---
+    let loggedInSubscriberId = localStorage.getItem("current_sub_id") || null;
+    let listenerUnsubscribe = null;
+
+    // Realtime Home Content & Ads
+    db.collection("home_content").doc("latest").onSnapshot((doc) => {
+        if (doc.exists) {
+            const data = doc.data();
+            if (data.msg1) document.getElementById('homeMsg1').innerText = data.msg1;
+            if (data.msg2) document.getElementById('homeMsg2').innerText = data.msg2;
+            if (data.msg3) document.getElementById('homeMsg3').innerText = data.msg3;
+            if (data.adTitle) document.getElementById('homeAdTitle').innerText = data.adTitle;
+            if (data.adSub) document.getElementById('homeAdSub').innerText = data.adSub;
+            if (data.adImg) {
+                const img = document.getElementById('homeAdImg');
+                img.src = data.adImg;
+                img.style.display = "block";
+            }
+        }
+    });
+
+    // 2. Tab & Page Navigation
     function switchPage(pageName) {
         if (pageName === 'admin') {
             const enteredPass = prompt("ಅಡ್ಮಿನ್ ಪ್ರವೇಶಕ್ಕಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ:");
             if (enteredPass !== ADMIN_PASSWORD) {
-                if (enteredPass !== null) {
-                    alert("ತಪ್ಪಾದ ಪಾಸ್‌ವರ್ಡ್! ಪ್ರವೇಶ ನಿರಾಕರಿಸಲಾಗಿದೆ.");
-                }
+                if (enteredPass !== null) alert("ತಪ್ಪಾದ ಪಾಸ್‌ವರ್ಡ್!");
                 return;
             }
+            loadAdminRequests();
+            loadAdminSubscribers();
         }
 
         document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
@@ -1150,6 +691,7 @@
         } else if (pageName === 'subscriber') {
             document.getElementById('page-subscriber').classList.add('active');
             document.querySelectorAll('.nav-item')[1].classList.add('active');
+            checkSubscriberSession();
         } else if (pageName === 'admin') {
             document.getElementById('page-admin').classList.add('active');
             document.querySelectorAll('.nav-item')[2].classList.add('active');
@@ -1157,110 +699,325 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // --- 3. UPLOAD IMAGE TO CLOUDINARY & SAVE TO FIRESTORE ---
-    async function uploadPost() {
-        const fileInput = document.getElementById('imageInput');
-        const titleInput = document.getElementById('postTitleInput');
-        const statusText = document.getElementById('status');
-        const uploadedImage = document.getElementById('uploadedImage');
+    function switchAuthTab(tab) {
+        document.getElementById('tabLoginBtn').classList.toggle('active', tab === 'login');
+        document.getElementById('tabRegBtn').classList.toggle('active', tab === 'register');
+        document.getElementById('loginView').style.display = tab === 'login' ? 'block' : 'none';
+        document.getElementById('registerView').style.display = tab === 'register' ? 'block' : 'none';
+    }
 
-        if (fileInput.files.length === 0) {
-            alert("ದಯವಿಟ್ಟು ಒಂದು ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಿ!");
+    // 3. Registration & Login Session
+    async function registerSubscriber() {
+        const name = document.getElementById('regName').value.trim();
+        const phone = document.getElementById('regPhone').value.trim();
+        const location = document.getElementById('regLocation').value.trim();
+
+        if (!name || !phone) {
+            alert("ದಯವಿಟ್ಟು ಹೆಸರು ಮತ್ತು ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ!");
             return;
         }
 
-        const file = fileInput.files[0];
-        const postTitle = titleInput.value.trim() || "ಹೊಸ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್";
-        
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'Politicalpost');
+        // Generate auto ID based on count
+        const usersSnap = await db.collection("subscribers").get();
+        const nextId = "SUB" + (usersSnap.size + 1).toString().padStart(2, '0');
 
-        statusText.innerText = "ಕ್ಲೌಡ್‌ಗೆ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+        await db.collection("subscribers").doc(nextId).set({
+            subscriberId: nextId,
+            name: name,
+            phone: phone,
+            location: location || "Karnataka",
+            joinedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
 
-        try {
-            // 1. Upload to Cloudinary
-            const response = await fetch('https://api.cloudinary.com/v1_1/mkuurlzy/image/upload', {
-                method: 'POST',
-                body: formData
-            });
+        alert(`🎉 ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ!\nನಿಮ್ಮ Subscriber ID: ${nextId}\nದಯವಿಟ್ಟು ಈ ID ಯನ್ನು ನೆನಪಿನಲ್ಲಿಡಿ.`);
+        loggedInSubscriberId = nextId;
+        localStorage.setItem("current_sub_id", nextId);
+        checkSubscriberSession();
+    }
 
-            const data = await response.json();
+    function checkSubscriberSession() {
+        const subLogoutBtn = document.getElementById('subLogoutBtn');
+        const customReqBox = document.getElementById('customRequestBox');
 
-            if (data.secure_url) {
-                statusText.innerText = "ಡೇಟಾಬೇಸ್‌ನಲ್ಲಿ ಸೇವ್ ಆಗುತ್ತಿದೆ...";
-
-                // 2. Save Link and Title into Firestore
-                await db.collection("posts").add({
-                    title: postTitle,
-                    imageUrl: data.secure_url,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                statusText.innerText = "ಪೋಸ್ಟ್ ಯಶಸ್ವಿಯಾಗಿ ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ಪೇಜ್‌ಗೆ ರವಾನೆಯಾಗಿದೆ!";
-                uploadedImage.src = data.secure_url;
-                uploadedImage.style.display = "block";
-                titleInput.value = "";
-                fileInput.value = "";
-            } else {
-                statusText.innerText = "ಅಪ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ: " + (data.error ? data.error.message : '');
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            statusText.innerText = "ದೋಷ ಉಂಟಾಗಿದೆ. ಇಂಟರ್ನೆಟ್ ಪರಿಶೀಲಿಸಿ.";
+        if (loggedInSubscriberId) {
+            document.getElementById('subscriberLoginForm').style.display = "none";
+            document.getElementById('subscriberDashboardContent').style.display = "block";
+            document.getElementById('currentSubscriberLabel').innerText = `👤 Subscriber ID: ${loggedInSubscriberId} ನ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್`;
+            subLogoutBtn.style.display = "flex";
+            customReqBox.style.display = "block";
+            loadSubscriberData(loggedInSubscriberId);
+        } else {
+            document.getElementById('subscriberLoginForm').style.display = "block";
+            document.getElementById('subscriberDashboardContent').style.display = "none";
+            subLogoutBtn.style.display = "none";
+            customReqBox.style.display = "none";
+            loadSubscriberData("ALL");
         }
     }
 
-    // --- 4. REALTIME LISTENER FOR POSTS IN SUBSCRIBER PAGE ---
-    function listenToPosts() {
-        const container = document.getElementById('postsListContainer');
-        db.collection("posts").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
-            if (snapshot.empty) {
-                container.innerHTML = '<div style="text-align:center; padding: 15px; font-size:12px; color:var(--muted);">ಯಾವುದೇ ಹೊಸ ಪೋಸ್ಟ್‌ಗಳಿಲ್ಲ.</div>';
+    function subscriberLogin() {
+        const input = document.getElementById('subIdInput').value.trim().toUpperCase();
+        if (!input) {
+            alert("ದಯವಿಟ್ಟು Subscriber ID ನಮೂದಿಸಿ!");
+            return;
+        }
+        loggedInSubscriberId = input.startsWith("SUB") ? input : "SUB" + input.padStart(2, '0');
+        localStorage.setItem("current_sub_id", loggedInSubscriberId);
+        checkSubscriberSession();
+    }
+
+    function subscriberLogout() {
+        if (confirm("ಲಾಗಿನ್‌ನಿಂದ ಹೊರಬರಬೇಕೆ?")) {
+            localStorage.removeItem("current_sub_id");
+            loggedInSubscriberId = null;
+            if (listenerUnsubscribe) listenerUnsubscribe();
+            checkSubscriberSession();
+        }
+    }
+
+    function toggleUploadType() {
+        const type = document.getElementById('contentTypeSelect').value;
+        document.getElementById('imageUploadWrapper').style.display = (type === 'POST' || type === 'HOME_AD') ? 'block' : 'none';
+        document.getElementById('targetSubscriberWrapper').style.display = (type.startsWith('HOME_')) ? 'none' : 'block';
+    }
+
+    // 4. Admin Publish Content & Ads
+    async function publishContent() {
+        const type = document.getElementById('contentTypeSelect').value;
+        const target = document.getElementById('targetSubscriberSelect').value;
+        const text = document.getElementById('contentText').value.trim();
+        const fileInput = document.getElementById('imageInput');
+        const statusText = document.getElementById('status');
+
+        statusText.innerText = "ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+
+        try {
+            let imageUrl = "";
+            if (fileInput.files.length > 0) {
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                formData.append('upload_preset', 'Politicalpost');
+
+                const res = await fetch('https://api.cloudinary.com/v1_1/mkuurlzy/image/upload', {
+                    method: 'POST', body: formData
+                });
+                const imgData = await res.json();
+                imageUrl = imgData.secure_url;
+            }
+
+            // Home 3 Messages Update
+            if (type.startsWith('HOME_MSG')) {
+                const updateField = type === 'HOME_MSG1' ? 'msg1' : (type === 'HOME_MSG2' ? 'msg2' : 'msg3');
+                await db.collection("home_content").doc("latest").set({
+                    [updateField]: text
+                }, { merge: true });
+                statusText.innerText = "ಹೋಮ್ ಪೇಜ್ ಸಂದೇಶ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!";
+                document.getElementById('contentText').value = "";
                 return;
             }
 
-            container.innerHTML = "";
-            snapshot.forEach((doc) => {
-                const post = doc.data();
-                const card = document.createElement('div');
-                card.className = "post-display-card";
-                card.innerHTML = `
-                    <div class="post-display-title">${post.title}</div>
-                    <img src="${post.imageUrl}" alt="${post.title}" />
-                    <button class="act-btn act-copy" style="width:100%;" onclick="copyText('${post.imageUrl}')">
-                        <i class="fa-solid fa-link"></i> ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಿ
-                    </button>
-                `;
-                container.appendChild(card);
-            });
-        }, (error) => {
-            console.error("Firestore Error:", error);
-            container.innerHTML = '<div style="text-align:center; padding: 15px; font-size:12px; color:red;">ಪೋಸ್ಟ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ.</div>';
-        });
-    }
+            // Home Ad Update
+            if (type === 'HOME_AD') {
+                await db.collection("home_content").doc("latest").set({
+                    adTitle: text || "ವಿಶೇಷ ಜಾಹೀರಾತು",
+                    adImg: imageUrl || ""
+                }, { merge: true });
+                statusText.innerText = "ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!";
+                document.getElementById('contentText').value = "";
+                fileInput.value = "";
+                return;
+            }
 
-    // Initialize Grid & Posts Listener
-    const grid = document.getElementById('subGrid');
-    if(grid) {
-        for(let i = 1; i <= 50; i++) {
-            const cell = document.createElement('div');
-            cell.className = 'sub-cell' + (i <= 8 ? ' active' : '');
-            cell.textContent = i.toString().padStart(2, '0');
-            cell.title = `Subscriber #${i}`;
-            cell.onclick = () => { switchPage('subscriber'); };
-            grid.appendChild(cell);
+            // Posts & Lines
+            await db.collection("contents").add({
+                type: type,
+                target: target,
+                text: text || "Political Post",
+                imageUrl: imageUrl,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            statusText.innerText = "ವಿಷಯ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!";
+            document.getElementById('contentText').value = "";
+            fileInput.value = "";
+        } catch (err) {
+            console.error(err);
+            statusText.innerText = "ದೋಷ ಉಂಟಾಗಿದೆ.";
         }
     }
 
-    function copyText(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert('ಕಾಪಿ ಮಾಡಲಾಗಿದೆ: ' + text);
+    // 5. Admin - View Registered Subscribers & Requests
+    function loadAdminSubscribers() {
+        db.collection("subscribers").orderBy("joinedAt", "desc").onSnapshot((snapshot) => {
+            const list = document.getElementById('adminSubscribersDirectory');
+            list.innerHTML = "";
+
+            if (snapshot.empty) {
+                list.innerHTML = '<div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ಯಾರೂ ನೋಂದಾಯಿಸಿಕೊಂಡಿಲ್ಲ.</div>';
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const u = doc.data();
+                const div = document.createElement('div');
+                div.className = "user-badge-item";
+                div.innerHTML = `
+                    <div>
+                        <b>${u.name}</b> (${u.subscriberId})
+                        <div style="font-size:10px; color:var(--muted);">${u.phone} | ${u.location}</div>
+                    </div>
+                    <button class="req-btn" onclick="prepareReply('${u.subscriberId}')">Select</button>
+                `;
+                list.appendChild(div);
+            });
         });
     }
 
-    // Start listening on load
-    listenToPosts();
+    function loadAdminRequests() {
+        db.collection("requests").orderBy("createdAt", "desc").limit(10).onSnapshot((snapshot) => {
+            const list = document.getElementById('adminRequestsList');
+            list.innerHTML = "";
+
+            if (snapshot.empty) {
+                list.innerHTML = '<div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ಯಾವುದೇ ಹೊಸ ವಿನಂತಿಗಳಿಲ್ಲ.</div>';
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const div = document.createElement('div');
+                div.className = "req-card";
+                div.innerHTML = `
+                    <div class="req-header">
+                        <span>👤 <b>${data.subscriberId || 'Unknown'}</b></span>
+                        <button class="req-btn" onclick="prepareReply('${data.subscriberId}')"><i class="fa-solid fa-reply"></i> ಪೋಸ್ಟ್ ಮಾಡಿ</button>
+                    </div>
+                    <div class="req-body">${data.requestText}</div>
+                `;
+                list.appendChild(div);
+            });
+        });
+    }
+
+    function prepareReply(subId) {
+        document.getElementById('targetSubscriberSelect').value = subId;
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        alert(`${subId} ಗೆ ಪೋಸ್ಟ್ ಮಾಡಲು ಸೆಲೆಕ್ಟ್ ಆಗಿದೆ.`);
+    }
+
+    // 6. Realtime Content Loader
+    function loadSubscriberData(subId) {
+        if (listenerUnsubscribe) listenerUnsubscribe();
+
+        const targets = (subId === "ALL") ? ["ALL"] : ["ALL", subId];
+
+        listenerUnsubscribe = db.collection("contents")
+            .where("target", "in", targets)
+            .onSnapshot((snapshot) => {
+                const postsList = document.getElementById('postsListContainer');
+                const catchyList = document.getElementById('catchyListContainer');
+                const quotesList = document.getElementById('quotesListContainer');
+
+                if (snapshot.empty) return;
+
+                postsList.innerHTML = "";
+                catchyList.innerHTML = "";
+                quotesList.innerHTML = "";
+
+                const docs = [];
+                snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+                docs.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+
+                docs.forEach((item) => {
+                    if (item.type === 'POST') {
+                        const div = document.createElement('div');
+                        div.className = "content-card-box";
+                        div.innerHTML = `
+                            <div class="line-text">${item.text}</div>
+                            <img src="${item.imageUrl}" class="post-display-img" alt="Post" />
+                            <div class="line-actions">
+                                <button class="act-btn act-copy" onclick="copyText('${item.text}\\n${item.imageUrl}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                                <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                                <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                            </div>
+                        `;
+                        postsList.appendChild(div);
+                    } else if (item.type === 'CATCHY') {
+                        const div = document.createElement('div');
+                        div.className = "content-card-box";
+                        div.innerHTML = `
+                            <div class="line-text">${item.text}</div>
+                            <div class="line-actions">
+                                <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                                <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                                <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                            </div>
+                        `;
+                        catchyList.appendChild(div);
+                    } else if (item.type === 'QUOTE') {
+                        const div = document.createElement('div');
+                        div.className = "content-card-box";
+                        div.innerHTML = `
+                            <div class="line-text" style="font-style:italic;">“${item.text}”</div>
+                            <div class="line-actions">
+                                <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                                <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                                <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                            </div>
+                        `;
+                        quotesList.appendChild(div);
+                    }
+                });
+            });
+    }
+
+    // 7. Actions & Grid Loader
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => alert('✅ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!'));
+    }
+
+    function shareWhatsApp(text, url = "") {
+        const fullMsg = url ? `${text}\n\n${url}` : text;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(fullMsg)}`, '_blank');
+    }
+
+    function shareTwitter(text, url = "") {
+        const fullMsg = url ? `${text}\n\n${url}` : text;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(fullMsg)}`, '_blank');
+    }
+
+    async function sendUserRequest() {
+        const req = document.getElementById('customRequestInput').value.trim();
+        if(!req) return alert("ದಯವಿಟ್ಟು ವಿಷಯ ಬರೆಯಿರಿ!");
+        await db.collection("requests").add({
+            subscriberId: loggedInSubscriberId,
+            requestText: req,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alert("ನಿಮ್ಮ ವಿನಂತಿ ಅಡ್ಮಿನ್‌ಗೆ ತಲುಪಿದೆ!");
+        document.getElementById('customRequestInput').value = "";
+    }
+
+    const select = document.getElementById('targetSubscriberSelect');
+    const grid = document.getElementById('subGrid');
+    for(let i = 1; i <= 50; i++) {
+        const subCode = "SUB" + i.toString().padStart(2, '0');
+        const opt = document.createElement('option');
+        opt.value = subCode;
+        opt.textContent = `👤 Subscriber #${i} (${subCode})`;
+        if (select) select.appendChild(opt);
+
+        if (grid) {
+            const cell = document.createElement('div');
+            cell.className = 'sub-cell';
+            cell.textContent = i.toString().padStart(2, '0');
+            cell.onclick = () => {
+                if (select) select.value = subCode;
+                alert(`ಅಪ್‌ಲೋಡ್ ಸೆಲೆಕ್ಟರ್‌ನಲ್ಲಿ ${subCode} ಆಯ್ಕೆಯಾಗಿದೆ.`);
+            };
+            grid.appendChild(cell);
+        }
+    }
 </script>
 
 </body>
