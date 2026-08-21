@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POLITICAL POST - ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್</title>
-    <link rel="manifest" href="manifest.json">
+    
+    <!-- PWA & Apple Mobile Web App Settings -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0b6623">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="PoliticalPost">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 
@@ -1039,6 +1047,33 @@
             grid.appendChild(cell);
         }
     }
+
+    // 8. Service Worker Registration & PWA Auto Install Prompt
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then((reg) => console.log('Service Worker Registered successfully:', reg.scope))
+                .catch((err) => console.error('Service Worker registration failed:', err));
+        });
+    }
+
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // ಬಳಕೆದಾರರು ಸೈಟ್‌ಗೆ ಬಂದಾಗ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಪಾಪ್-ಅಪ್ ತೋರಿಸಲು
+        setTimeout(() => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }, 3000);
+    });
 </script>
 
 </body>
