@@ -11,6 +11,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Firebase SDKs (Compat Version for Direct Browser Script) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <style>
         :root {
             --cream: #FBF6EC;
@@ -531,6 +535,30 @@
         .quote-mark { font-size: 22px; color: var(--gold-dark); line-height: 1; margin-bottom: 2px; }
         .quote-text { font-size: 14.5px; font-weight: 700; color: var(--green-dark); line-height: 1.5; }
 
+        .post-display-card {
+            position: relative; z-index: 2;
+            margin: 0 16px 14px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 12px;
+            border: 1px solid rgba(27,94,58,0.12);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .post-display-card img {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .post-display-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 6px;
+        }
+
         .subscribe-dashboard-banner {
             position: relative; z-index: 2;
             margin: 16px;
@@ -567,7 +595,7 @@
         .custom-title { font-size: 14px; font-weight: 700; color: var(--text); }
         .custom-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
         .custom-input {
-            margin-top: 10px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2);
+            margin-top: 8px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2);
             border-radius: 10px; padding: 10px 12px; font-size: 12.5px;
             color: var(--text); resize: none; background: #FBF6EC; outline: none;
         }
@@ -745,7 +773,7 @@
             </button>
         </div>
 
-        <!-- Logo Section: Pen + Vidhana Soudha Badge -->
+        <!-- Logo Section -->
         <div class="brand-section">
             <div class="logo-wrap">
                 <div class="logo-badge">
@@ -768,7 +796,7 @@
             </div>
         </div>
 
-        <!-- Vidhana Soudha Header Graphic -->
+        <!-- Vidhana Soudha Graphic -->
         <div class="vidhana-soudha-art">
             <svg viewBox="0 0 300 65" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="150" y1="2" x2="150" y2="16" stroke="#555" stroke-width="1.5"/>
@@ -875,6 +903,13 @@
             </div>
         </div>
 
+        <!-- Real-time Firestore Posts Section -->
+        <div class="section-label"><span class="star">&#9733;</span> ಇತ್ತೀಚಿನ Political Posts</div>
+        <div id="postsListContainer">
+            <!-- Dynamic Firestore Posts will load here -->
+            <div style="text-align:center; padding: 15px; font-size:12px; color:var(--muted);">ಪೋಸ್ಟ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</div>
+        </div>
+
         <div class="section-label"><span class="star">&#9733;</span> ಕ್ಯಾಚಿ ಲೈನ್ಸ್ — Twitter & Facebook</div>
         <div class="section-sub">ಪ್ರತಿದಿನ ವಿಶೇಷ ಕ್ಯಾಚಿ ಲೈನ್ಸ್ ನಿಮಗಾಗಿ &bull; <span style="color:#1B5E3A; font-weight:700;">ಸ್ವಯಂ ಅಪ್‌ಡೇಟ್</span></div>
 
@@ -932,16 +967,6 @@
             <div class="quote-text">ಮೌನಕ್ಕಿಂತ ಮಾತು ಶ್ರೇಷ್ಠ, ಸತ್ಯದ ಮಾತು ಅದಕ್ಕಿಂತ ಶ್ರೇಷ್ಠ</div>
         </div>
 
-        <div class="section-label"><span class="star">&#9733;</span> Political Posts</div>
-        <div class="quote-card">
-            <div class="quote-mark">&#10077;</div>
-            <div class="quote-text">ಜನಮನದ ನಾಡಿ – ನಾಯಕತ್ವದ ದಾರಿ</div>
-        </div>
-        <div class="quote-card">
-            <div class="quote-mark">&#10077;</div>
-            <div class="quote-text">ದೇಶಕ್ಕಾಗಿ ಇಂದು, ದೇಶಕ್ಕಾಗಿ ಎಂದೆಂದೂ..</div>
-        </div>
-
         <div class="subscribe-dashboard-banner">
             <div class="crown">
                 <svg viewBox="0 0 24 24" fill="none"><path d="M5 16L3 6l5.5 4L12 4l3.5 6L21 6l-2 10H5zm0 2h14v2H5v-2z" fill="#0F3D26"/></svg>
@@ -993,7 +1018,7 @@
             </div>
         </div>
 
-        <!-- Subscriber Grid (50 Subscribers) -->
+        <!-- Subscriber Grid -->
         <div class="section-label"><span class="star">&#9733;</span> Subscriber ಪಟ್ಟಿ</div>
         <div class="sub-panel">
             <div class="sub-panel-top">
@@ -1004,22 +1029,24 @@
             <div class="sub-note">ಪ್ರತಿ ಸಂಖ್ಯೆಯ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿ ಆ Subscriberನ ಪ್ರತ್ಯೇಕ Dashboard ತೆರೆಯಿರಿ</div>
         </div>
 
-        <!-- Full Admin Action Tasks -->
+        <!-- Admin Action Tasks -->
         <div class="section-label"><span class="star">&#9733;</span> Admin ಮಾಡಬಹುದಾದ ಕೆಲಸಗಳು</div>
 
-        <!-- Task 1: Cloudinary Image Upload Box -->
+        <!-- Task 1: Cloudinary + Firebase Post Upload Box -->
         <div class="custom-card" style="margin-top: 10px;">
             <div class="custom-top">
                 <div class="custom-icon">
                     <i class="fa-solid fa-cloud-arrow-up" style="color:#fff; font-size:18px;"></i>
                 </div>
-                <div class="custom-title">ಹೊಸ Political Post Upload (Cloudinary)</div>
+                <div class="custom-title">ಹೊಸ Political Post Upload</div>
             </div>
-            <div class="custom-desc">ಹೊಸ ಕ್ರಿಯೇಟಿವ್ ಪೋಸ್ಟ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</div>
+            <div class="custom-desc">ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ, ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ಪೇಜ್‌ಗೆ ಪೋಸ್ಟ್ ಮಾಡಿ</div>
             
+            <input type="text" id="postTitleInput" placeholder="ಪೋಸ್ಟ್ ಶೀರ್ಷಿಕೆ / ವಿವರ (Title)" class="custom-input" style="background:#fff;" />
             <input type="file" id="imageInput" accept="image/*" class="custom-input" style="background:#fff; cursor:pointer;" />
-            <button onclick="uploadImage()" class="custom-send" style="margin-top: 8px;">
-                <i class="fa-solid fa-upload"></i> ಅಪ್‌ಲೋಡ್ ಮಾಡಿ (Upload)
+            
+            <button onclick="uploadPost()" class="custom-send" style="margin-top: 8px;">
+                <i class="fa-solid fa-upload"></i> ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳಿಗೆ ಪೋಸ್ಟ್ ಮಾಡಿ
             </button>
             
             <p id="status" style="font-size:12px; font-weight:700; color:var(--green-dark); margin-top:8px; text-align:center;"></p>
@@ -1046,78 +1073,6 @@
             <div class="task-body">
                 <div class="task-title">Used / Unlocked Status ನಿರ್ವಹಣೆ</div>
                 <div class="task-desc">ಪ್ರತಿ ಕಂಟೆಂಟ್‌ನ ಬಳಕೆಯ ಸ್ಥಿತಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Task 4 -->
-        <div class="task-card" onclick="alert('Super Message Update ಪ್ಯಾನಲ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-green">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" stroke-width="2" fill="none"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">Super Message Update</div>
-                <div class="task-desc">ಪ್ರೇರಣಾದಾಯಕ ಸೂಪರ್ ಸಂದೇಶಗಳನ್ನು ನವೀಕರಿಸಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Task 5 -->
-        <div class="task-card" onclick="alert('Trending Update ಪ್ಯಾನಲ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-orange">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="#fff"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">Trending Update</div>
-                <div class="task-desc">ಜನಮನದ ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯಗಳನ್ನು ನವೀಕರಿಸಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Task 6 -->
-        <div class="task-card" onclick="alert('ಪ್ರಮುಖ ವಿಷಯ Update ಪ್ಯಾನಲ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-green">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M20 6h-4V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2z" fill="#fff"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">ಪ್ರಮುಖ ವಿಷಯ Update</div>
-                <div class="task-desc">ಇಂದಿನ ಪ್ರಮುಖ ರಾಜಕೀಯ ವಿಷಯಗಳನ್ನು ಸೇರಿಸಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Task 7 -->
-        <div class="task-card" onclick="alert('Subscriber ಕೇಳಿದ ವಿಷಯದ ಪಟ್ಟಿ ತೆರೆಯಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-orange">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 12c2.7 0 4.86-2.16 4.86-4.86S14.7 2.29 12 2.29 7.14 4.45 7.14 7.14 9.3 12 12 12zm0 2.43c-3.24 0-9.71 1.62-9.71 4.86v2.43h19.42v-2.43c0-3.24-6.47-4.86-9.71-4.86z" fill="#fff"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">Subscriber ಕೇಳಿದ ವಿಷಯದ ಮೇಲೆ Post Upload</div>
-                <div class="task-desc">ವೈಯಕ್ತಿಕ ವಿನಂತಿಯ ಆಧಾರದ ಮೇಲೆ ಪೋಸ್ಟ್ ಸಿದ್ಧಪಡಿಸಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Task 8 -->
-        <div class="task-card" onclick="alert('Subscriber Account Activate / Deactivate ನಿರ್ವಹಣೆ ತೆರೆಯಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-green">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 1a3 3 0 013 3v4a3 3 0 01-6 0V4a3 3 0 013-3zM5 10h1a6 6 0 0012 0h1a1 1 0 011 1 8 8 0 01-7 7.94V21h3a1 1 0 010 2H9a1 1 0 010-2h3v-2.06A8 8 0 014 11a1 1 0 011-1z" fill="#fff"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">Subscriber Account Activate / Deactivate</div>
-                <div class="task-desc">ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ಖಾತೆಯ ಸ್ಥಿತಿ ನಿಯಂತ್ರಿಸಿ</div>
-            </div>
-            <div class="task-chevron">&#8250;</div>
-        </div>
-
-        <!-- Task 9 -->
-        <div class="task-card" onclick="alert('Subscription Status ಪರಿಶೀಲನೆ ಪ್ಯಾನಲ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ...')">
-            <div class="task-icon icon-orange">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#fff"/></svg>
-            </div>
-            <div class="task-body">
-                <div class="task-title">Subscription Status ಪರಿಶೀಲನೆ</div>
-                <div class="task-desc">ಪ್ರತಿ ಸಬ್‌ಸ್ಕ್ರಿಪ್ಷನ್‌ನ ಸಕ್ರಿಯ/ಅವಧಿ ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</div>
             </div>
             <div class="task-chevron">&#8250;</div>
         </div>
@@ -1156,10 +1111,25 @@
 </div>
 
 <script>
-    // Set your Admin Password here
-    const ADMIN_PASSWORD = "Om@shambo5";
+    // --- 1. FIREBASE CONFIGURATION ---
+    const firebaseConfig = {
+        apiKey: "AIzaSyAYTN1Ux8FHHaCPIAjkaQozIT72T1u8I9k",
+        authDomain: "political-post-51649.firebaseapp.com",
+        projectId: "political-post-51649",
+        storageBucket: "political-post-51649.firebasestorage.app",
+        messagingSenderId: "881795893080",
+        appId: "1:881795893080:web:cf06d22269bf0c8a17072d",
+        measurementId: "G-BSD9CGC9D0"
+    };
 
-    // Tab Switching Functionality with Password Protection
+    // Initialize Firebase & Firestore
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Admin Password
+    const ADMIN_PASSWORD = "1234";
+
+    // --- 2. TAB SWITCHING ---
     function switchPage(pageName) {
         if (pageName === 'admin') {
             const enteredPass = prompt("ಅಡ್ಮಿನ್ ಪ್ರವೇಶಕ್ಕಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ:");
@@ -1187,31 +1157,10 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Generate Full 50 Admin Subscribers Grid
-    const grid = document.getElementById('subGrid');
-    if(grid) {
-        for(let i = 1; i <= 50; i++) {
-            const cell = document.createElement('div');
-            cell.className = 'sub-cell' + (i <= 8 ? ' active' : '');
-            cell.textContent = i.toString().padStart(2, '0');
-            cell.title = `Subscriber #${i}`;
-            cell.onclick = () => {
-                switchPage('subscriber');
-            };
-            grid.appendChild(cell);
-        }
-    }
-
-    // Copy to clipboard helper
-    function copyText(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert('ಕಾಪಿ ಮಾಡಲಾಗಿದೆ: ' + text);
-        });
-    }
-
-    // Cloudinary Image Upload Function
-    async function uploadImage() {
+    // --- 3. UPLOAD IMAGE TO CLOUDINARY & SAVE TO FIRESTORE ---
+    async function uploadPost() {
         const fileInput = document.getElementById('imageInput');
+        const titleInput = document.getElementById('postTitleInput');
         const statusText = document.getElementById('status');
         const uploadedImage = document.getElementById('uploadedImage');
 
@@ -1221,13 +1170,16 @@
         }
 
         const file = fileInput.files[0];
+        const postTitle = titleInput.value.trim() || "ಹೊಸ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್";
+        
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', 'Politicalpost');
 
-        statusText.innerText = "ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ಕಾಯಿರಿ...";
+        statusText.innerText = "ಕ್ಲೌಡ್‌ಗೆ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
 
         try {
+            // 1. Upload to Cloudinary
             const response = await fetch('https://api.cloudinary.com/v1_1/mkuurlzy/image/upload', {
                 method: 'POST',
                 body: formData
@@ -1236,18 +1188,79 @@
             const data = await response.json();
 
             if (data.secure_url) {
-                statusText.innerText = "ಫೋಟೋ ಯಶಸ್ವಿಯಾಗಿ ಅಪ್‌ಲೋಡ್ ಆಗಿದೆ!";
+                statusText.innerText = "ಡೇಟಾಬೇಸ್‌ನಲ್ಲಿ ಸೇವ್ ಆಗುತ್ತಿದೆ...";
+
+                // 2. Save Link and Title into Firestore
+                await db.collection("posts").add({
+                    title: postTitle,
+                    imageUrl: data.secure_url,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                statusText.innerText = "ಪೋಸ್ಟ್ ಯಶಸ್ವಿಯಾಗಿ ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ಪೇಜ್‌ಗೆ ರವಾನೆಯಾಗಿದೆ!";
                 uploadedImage.src = data.secure_url;
                 uploadedImage.style.display = "block";
-                console.log("Image URL:", data.secure_url);
+                titleInput.value = "";
+                fileInput.value = "";
             } else {
                 statusText.innerText = "ಅಪ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ: " + (data.error ? data.error.message : '');
             }
         } catch (error) {
             console.error("Error:", error);
-            statusText.innerText = "ದೋಷ ಉಂಟಾಗಿದೆ. ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ.";
+            statusText.innerText = "ದೋಷ ಉಂಟಾಗಿದೆ. ಇಂಟರ್ನೆಟ್ ಪರಿಶೀಲಿಸಿ.";
         }
     }
+
+    // --- 4. REALTIME LISTENER FOR POSTS IN SUBSCRIBER PAGE ---
+    function listenToPosts() {
+        const container = document.getElementById('postsListContainer');
+        db.collection("posts").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+            if (snapshot.empty) {
+                container.innerHTML = '<div style="text-align:center; padding: 15px; font-size:12px; color:var(--muted);">ಯಾವುದೇ ಹೊಸ ಪೋಸ್ಟ್‌ಗಳಿಲ್ಲ.</div>';
+                return;
+            }
+
+            container.innerHTML = "";
+            snapshot.forEach((doc) => {
+                const post = doc.data();
+                const card = document.createElement('div');
+                card.className = "post-display-card";
+                card.innerHTML = `
+                    <div class="post-display-title">${post.title}</div>
+                    <img src="${post.imageUrl}" alt="${post.title}" />
+                    <button class="act-btn act-copy" style="width:100%;" onclick="copyText('${post.imageUrl}')">
+                        <i class="fa-solid fa-link"></i> ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಿ
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }, (error) => {
+            console.error("Firestore Error:", error);
+            container.innerHTML = '<div style="text-align:center; padding: 15px; font-size:12px; color:red;">ಪೋಸ್ಟ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ.</div>';
+        });
+    }
+
+    // Initialize Grid & Posts Listener
+    const grid = document.getElementById('subGrid');
+    if(grid) {
+        for(let i = 1; i <= 50; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'sub-cell' + (i <= 8 ? ' active' : '');
+            cell.textContent = i.toString().padStart(2, '0');
+            cell.title = `Subscriber #${i}`;
+            cell.onclick = () => { switchPage('subscriber'); };
+            grid.appendChild(cell);
+        }
+    }
+
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('ಕಾಪಿ ಮಾಡಲಾಗಿದೆ: ' + text);
+        });
+    }
+
+    // Start listening on load
+    listenToPosts();
 </script>
 
 </body>
