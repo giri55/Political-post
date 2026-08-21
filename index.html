@@ -723,7 +723,7 @@
         }
     });
 
-    // 2. Tab & Page Navigation with Secure Serverless Authentication
+    // 2. Tab & Page Navigation with Secure Vercel Serverless Authentication
     async function switchPage(pageName) {
         if (pageName === 'admin') {
             const enteredPass = prompt("ಅಡ್ಮಿನ್ ಪ್ರವೇಶಕ್ಕಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ:");
@@ -734,7 +734,8 @@
             }
 
             try {
-                const response = await fetch('/.netlify/functions/auth', {
+                // Vercel Serverless API ಮೂಲಕ ಸುರಕ್ಷಿತ ದೃಢೀಕರಣ
+                const response = await fetch('/api/auth', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ password: enteredPass })
@@ -1116,7 +1117,6 @@
                 installPromptEvent = null;
             });
         } else {
-            // Safari ಅಥವಾ ಹಳೆಯ ಬ್ರೌಸರ್‌ಗಳಲ್ಲಿ ಮೆನು ಗೈಡ್ ಸಂದೇಶ
             alert("ನಿಮ್ಮ ಬ್ರೌಸರ್ ಮೆನುವಿನಲ್ಲಿ (3 ಚುಕ್ಕೆಗಳು ಅಥವಾ Share ಬಟನ್) 'Install App' ಅಥವಾ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
         }
     }
