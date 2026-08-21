@@ -127,6 +127,41 @@
         .slogan-quote { font-size: 15.5px; font-weight: 800; color: #1a1a1a; }
         .slogan-sub { font-size: 11px; color: #4a5568; font-weight: 600; line-height: 1.4; margin-top: 2px; }
 
+        /* IN-APP DIRECT INSTALL BANNER */
+        .app-install-banner {
+            margin: 6px 14px 10px;
+            background: linear-gradient(135deg, #115740 0%, #075e2f 100%);
+            border-radius: 14px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(11,102,35,0.25);
+            z-index: 2;
+            position: relative;
+        }
+        .install-banner-text {
+            display: flex;
+            flex-direction: column;
+            color: #ffffff;
+        }
+        .install-banner-text b { font-size: 12px; }
+        .install-banner-text span { font-size: 9.5px; opacity: 0.85; }
+        .install-banner-btn {
+            background: #ff7700;
+            color: #ffffff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
         .cards-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 14px; position: relative; z-index: 2; }
         .card {
             background: #ffffff; border: 1.5px solid #e2ece5; border-radius: 14px;
@@ -405,6 +440,17 @@
             <div class="star-divider"><span></span><i class="fa-solid fa-star"></i><span></span></div>
             <div class="slogan-quote">“ಇದು ಕ್ರಿಯೇಟಿವ್ ಸಾಲುಗಳ ಸಂದೇಶ..”</div>
             <div class="slogan-sub">ಸೋಷಿಯಲ್ ಮೀಡಿಯಾಗಳಿಗಾಗಿ ನವಚಿಂತನೆಯ ಪೋಸ್ಟ್‌ಗಳು ಇಲ್ಲಿ ಸಿಗುತ್ತವೆ..</div>
+        </div>
+
+        <!-- NEW DIRECT APP INSTALL BANNER -->
+        <div class="app-install-banner" id="appInstallBanner">
+            <div class="install-banner-text">
+                <b>📲 Official Mobile App</b>
+                <span>ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ, ವೇಗವಾಗಿ ಬಳಸಿ!</span>
+            </div>
+            <button class="install-banner-btn" onclick="triggerAppInstall()">
+                <i class="fa-solid fa-download"></i> ಇನ್‌ಸ್ಟಾಲ್
+            </button>
         </div>
 
         <div class="cards-container">
@@ -688,7 +734,6 @@
             }
 
             try {
-                // Netlify Functions ಮೂಲಕ ಸರ್ವರ್‌ನಲ್ಲಿ ಪಾಸ್‌ವರ್ಡ್ ಪರಿಶೀಲನೆ
                 const response = await fetch('/.netlify/functions/auth', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -746,7 +791,6 @@
             return;
         }
 
-        // Generate auto ID based on count
         const usersSnap = await db.collection("subscribers").get();
         const nextId = "SUB" + (usersSnap.size + 1).toString().padStart(2, '0');
 
@@ -834,7 +878,6 @@
                 imageUrl = imgData.secure_url;
             }
 
-            // Home 3 Messages Update
             if (type.startsWith('HOME_MSG')) {
                 const updateField = type === 'HOME_MSG1' ? 'msg1' : (type === 'HOME_MSG2' ? 'msg2' : 'msg3');
                 await db.collection("home_content").doc("latest").set({
@@ -845,7 +888,6 @@
                 return;
             }
 
-            // Home Ad Update
             if (type === 'HOME_AD') {
                 await db.collection("home_content").doc("latest").set({
                     adTitle: text || "ವಿಶೇಷ ಜಾಹೀರಾತು",
@@ -857,7 +899,6 @@
                 return;
             }
 
-            // Posts & Lines
             await db.collection("contents").add({
                 type: type,
                 target: target,
@@ -1048,31 +1089,42 @@
         }
     }
 
-    // 8. Service Worker Registration & PWA Auto Install Prompt
+    // 8. Service Worker & Direct Install Function
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js')
-                .then((reg) => console.log('Service Worker Registered successfully:', reg.scope))
-                .catch((err) => console.error('Service Worker registration failed:', err));
+                .then((reg) => console.log('Service Worker Registered:', reg.scope))
+                .catch((err) => console.error('Service Worker Registration failed:', err));
         });
     }
 
-    let deferredPrompt;
+    let installPromptEvent = null;
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
-        deferredPrompt = e;
-        // ಬಳಕೆದಾರರು ಸೈಟ್‌ಗೆ ಬಂದಾಗ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಪಾಪ್-ಅಪ್ ತೋರಿಸಲು
-        setTimeout(() => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    }
-                    deferredPrompt = null;
-                });
-            }
-        }, 3000);
+        installPromptEvent = e;
+        const banner = document.getElementById('appInstallBanner');
+        if (banner) banner.style.display = 'flex';
+    });
+
+    function triggerAppInstall() {
+        if (installPromptEvent) {
+            installPromptEvent.prompt();
+            installPromptEvent.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    document.getElementById('appInstallBanner').style.display = 'none';
+                }
+                installPromptEvent = null;
+            });
+        } else {
+            // Safari ಅಥವಾ ಹಳೆಯ ಬ್ರೌಸರ್‌ಗಳಲ್ಲಿ ಮೆನು ಗೈಡ್ ಸಂದೇಶ
+            alert("ನಿಮ್ಮ ಬ್ರೌಸರ್ ಮೆನುವಿನಲ್ಲಿ (3 ಚುಕ್ಕೆಗಳು ಅಥವಾ Share ಬಟನ್) 'Install App' ಅಥವಾ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
+        }
+    }
+
+    // ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಆದ ತಕ್ಷಣ ಬ್ಯಾನರ್ ಹೈಡ್ ಮಾಡುವುದು
+    window.addEventListener('appinstalled', () => {
+        const banner = document.getElementById('appInstallBanner');
+        if (banner) banner.style.display = 'none';
     });
 </script>
 
