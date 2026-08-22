@@ -103,7 +103,6 @@
         .line-text { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 600; margin-bottom: 8px; word-break: break-word; }
         .post-display-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 8px; max-height: 240px; object-fit: cover; }
         
-        /* Updated Grid for 4 buttons (Copy, WhatsApp, Post, Delete) */
         .line-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 0.8fr; gap: 4px; }
         .act-btn { display: flex; align-items: center; justify-content: center; gap: 3px; padding: 7px 2px; border-radius: 8px; font-size: 10.5px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer; }
         .act-copy { background: #EAF3EC; color: var(--green-dark); border-color: rgba(27,94,58,0.25); }
@@ -597,9 +596,9 @@
             div.className = 'ai-card-item';
             div.innerHTML = `
                 <div style="font-size:12px; font-weight:800; color:var(--green-dark); margin-bottom:4px;">
-                    <span class="ai-badge-num">${idx + 1}</span> ${item.title}
+                    <span class="ai-badge-num">${idx + 1}</span> ${item.title || ''}
                 </div>
-                <div style="font-size:11px; color:#4a5568; line-height:1.4; margin-bottom:6px;">${item.summary}</div>
+                <div style="font-size:11px; color:#4a5568; line-height:1.4; margin-bottom:6px;">${item.summary || ''}</div>
                 <div class="ai-action-btn-group-4">
                     <button class="btn-ai-copy" onclick="copyAiSectionItem('topNews', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
                     <button class="btn-ai-edit" onclick="editTopNews(${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
@@ -616,12 +615,13 @@
         if (!c) return;
         c.innerHTML = "";
         aiGeneratedContent.trending.forEach((item, idx) => {
+            const displayText = typeof item === 'object' ? (item.text || item.summary || '') : item;
             const div = document.createElement('div');
             div.className = 'ai-card-item';
             div.innerHTML = `
                 <div style="display:flex; align-items:flex-start;">
                     <span class="ai-badge-num">${idx + 1}</span>
-                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${item.text}</div>
+                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${displayText}</div>
                 </div>
                 <div class="ai-action-btn-group-4">
                     <button class="btn-ai-copy" onclick="copyAiSectionItem('trending', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
@@ -639,12 +639,13 @@
         if (!c) return;
         c.innerHTML = "";
         aiGeneratedContent.catchyLines.forEach((item, idx) => {
+            const displayText = typeof item === 'object' ? (item.text || item.summary || '') : item;
             const div = document.createElement('div');
             div.className = 'ai-card-item';
             div.innerHTML = `
                 <div style="display:flex; align-items:flex-start;">
                     <span class="ai-badge-num" style="background:var(--orange);">${idx + 1}</span>
-                    <div style="font-size:12px; font-weight:700; color:var(--green-dark); flex:1;">${item.text}</div>
+                    <div style="font-size:12px; font-weight:700; color:var(--green-dark); flex:1;">${displayText}</div>
                 </div>
                 <div class="ai-action-btn-group-4">
                     <button class="btn-ai-copy" onclick="copyAiSectionItem('catchyLines', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
@@ -662,12 +663,13 @@
         if (!c) return;
         c.innerHTML = "";
         aiGeneratedContent.majorPosts.forEach((item, idx) => {
+            const displayText = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
             const div = document.createElement('div');
             div.className = 'ai-card-item';
             div.innerHTML = `
                 <div style="display:flex; align-items:flex-start;">
                     <span class="ai-badge-num" style="background:#b8862b;">${idx + 1}</span>
-                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${item.text}</div>
+                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${displayText}</div>
                 </div>
                 <div class="ai-action-btn-group-4">
                     <button class="btn-ai-copy" onclick="copyAiSectionItem('majorPosts', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
@@ -685,22 +687,22 @@
         let text = "";
         let type = "";
         let targetDescription = "";
+        const item = aiGeneratedContent[section][idx];
 
         if (section === 'topNews') {
-            const item = aiGeneratedContent.topNews[idx];
             text = `${item.title} - ${item.summary}`;
             type = 'HOME_MSG2';
             targetDescription = "ಮುಖಪುಟದ 'ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ'";
         } else if (section === 'trending') {
-            text = aiGeneratedContent.trending[idx].text;
+            text = typeof item === 'object' ? (item.text || item.summary || '') : item;
             type = 'HOME_MSG3';
             targetDescription = "ಮುಖಪುಟದ 'ಟ್ರೆಂಡಿಂಗ್...'";
         } else if (section === 'catchyLines') {
-            text = aiGeneratedContent.catchyLines[idx].text;
+            text = typeof item === 'object' ? (item.text || item.summary || '') : item;
             type = 'CATCHY';
             targetDescription = "ಸಬ್‌ಸ್ಕ್ರೈಬರ್ 'ಕ್ಯಾಚಿ ಸಾಲುಗಳು'";
         } else if (section === 'majorPosts') {
-            text = aiGeneratedContent.majorPosts[idx].text;
+            text = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
             type = 'POST';
             targetDescription = "ಸಬ್‌ಸ್ಕ್ರೈಬರ್ 'Political Posts'";
         }
@@ -765,13 +767,20 @@
 
     function copyAiSectionItem(section, idx) {
         let text = "";
+        const item = aiGeneratedContent[section][idx];
+        
         if (section === 'topNews') {
-            const item = aiGeneratedContent.topNews[idx];
-            text = `${item.title}\n\n${item.summary}`;
+            text = `${item.title || ''}\n\n${item.summary || ''}`;
+        } else if (typeof item === 'object') {
+            text = item.text || item.title || item.summary || JSON.stringify(item);
         } else {
-            text = aiGeneratedContent[section][idx].text;
+            text = item;
         }
-        navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!"));
+        
+        navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!")).catch(err => {
+            console.error(err);
+            alert("ಕಾಪಿ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.");
+        });
     }
 
     function editTopNews(idx) {
@@ -783,9 +792,14 @@
     }
 
     function editItem(key, idx) {
-        const n = prompt("ವಿಷಯ ತಿದ್ದಿ:", aiGeneratedContent[key][idx].text);
+        const currentVal = typeof aiGeneratedContent[key][idx] === 'object' ? (aiGeneratedContent[key][idx].text || '') : aiGeneratedContent[key][idx];
+        const n = prompt("ವಿಷಯ ತಿದ್ದಿ:", currentVal);
         if (n !== null && n.trim()) {
-            aiGeneratedContent[key][idx].text = n.trim();
+            if (typeof aiGeneratedContent[key][idx] === 'object') {
+                aiGeneratedContent[key][idx].text = n.trim();
+            } else {
+                aiGeneratedContent[key][idx] = n.trim();
+            }
             renderAllAiSections();
         }
     }
