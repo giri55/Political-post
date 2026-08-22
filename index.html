@@ -140,6 +140,13 @@
         .btn-ai-publish { background: #115740; color: #ffffff; border: 1px solid #075e2f; border-radius: 6px; padding: 6px 0; font-size: 10.5px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 4px rgba(17,87,64,0.2); }
         .btn-ai-delete { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; border-radius: 6px; padding: 6px 0; font-size: 10.5px; font-weight: 700; cursor: pointer; }
 
+        /* PAYMENT QR STYLES */
+        .qr-box { background:#f8fafc; border:1.5px dashed #cbd5e1; border-radius:12px; padding:12px; text-align:center; margin-top:8px; }
+        .qr-img { width:170px; height:170px; border-radius:8px; border:2px solid #fff; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin:6px auto; display:block; }
+        .badge-status { padding: 3px 6px; border-radius: 4px; font-size: 9.5px; font-weight: 800; }
+        .badge-pending { background: #fef3c7; color: #b45309; }
+        .badge-active { background: #dcfce7; color: #15803d; }
+
         .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; height: 64px; background: #ffffff; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-around; align-items: center; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); z-index: 100; }
         .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280; font-size: 10.5px; font-weight: 700; gap: 3px; position: relative; flex: 1; cursor: pointer; border: none; background: none; }
         .nav-item.active { color: #0b6623; }
@@ -258,9 +265,10 @@
         <div id="subscriberLoginForm" class="custom-card" style="margin-top: 10px;">
             <div class="auth-tab-switch">
                 <button class="auth-tab active" id="tabLoginBtn" onclick="switchAuthTab('login')">Login (ಲಾಗಿನ್)</button>
-                <button class="auth-tab" id="tabRegBtn" onclick="switchAuthTab('register')">ಹೊಸ ನೋಂದಣಿ (Sign Up)</button>
+                <button class="auth-tab" id="tabRegBtn" onclick="switchAuthTab('register')">ಹೊಸ ಚಂದಾದಾರಿಕೆ (Subscribe)</button>
             </div>
 
+            <!-- Login View -->
             <div id="loginView">
                 <div style="font-size: 11px; color:var(--muted); margin-bottom: 6px; text-align:center;">ನಿಮ್ಮ Subscriber ID ನಮೂದಿಸಿ ಪ್ರವೇಶಿಸಿ</div>
                 <input type="text" id="subIdInput" placeholder="ಉದಾ: SUB01 ಅಥವಾ 1" class="custom-input" style="background:#fff; text-align:center; font-weight:700;" />
@@ -269,14 +277,37 @@
                 </button>
             </div>
 
+            <!-- Registration + Direct UPI Payment View -->
             <div id="registerView" style="display: none;">
-                <div style="font-size: 11px; color:var(--muted); margin-bottom: 6px; text-align:center;">ವಿಶೇಷ ಸೇವೆಗಾಗಿ ನಿಮ್ಮ ವಿವರ ನಮೂದಿಸಿ</div>
-                <input type="text" id="regName" placeholder="ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು (Full Name)" class="custom-input" style="background:#fff;" />
-                <input type="tel" id="regPhone" placeholder="ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (Phone Number)" class="custom-input" style="background:#fff;" />
-                <input type="text" id="regLocation" placeholder="ಊರು / ಕ್ಷೇತ್ರ (Constituency)" class="custom-input" style="background:#fff;" />
-                <button onclick="registerSubscriber()" class="custom-send" style="margin-top: 8px; background:var(--orange);">
-                    <i class="fa-solid fa-user-plus"></i> ಈಗಲೇ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಆಗಿ ID ಪಡೆಯಿರಿ
-                </button>
+                <div id="regStep1">
+                    <div style="font-size: 11.5px; font-weight:700; color:var(--green-dark); margin-bottom: 4px; text-align:center;">1. ನಿಮ್ಮ ವಿವರ ನಮೂದಿಸಿ:</div>
+                    <input type="text" id="regName" placeholder="ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು (Full Name)" class="custom-input" style="background:#fff;" />
+                    <input type="tel" id="regPhone" placeholder="ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (Phone Number)" class="custom-input" style="background:#fff;" />
+                    <input type="text" id="regLocation" placeholder="ಊರು / ಕ್ಷೇತ್ರ (Constituency)" class="custom-input" style="background:#fff;" />
+                    <button onclick="goToPaymentStep()" class="custom-send" style="margin-top: 8px; background:var(--orange);">
+                        ಮುಂದೆ &rarr; ಪಾವತಿಗೆ ಮುಂದುವರಿಯಿರಿ
+                    </button>
+                </div>
+
+                <div id="regStep2" style="display: none;">
+                    <div class="qr-box">
+                        <div style="font-size:13px; font-weight:800; color:var(--green-dark);">ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಪಾವತಿಸಿ: ₹9,999</div>
+                        <div style="font-size:10px; color:#64748b; margin-top:2px;">PhonePe / GPay / Paytm / BHIM</div>
+                        <img id="upiQrCodeImg" class="qr-img" src="" alt="UPI QR Code" />
+                        <div style="font-size:11px; font-weight:700; color:#1e293b; margin-top:4px;">UPI ID: giricoolgili@okhdfcbank</div>
+                    </div>
+
+                    <div style="margin-top:8px;">
+                        <label style="font-size:11px; font-weight:700; color:var(--green-dark);">2. ಪಾವತಿಯ 12-ಅಂಕಿಯ UTR / Txn ID ಹಾಕಿ:</label>
+                        <input type="text" id="regUtr" placeholder="ಉದಾ: 423456789012" class="custom-input" style="background:#fff; font-weight:700; text-align:center;" />
+                        <button onclick="submitSubscriptionWithPayment()" class="custom-send" style="margin-top: 8px; background:var(--green);">
+                            <i class="fa-solid fa-circle-check"></i> ಪಾವತಿ ಸಲ್ಲಿಸಿ & ID ಪಡೆಯಿರಿ
+                        </button>
+                        <button onclick="backToRegStep1()" style="background:none; border:none; color:var(--muted); font-size:10.5px; width:100%; margin-top:6px; cursor:pointer;">
+                            &larr; ಹಿಂದೆ ಹೋಗಿ ವಿವರ ತಿದ್ದಿ
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -329,9 +360,9 @@
         </button>
 
         <div class="section-header-box">
-            <span><i class="fa-solid fa-address-book" style="color:var(--orange);"></i> ನೋಂದಾಯಿತ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳು</span>
+            <span><i class="fa-solid fa-money-check-dollar" style="color:var(--orange);"></i> ಚಂದಾದಾರಿಕೆ ಪಾವತಿಗಳ ಪರಿಶೀಲನೆ (Approval)</span>
         </div>
-        <div style="padding: 0 14px; max-height: 150px; overflow-y: auto;" id="adminSubscribersDirectory"></div>
+        <div style="padding: 0 14px; max-height: 220px; overflow-y: auto;" id="adminSubscribersDirectory"></div>
 
         <div class="section-header-box">
             <span><i class="fa-solid fa-bell" style="color:var(--orange);"></i> ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿನಂತಿಗಳು</span>
@@ -435,7 +466,7 @@
         <div id="aiMajorPostContainer" style="padding: 0 14px 4px;"></div>
 
         <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:10.5px; color:#92400e;">
-            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ[cite: 1].
+            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ.
         </div>
     </div>
 
@@ -470,6 +501,9 @@
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
+
+    const UPI_ID = "giricoolgili@okhdfcbank";
+    const SUBSCRIPTION_AMOUNT = "9999";
 
     let loggedInSubscriberId = localStorage.getItem("current_sub_id") || null;
     let listenerUnsubscribe = null;
@@ -804,41 +838,82 @@
         document.getElementById('customAiPrompt').value = "";
     }
 
-    // 4. Subscriber Auth & Session
+    // 4. Subscriber Auth, Registration & Direct UPI QR Logic
     function switchAuthTab(tab) {
         document.getElementById('tabLoginBtn').classList.toggle('active', tab === 'login');
         document.getElementById('tabRegBtn').classList.toggle('active', tab === 'register');
         document.getElementById('loginView').style.display = tab === 'login' ? 'block' : 'none';
         document.getElementById('registerView').style.display = tab === 'register' ? 'block' : 'none';
+        if (tab === 'register') backToRegStep1();
     }
 
-    async function registerSubscriber() {
+    function goToPaymentStep() {
+        const name = document.getElementById('regName').value.trim();
+        const phone = document.getElementById('regPhone').value.trim();
+        if (!name || !phone) return alert("ದಯವಿಟ್ಟು ಹೆಸರು ಮತ್ತು ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ!");
+
+        const upiUri = `upi://pay?pa=${UPI_ID}&pn=PoliticalPost&am=${SUBSCRIPTION_AMOUNT}&cu=INR&tn=PoliticalPost_Subscription`;
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUri)}`;
+        document.getElementById('upiQrCodeImg').src = qrUrl;
+
+        document.getElementById('regStep1').style.display = "none";
+        document.getElementById('regStep2').style.display = "block";
+    }
+
+    function backToRegStep1() {
+        document.getElementById('regStep1').style.display = "block";
+        document.getElementById('regStep2').style.display = "none";
+    }
+
+    async function submitSubscriptionWithPayment() {
         const name = document.getElementById('regName').value.trim();
         const phone = document.getElementById('regPhone').value.trim();
         const location = document.getElementById('regLocation').value.trim();
+        const utr = document.getElementById('regUtr').value.trim();
 
-        if (!name || !phone) return alert("ಹೆಸರು ಮತ್ತು ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಹಾಕಿ!");
+        if (!utr || utr.length < 6) return alert("ದಯವಿಟ್ಟು ಸರಿಯಾದ 12-ಅಂಕಿಯ UTR / Transaction ID ನಮೂದಿಸಿ!");
 
         const usersSnap = await db.collection("subscribers").get();
         const nextId = "SUB" + (usersSnap.size + 1).toString().padStart(2, '0');
 
         await db.collection("subscribers").doc(nextId).set({
-            subscriberId: nextId, name, phone, location: location || "Karnataka",
+            subscriberId: nextId,
+            name: name,
+            phone: phone,
+            location: location || "Karnataka",
+            utrNumber: utr,
+            amount: SUBSCRIPTION_AMOUNT,
+            status: "PENDING",
             joinedAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        alert(`🎉 ನೋಂದಣಿ ಯಶಸ್ವಿ! ID: ${nextId}`);
-        loggedInSubscriberId = nextId;
-        localStorage.setItem("current_sub_id", nextId);
-        checkSubscriberSession();
+        alert(`🎉 ಪಾವತಿ ವಿವರ ಸ್ವೀಕರಿಸಲಾಗಿದೆ!\n\nನಿಮ್ಮ Subscriber ID: ${nextId}\n\nಅಡ್ಮಿನ್ ಪರಿಶೀಲಿಸಿ ಸಕ್ರಿಯಗೊಳಿಸಿದ ನಂತರ ನೀವು ಈ ID ಮೂಲಕ ಲಾಗಿನ್ ಆಗಬಹುದು.`);
+        switchAuthTab('login');
+        document.getElementById('subIdInput').value = nextId;
     }
 
-    function subscriberLogin() {
+    async function subscriberLogin() {
         const input = document.getElementById('subIdInput').value.trim().toUpperCase();
         if (!input) return alert("Subscriber ID ಹಾಕಿ!");
-        loggedInSubscriberId = input.startsWith("SUB") ? input : "SUB" + input.padStart(2, '0');
-        localStorage.setItem("current_sub_id", loggedInSubscriberId);
-        checkSubscriberSession();
+        const targetId = input.startsWith("SUB") ? input : "SUB" + input.padStart(2, '0');
+
+        try {
+            const doc = await db.collection("subscribers").doc(targetId).get();
+            if (!doc.exists) {
+                return alert("ಈ Subscriber ID ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ! ದಯವಿಟ್ಟು ನೋಂದಣಿ ಮಾಡಿಕೊಳ್ಳಿ.");
+            }
+            const data = doc.data();
+            if (data.status === "PENDING") {
+                return alert(`⏳ ನಿಮ್ಮ ಖಾತೆ (${targetId}) ಇನ್ನೂ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ (Pending).\nಅಡ್ಮಿನ್ ಅನುಮೋದಿಸಿದ ನಂತರ ಪ್ರವೇಶಿಸಬಹುದು.`);
+            }
+
+            loggedInSubscriberId = targetId;
+            localStorage.setItem("current_sub_id", loggedInSubscriberId);
+            checkSubscriberSession();
+        } catch (e) {
+            console.error(e);
+            alert("ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ!");
+        }
     }
 
     function subscriberLogout() {
@@ -870,7 +945,7 @@
         }
     }
 
-    // 5. Admin Publish Actions (Page 1)
+    // 5. Admin Publish & Subscriber Approval Actions (Page 1)
     function toggleUploadType() {
         const type = document.getElementById('contentTypeSelect').value;
         document.getElementById('imageUploadWrapper').style.display = (type === 'POST' || type === 'HOME_AD') ? 'block' : 'none';
@@ -933,15 +1008,46 @@
         db.collection("subscribers").orderBy("joinedAt", "desc").onSnapshot((snapshot) => {
             const list = document.getElementById('adminSubscribersDirectory');
             list.innerHTML = "";
-            if (snapshot.empty) return list.innerHTML = '<div style="font-size:11px; text-align:center; padding:8px;">ಖಾಲಿಯಿದೆ.</div>';
+            if (snapshot.empty) return list.innerHTML = '<div style="font-size:11px; text-align:center; padding:8px;">ಯಾವುದೇ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳಿಲ್ಲ.</div>';
+            
             snapshot.forEach(doc => {
                 const u = doc.data();
+                const isPending = u.status === "PENDING";
                 const div = document.createElement('div');
                 div.className = "user-badge-item";
-                div.innerHTML = `<div><b>${u.name}</b> (${u.subscriberId})</div><button class="req-btn" onclick="prepareReply('${u.subscriberId}')">Select</button>`;
+                div.style.flexDirection = "column";
+                div.style.alignItems = "stretch";
+                div.style.gap = "4px";
+
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div><b>${u.name}</b> (${u.subscriberId})</div>
+                        <span class="badge-status ${isPending ? 'badge-pending' : 'badge-active'}">${isPending ? 'PENDING' : 'ACTIVE'}</span>
+                    </div>
+                    <div style="font-size:10.5px; color:#64748b;">📞 ${u.phone} | 📍 ${u.location || ''}</div>
+                    ${u.utrNumber ? `<div style="font-size:10px; color:#1e293b; background:#f1f5f9; padding:2px 4px; border-radius:4px;">💳 UTR: <b>${u.utrNumber}</b> (₹${u.amount || '9999'})</div>` : ''}
+                    <div style="display:flex; gap:4px; margin-top:4px;">
+                        ${isPending ? `<button class="req-btn" style="background:#16a34a; flex:1;" onclick="approveSubscriber('${u.subscriberId}')"><i class="fa-solid fa-check"></i> Approve (ಸಕ್ರಿಯಗೊಳಿಸಿ)</button>` : ''}
+                        <button class="req-btn" style="flex:1;" onclick="prepareReply('${u.subscriberId}')">Select (ಸಂದೇಶ ಕಳುಹಿಸಿ)</button>
+                    </div>
+                `;
                 list.appendChild(div);
             });
         });
+    }
+
+    async function approveSubscriber(subId) {
+        if (!confirm(`${subId} ನ ಪಾವತಿಯನ್ನು ದೃಢೀಕರಿಸಿ ಸಕ್ರಿಯಗೊಳಿಸಬೇಕೆ?`)) return;
+        try {
+            await db.collection("subscribers").doc(subId).update({
+                status: "ACTIVE",
+                approvedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert(`✅ ${subId} ಯಶಸ್ವಿಯಾಗಿ ಸಕ್ರಿಯಗೊಂಡಿದೆ!`);
+        } catch (e) {
+            console.error(e);
+            alert("ಅನುಮೋದಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ.");
+        }
     }
 
     function loadAdminRequests() {
@@ -964,7 +1070,7 @@
         alert(`${subId} ಆಯ್ಕೆಯಾಗಿದೆ.`);
     }
 
-    // 6. Content Loader for Subscriber Page (Pure DOM Handlers - No String Breakage)
+    // 6. Content Loader for Subscriber Page
     function loadSubscriberData(subId) {
         if (listenerUnsubscribe) listenerUnsubscribe();
         const targets = (subId === "ALL") ? ["ALL"] : ["ALL", subId];
