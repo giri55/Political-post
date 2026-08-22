@@ -2,15 +2,34 @@
 <html lang="kn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>POLITICAL POST - ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್</title>
     
+    <!-- PWA & Android Meta -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0b6623">
+    
+    <!-- Apple iOS Safari Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="PoliticalPost">
     <link rel="apple-touch-icon" href="/icon-192.png">
+
+    <!-- WhatsApp & In-App Browser Auto Redirect Script -->
+    <script>
+        (function() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var isWhatsApp = ua.indexOf('WhatsApp') > -1;
+            var isFB = ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1 || ua.indexOf('Instagram') > -1;
+            
+            if (isWhatsApp || isFB) {
+                if (/android/i.test(ua)) {
+                    // Open directly in Chrome on Android
+                    window.location.href = "intent://political-post.vercel.app#Intent;scheme=https;package=com.android.chrome;end";
+                }
+            }
+        })();
+    </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -199,7 +218,7 @@
 
         <div class="app-install-banner" id="appInstallBanner">
             <div class="install-banner-text">
-                <b>📲 Official Mobile App</b>
+                <b>📲 Official App (Android & iPhone)</b>
                 <span>ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ, ವೇಗವಾಗಿ ಬಳಸಿ!</span>
             </div>
             <button class="install-banner-btn" onclick="triggerAppInstall()">
@@ -1195,7 +1214,7 @@
         }
     }
 
-    // 7. Robust Cross-Browser PWA & Service Worker Logic
+    // 7. Robust Cross-Browser PWA Logic (Android, iOS & Desktop)
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js').catch(err => console.error("SW Error:", err));
@@ -1209,7 +1228,11 @@
     });
 
     function triggerAppInstall() {
-        if (installPromptEvent) {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        if (isIOS) {
+            alert("🍎 iPhone ನಲ್ಲಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\n\n1. ಕೆಳಭಾಗದಲ್ಲಿರುವ 'Share' (ಹಂಚಿಕೊಳ್ಳಿ 📤) ಬಟನ್ ಒತ್ತಿ.\n2. ಕೆಳಗೆ ಸ್ಕ್ರೋಲ್ ಮಾಡಿ 'Add to Home Screen' (➕) ಆಯ್ಕೆಮಾಡಿ.");
+        } else if (installPromptEvent) {
             installPromptEvent.prompt();
             installPromptEvent.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
@@ -1218,8 +1241,7 @@
                 installPromptEvent = null;
             });
         } else {
-            // Fallback for Samsung Internet, Safari, etc.
-            alert("📲 ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\n\n1. ಬ್ರೌಸರ್ ಮೆನು ಒತ್ತಿ (3 ಚುಕ್ಕೆಗಳು ⋮ ಅಥವಾ 3 ಗೆರೆಗಳು ≡)\n2. 'Add page to' ಅಥವಾ 'Install app' / 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
+            alert("📲 Android ನಲ್ಲಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\n\nಬ್ರೌಸರ್ ಮೆನು (3 ಚುಕ್ಕೆಗಳು ⋮ ಅಥವಾ ≡) ಒತ್ತಿ 'Install app' ಅಥವಾ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
         }
     }
 </script>
