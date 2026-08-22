@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POLITICAL POST - ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್</title>
     
-    <!-- PWA & Mobile Settings -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0b6623">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -31,86 +30,23 @@
             --muted: #7A6F60;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans Kannada', 'Poppins', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: #cdd7cf;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 15px 0;
-        }
-
-        .mobile-container {
-            width: 100%;
-            max-width: 430px;
-            min-height: 920px;
-            background: #ffffff;
-            position: relative;
-            box-shadow: 0 16px 45px rgba(0,0,0,0.22);
-            border-radius: 28px;
-            padding-bottom: 75px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .page-view {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            animation: fadeIn 0.22s ease-in-out;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Kannada', 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #cdd7cf; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px 0; }
+        .mobile-container { width: 100%; max-width: 430px; min-height: 920px; background: #ffffff; position: relative; box-shadow: 0 16px 45px rgba(0,0,0,0.22); border-radius: 28px; padding-bottom: 75px; overflow: hidden; display: flex; flex-direction: column; }
+        .page-view { display: none; flex-direction: column; width: 100%; animation: fadeIn 0.22s ease-in-out; }
         .page-view.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .home-bg {
-            background: linear-gradient(180deg, #ff9933 0%, #ffffff 22%, #ffffff 70%, #eef7ee 100%);
-            min-height: 840px;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px 8px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .header-title-panel {
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--green-dark);
-        }
-
-        .icon-btn {
-            background: none; border: none; font-size: 22px; color: #1a4d2e; cursor: pointer; position: relative;
-        }
+        .home-bg { background: linear-gradient(180deg, #ff9933 0%, #ffffff 22%, #ffffff 70%, #eef7ee 100%); min-height: 840px; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 8px; position: relative; z-index: 2; }
+        .header-title-panel { font-size: 15px; font-weight: 800; color: var(--green-dark); }
+        .icon-btn { background: none; border: none; font-size: 22px; color: #1a4d2e; cursor: pointer; }
 
         .brand-section { padding: 6px 16px 6px; position: relative; z-index: 2; }
         .logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; }
-        .logo-badge {
-            position: relative; width: 60px; height: 60px; background: #ffffff; border: 3px solid #ff7700; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 119, 0, 0.25);
-        }
+        .logo-badge { position: relative; width: 60px; height: 60px; background: #ffffff; border: 3px solid #ff7700; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 119, 0, 0.25); }
         .logo-badge .pen-icon { font-size: 24px; color: #0b6623; transform: rotate(-45deg); z-index: 2; }
-        .mini-soudha-badge {
-            position: absolute; bottom: -3px; right: -5px; width: 24px; height: 24px; background: #0b6623; border: 2px solid #ffffff;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.25); z-index: 3;
-        }
+        .mini-soudha-badge { position: absolute; bottom: -3px; right: -5px; width: 24px; height: 24px; background: #0b6623; border: 2px solid #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 3; }
         .mini-soudha-badge svg { width: 14px; height: 14px; fill: #ffffff; }
         .brand-title { text-align: left; line-height: 1.15; }
         .brand-title .en { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
@@ -127,121 +63,55 @@
         .slogan-quote { font-size: 15.5px; font-weight: 800; color: #1a1a1a; }
         .slogan-sub { font-size: 11px; color: #4a5568; font-weight: 600; line-height: 1.4; margin-top: 2px; }
 
-        .app-install-banner {
-            margin: 6px 14px 10px;
-            background: linear-gradient(135deg, #115740 0%, #075e2f 100%);
-            border-radius: 14px;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 12px rgba(11,102,35,0.25);
-            z-index: 2;
-            position: relative;
-        }
+        .app-install-banner { margin: 6px 14px 10px; background: linear-gradient(135deg, #115740 0%, #075e2f 100%); border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; z-index: 2; position: relative; }
         .install-banner-text { display: flex; flex-direction: column; color: #ffffff; }
         .install-banner-text b { font-size: 12px; }
         .install-banner-text span { font-size: 9.5px; opacity: 0.85; }
-        .install-banner-btn {
-            background: #ff7700; color: #ffffff; border: none; padding: 7px 14px; border-radius: 8px;
-            font-size: 11px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px;
-        }
+        .install-banner-btn { background: #ff7700; color: #ffffff; border: none; padding: 7px 14px; border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer; }
 
         .cards-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 14px; position: relative; z-index: 2; }
-        .card {
-            background: #ffffff; border: 1.5px solid #e2ece5; border-radius: 14px;
-            padding: 10px 6px 8px; text-align: center; display: flex; flex-direction: column; align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); position: relative; min-height: 180px; cursor: pointer;
-        }
-        .card-icon {
-            width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 15px; margin-bottom: 6px; box-shadow: 0 3px 6px rgba(0,0,0,0.12);
-        }
+        .card { background: #ffffff; border: 1.5px solid #e2ece5; border-radius: 14px; padding: 10px 6px 8px; text-align: center; display: flex; flex-direction: column; align-items: center; min-height: 180px; cursor: pointer; }
+        .card-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; margin-bottom: 6px; }
         .card:nth-child(1) .card-icon { background: #0b6623; }
         .card:nth-child(2) .card-icon { background: #115740; }
         .card:nth-child(3) .card-icon { background: #ff6f00; }
-        .card-title { font-size: 11.5px; font-weight: 800; margin-bottom: 4px; line-height: 1.2; }
+        .card-title { font-size: 11.5px; font-weight: 800; margin-bottom: 4px; }
         .card:nth-child(1) .card-title { color: #0b6623; }
         .card:nth-child(2) .card-title { color: #115740; }
         .card:nth-child(3) .card-title { color: #d85a00; }
         .card-desc { font-size: 9.2px; color: #4a5568; font-weight: 600; line-height: 1.35; margin-bottom: auto; }
-        .card-btn {
-            width: 20px; height: 20px; border-radius: 50%; border: 1px solid #d1d5db; background: #fff;
-            display: flex; align-items: center; justify-content: center; margin-top: 4px; font-size: 8px; color: #374151;
-        }
+        .card-btn { width: 20px; height: 20px; border-radius: 50%; border: 1px solid #d1d5db; background: #fff; display: flex; align-items: center; justify-content: center; margin-top: 4px; font-size: 8px; }
 
-        .simple-subscribe-prompt {
-            margin: 12px 14px 10px;
-            background: linear-gradient(145deg, #ffffff 0%, #f4faf4 100%);
-            border-radius: 16px; padding: 14px; border: 1.5px solid #d0e5d5;
-            box-shadow: 0 4px 14px rgba(27,94,58,0.07); z-index: 2; text-align: center;
-        }
+        .simple-subscribe-prompt { margin: 12px 14px 10px; background: linear-gradient(145deg, #ffffff 0%, #f4faf4 100%); border-radius: 16px; padding: 14px; border: 1.5px solid #d0e5d5; z-index: 2; text-align: center; }
         .prompt-text { font-size: 12px; font-weight: 700; color: #1a3d28; line-height: 1.5; margin-bottom: 10px; }
-        .prompt-btn {
-            width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-            color: #ffffff; border: none; padding: 10px; border-radius: 10px; font-size: 12px;
-            font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-        }
+        .prompt-btn { width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: #ffffff; border: none; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; }
 
-        .ad-space-container {
-            margin: 0 14px 14px; background: #fdfdfd; border: 1.5px dashed #cbd5e1;
-            border-radius: 14px; padding: 10px; text-align: center; position: relative; z-index: 2;
-        }
+        .ad-space-container { margin: 0 14px 14px; background: #fdfdfd; border: 1.5px dashed #cbd5e1; border-radius: 14px; padding: 10px; text-align: center; position: relative; z-index: 2; }
         .ad-tag { font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; display: block; }
         .ad-content { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .ad-content img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 8px; }
         .ad-text-box h5 { font-size: 12px; font-weight: 800; color: #1e293b; text-align: center; }
 
         .sub-bg, .admin-bg { background: var(--cream); position: relative; min-height: 840px; }
-        .splash-tl {
-            position: absolute; top: 0; left: 0; width: 220px; height: 180px;
-            background: linear-gradient(135deg, var(--orange) 0%, rgba(240,123,29,0) 70%); opacity: 0.85; z-index: 0;
-        }
-        .splash-br {
-            position: absolute; bottom: 0; right: 0; width: 260px; height: 340px;
-            background: linear-gradient(315deg, #4C9A5F 0%, rgba(76,154,95,0) 65%); opacity: 0.8; z-index: 0;
-        }
+        .splash-tl { position: absolute; top: 0; left: 0; width: 220px; height: 180px; background: linear-gradient(135deg, var(--orange) 0%, rgba(240,123,29,0) 70%); opacity: 0.85; z-index: 0; }
+        .splash-br { position: absolute; bottom: 0; right: 0; width: 260px; height: 340px; background: linear-gradient(315deg, #4C9A5F 0%, rgba(76,154,95,0) 65%); opacity: 0.8; z-index: 0; }
 
-        .back-btn, .bell {
-            width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.7); display: flex;
-            align-items: center; justify-content: center; font-size: 18px; color: var(--green-dark); font-weight: 700;
-            border: none; cursor: pointer; position: relative;
-        }
+        .back-btn, .bell { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--green-dark); font-weight: 700; border: none; cursor: pointer; position: relative; }
 
-        .section-header-box {
-            position: relative; z-index: 2; margin: 14px 14px 8px; background: #ffffff; padding: 8px 12px;
-            border-radius: 10px; border-left: 4px solid var(--orange); font-weight: 800; font-size: 13px;
-            color: var(--green-dark); display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-        }
-
-        .content-card-box {
-            position: relative; z-index: 2; margin: 0 14px 10px; padding: 12px; border-radius: 14px;
-            background: #ffffff; border: 1px solid rgba(27,94,58,0.12); box-shadow: 0 3px 8px rgba(43,33,24,0.04);
-        }
+        .section-header-box { position: relative; z-index: 2; margin: 14px 14px 8px; background: #ffffff; padding: 8px 12px; border-radius: 10px; border-left: 4px solid var(--orange); font-weight: 800; font-size: 13px; color: var(--green-dark); display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+        .content-card-box { position: relative; z-index: 2; margin: 0 14px 10px; padding: 12px; border-radius: 14px; background: #ffffff; border: 1px solid rgba(27,94,58,0.12); box-shadow: 0 3px 8px rgba(43,33,24,0.04); }
         .line-text { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 600; margin-bottom: 8px; word-break: break-word; }
         .post-display-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 8px; max-height: 240px; object-fit: cover; }
         
         .line-actions { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 5px; }
-        .act-btn {
-            display: flex; align-items: center; justify-content: center; gap: 4px;
-            padding: 7px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer;
-        }
+        .act-btn { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 7px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer; }
         .act-copy { background: #EAF3EC; color: var(--green-dark); border-color: rgba(27,94,58,0.25); }
         .act-whatsapp { background: #25D366; color: #fff; }
         .act-twitter { background: #000000; color: #fff; }
 
-        .custom-card {
-            position: relative; z-index: 2; margin: 0 14px 12px; padding: 14px; border-radius: 14px;
-            background: #fff; border: 1px solid rgba(27,94,58,0.10); box-shadow: 0 3px 8px rgba(43,33,24,0.04);
-        }
-        .custom-input {
-            margin-top: 6px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2); border-radius: 8px;
-            padding: 8px 10px; font-size: 12px; color: var(--text); resize: none; background: #FBF6EC; outline: none;
-        }
-        .custom-send {
-            margin-top: 8px; width: 100%; text-align: center; background: var(--green); color: #fff;
-            font-weight: 700; font-size: 12px; padding: 9px; border-radius: 8px; cursor: pointer; border: none;
-        }
+        .custom-card { position: relative; z-index: 2; margin: 0 14px 12px; padding: 14px; border-radius: 14px; background: #fff; border: 1px solid rgba(27,94,58,0.10); box-shadow: 0 3px 8px rgba(43,33,24,0.04); }
+        .custom-input { margin-top: 6px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2); border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--text); resize: none; background: #FBF6EC; outline: none; }
+        .custom-send { margin-top: 8px; width: 100%; text-align: center; background: var(--green); color: #fff; font-weight: 700; font-size: 12px; padding: 9px; border-radius: 8px; cursor: pointer; border: none; }
 
         .auth-tab-switch { display: flex; background: #eef5f0; border-radius: 8px; padding: 3px; margin-bottom: 10px; }
         .auth-tab { flex: 1; padding: 6px; font-size: 11px; font-weight: 800; border: none; background: none; color: var(--muted); border-radius: 6px; cursor: pointer; }
@@ -254,41 +124,23 @@
 
         .user-badge-item { background: #fff; padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; border: 1px solid #e2ece5; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; }
 
-        .sub-panel {
-            position: relative; z-index: 2; margin: 0 14px 6px; background: linear-gradient(135deg, #ffffff 0%, #F5EFE0 100%);
-            border: 1px solid rgba(27,94,58,0.12); border-radius: 16px; padding: 12px;
-        }
+        .sub-panel { position: relative; z-index: 2; margin: 0 14px 6px; background: linear-gradient(135deg, #ffffff 0%, #F5EFE0 100%); border: 1px solid rgba(27,94,58,0.12); border-radius: 16px; padding: 12px; }
         .sub-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-bottom: 8px; }
-        .sub-cell {
-            aspect-ratio: 1; border-radius: 6px; background: #FBF6EC; border: 1px solid rgba(27,94,58,0.18);
-            display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--green-dark); cursor: pointer;
-        }
+        .sub-cell { aspect-ratio: 1; border-radius: 6px; background: #FBF6EC; border: 1px solid rgba(27,94,58,0.18); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--green-dark); cursor: pointer; }
         .sub-cell.active { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff; }
 
         /* AI PAGE 2 ACTION STYLES */
         .ai-card-item { background: #ffffff; border-radius: 12px; padding: 10px; margin-bottom: 8px; border: 1px solid #e2ece5; }
         .ai-badge-num { width: 22px; height: 22px; background: #115740; color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; margin-right: 6px; }
         
-        .ai-action-btn-group-4 { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr 1.2fr 0.8fr; 
-            gap: 4px; 
-            margin-top: 8px; 
-        }
+        .ai-action-btn-group-4 { display: grid; grid-template-columns: 1fr 1fr 1.2fr 0.8fr; gap: 4px; margin-top: 8px; }
         .btn-ai-copy { background: #eef7ee; color: #115740; border: 1px solid #bbf7d0; border-radius: 6px; padding: 6px 0; font-size: 10.5px; font-weight: 700; cursor: pointer; }
         .btn-ai-edit { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; border-radius: 6px; padding: 6px 0; font-size: 10.5px; font-weight: 700; cursor: pointer; }
         .btn-ai-publish { background: #115740; color: #ffffff; border: 1px solid #075e2f; border-radius: 6px; padding: 6px 0; font-size: 10.5px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 4px rgba(17,87,64,0.2); }
         .btn-ai-delete { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; border-radius: 6px; padding: 6px 0; font-size: 10.5px; font-weight: 700; cursor: pointer; }
 
-        .bottom-nav {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 64px; background: #ffffff;
-            border-top: 1px solid #e5e7eb; display: flex; justify-content: space-around; align-items: center;
-            border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); z-index: 100;
-        }
-        .nav-item {
-            display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280;
-            font-size: 10.5px; font-weight: 700; gap: 3px; position: relative; flex: 1; cursor: pointer; border: none; background: none;
-        }
+        .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; height: 64px; background: #ffffff; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-around; align-items: center; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280; font-size: 10.5px; font-weight: 700; gap: 3px; position: relative; flex: 1; cursor: pointer; border: none; background: none; }
         .nav-item.active { color: #0b6623; }
         .nav-item i { font-size: 18px; }
     </style>
@@ -471,7 +323,6 @@
             <button class="bell" onclick="adminLogout()" title="ಅಡ್ಮಿನ್ ಲಾಗ್‌ಔಟ್"><i class="fa-solid fa-right-from-bracket" style="color:red; font-size:15px;"></i></button>
         </div>
 
-        <!-- AI Assistant Banner Link -->
         <button onclick="switchPage('admin-ai')" class="custom-send" style="background:linear-gradient(135deg, #115740, #ff7700); margin:0 14px 10px; width:calc(100% - 28px); box-shadow:0 4px 10px rgba(0,0,0,0.15);">
             <i class="fa-solid fa-robot"></i> 🤖 AI CONTENT ASSISTANT (Page 2)
         </button>
@@ -536,40 +387,54 @@
         </div>
     </div>
 
-    <!-- PAGE 4: ADMIN PAGE 2 (AI CONTENT ASSISTANT) -->
+    <!-- PAGE 4: ADMIN PAGE 2 (GEMINI AI CONTENT ASSISTANT) -->
     <div id="page-admin-ai" class="page-view admin-bg">
         <div class="splash-tl"></div>
         <div class="splash-br"></div>
 
         <div class="header">
             <button class="back-btn" onclick="switchPage('admin')">&#8592;</button>
-            <div class="header-title-panel">🤖 AI Assistant (Page 2)</div>
-            <button class="bell" onclick="fetchAutomatedAIContent()" title="ರಿಫ್ರೆಶ್"><i class="fa-solid fa-arrows-rotate"></i></button>
+            <div class="header-title-panel">🤖 Gemini AI Assistant (Page 2)</div>
+            <button class="bell" onclick="fetchLiveGeminiAI()" title="ಲೈವ್ ರಿಫ್ರೆಶ್"><i class="fa-solid fa-arrows-rotate"></i></button>
         </div>
 
-        <div class="section-header-box">
-            <span><i class="fa-solid fa-newspaper" style="color:var(--orange);"></i> ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ (AI Feed)</span>
-            <button onclick="fetchAutomatedAIContent()" style="background:none; border:none; color:var(--green); font-size:11px; font-weight:800; cursor:pointer;">
-                <i class="fa-solid fa-arrows-rotate"></i> ರಿಫ್ರೆಶ್
+        <!-- Custom Prompt Request Box -->
+        <div class="custom-card" style="margin-top: 4px;">
+            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--orange);"></i> AI ಗೆ ನಿರ್ದಿಷ್ಟ ವಿಷಯದ ಮನವಿ (Custom Prompt):
+            </label>
+            <textarea id="customAiPrompt" rows="2" placeholder="ಉದಾ: ಮುಂಬರುವ ಲೋಕಸಭೆ/ವಿಧಾನಸಭೆ ಚುನಾವಣೆ ಬಗ್ಗೆ, ಅಥವಾ ಇಂದಿನ ರಾಷ್ಟ್ರೀಯ ರಾಜಕೀಯ ಬೆಳವಣಿಗೆ..." class="custom-input" style="background:#fff;"></textarea>
+            <button onclick="generateCustomAiContent()" class="custom-send" style="background:linear-gradient(135deg, #ff7700, #b8862b); margin-top:6px;">
+                <i class="fa-solid fa-bolt"></i> ಈ ವಿಷಯಕ್ಕೆ AI ಕಂಟೆಂಟ್ ರಚಿಸಿ
             </button>
         </div>
-        <div id="aiTopNewsContainer" style="padding: 0 14px 6px;"></div>
 
-        <div class="section-header-box" style="margin-top:6px;">
-            <span><i class="fa-solid fa-fire" style="color:var(--orange);"></i> ಟ್ರೆಂಡಿಂಗ್ ಪೋಸ್ಟ್‌ಗಳು</span>
+        <!-- Section 1: ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯಗಳು -->
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-newspaper" style="color:var(--orange);"></i> 1. ಪ್ರಮುಖ ವಿಷಯಗಳು (ಕರ್ನಾಟಕ & ದೇಶ)</span>
         </div>
+        <div id="aiTopNewsContainer" style="padding: 0 14px 4px;"></div>
 
-        <div style="padding: 0 14px;">
-            <div class="auth-tab-switch" style="margin-bottom:8px;">
-                <button class="auth-tab active" id="tabPolBtn" onclick="switchAiTab('political')">🏛️ ರಾಜಕೀಯ</button>
-                <button class="auth-tab" id="tabCinemaBtn" onclick="switchAiTab('cinema')">🎬 cinema</button>
-                <button class="auth-tab" id="tabSportsBtn" onclick="switchAiTab('sports')">🏃 sports</button>
-            </div>
-            <div id="aiTrendingListContainer"></div>
+        <!-- Section 2: ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯಗಳು -->
+        <div class="section-header-box" style="margin-top:4px;">
+            <span><i class="fa-solid fa-arrow-trend-up" style="color:var(--orange);"></i> 2. ಟ್ರೆಂಡಿಂಗ್ ಮುಖ್ಯಾಂಶಗಳು</span>
         </div>
+        <div id="aiTrendingListContainer" style="padding: 0 14px 4px;"></div>
+
+        <!-- Section 3: ಕ್ಯಾಚಿ ಲೈನ್ಸ್‌ಗಳು -->
+        <div class="section-header-box" style="margin-top:4px;">
+            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> 3. ಸೋಷಿಯಲ್ ಮೀಡಿಯಾ ಕ್ಯಾಚಿ ಲೈನ್ಸ್</span>
+        </div>
+        <div id="aiCatchyContainer" style="padding: 0 14px 4px;"></div>
+
+        <!-- Section 4: ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್‌ಗಳು -->
+        <div class="section-header-box" style="margin-top:4px;">
+            <span><i class="fa-solid fa-bullhorn" style="color:var(--orange);"></i> 4. ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ ಸ್ಕ್ರಿಪ್ಟ್</span>
+        </div>
+        <div id="aiMajorPostContainer" style="padding: 0 14px 4px;"></div>
 
         <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:10.5px; color:#92400e;">
-            💡 <b>ಸೂಚನೆ:</b> ಇಲ್ಲಿಂದಲೇ <b>Publish</b> ಒತ್ತಿ ನೇರವಾಗಿ ಪ್ರಕಟಿಸಬಹುದು ಅಥವಾ <b>Copy/Edit</b> ಮಾಡಿಕೊಳ್ಳಬಹುದು.
+            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿ ನೇರವಾಗಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಪ್ರಕಟಿಸಬಹುದು ಅಥವಾ <b>Copy/Edit</b> ಮಾಡಿಕೊಳ್ಳಬಹುದು.
         </div>
     </div>
 
@@ -625,7 +490,7 @@
         }
     });
 
-    // 2. Navigation with Session Authentication (No Repeated Passwords)
+    // 2. Navigation with Session Authentication
     async function switchPage(pageName) {
         if (pageName === 'admin' || pageName === 'admin-ai') {
             const isAdminLoggedIn = sessionStorage.getItem("admin_authenticated");
@@ -650,7 +515,6 @@
                         alert("ತಪ್ಪಾದ ಪಾಸ್‌ವರ್ಡ್!");
                         return;
                     }
-                    // ಪಾಸ್‌ವರ್ಡ್ ಸರಿಯಾದಾಗ Session ನಲ್ಲಿ ಸೇವ್ ಮಾಡಲಾಗುತ್ತದೆ
                     sessionStorage.setItem("admin_authenticated", "true");
                 } catch (err) {
                     console.error("Auth error:", err);
@@ -663,7 +527,7 @@
                 loadAdminRequests();
                 loadAdminSubscribers();
             } else if (pageName === 'admin-ai') {
-                initAdminPage2();
+                renderAllAiSections();
             }
         }
 
@@ -695,101 +559,187 @@
         }
     }
 
-    // 3. AI Page 2 Automated Logic & Direct Publish
-    let automatedAiData = {
+    // 3. Gemini AI Live Integration Logic
+    let aiGeneratedContent = JSON.parse(localStorage.getItem("ai_content_cache")) || {
         topNews: [
-            { id: 'tn1', title: "ಕರ್ನಾಟಕ ಬಜೆಟ್: ಪ್ರಮುಖ ಘೋಷಣೆಗಳು", summary: "ರಾಜ್ಯ ಸರ್ಕಾರ ಇಂದು ಹೊಸ ಬಜೆಟ್ ಮಂಡನೆ ಮಾಡಿದ್ದು, ಶಿಕ್ಷಣ, ಕೃಷಿ, ಮಹಿಳಾ ಹಾಗೂ ಯುವಕರಿಗೆ ವಿಶೇಷ ಅನುದಾನ ಘೋಷಿಸಿದೆ." },
-            { id: 'tn2', title: "ವಿಧಾನಸಭಾ ಅಧಿವೇಶನ: ವಿರೋಧ ಪಕ್ಷದ ಆಕ್ರೋಶ", summary: "ವಿಧಾನಸಭೆಯಲ್ಲಿ ಹಲವು ವಿಷಯಗಳ ಮೇಲೆ ವಿರೋಧ ಪಕ್ಷದ ಸದಸ್ಯರು ಸರ್ಕಾರದ ಮೇಲೆ ತೀಕ್ಷ್ಣ ಪ್ರಹಾರ ಮಾಡಿದರು." },
-            { id: 'tn3', title: "ರಾಜ್ಯದಲ್ಲಿ ಮಳೆಯ ಅಬ್ಬರ: ಹಲವು ಜಿಲ್ಲೆಗಳಿಗೆ ಎಚ್ಚರಿಕೆ", summary: "ಮುಂದಿನ 3 ದಿನಗಳ ಕಾಲ ಭಾರಿ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ, ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡು ಭಾಗಗಳಲ್ಲಿ ಮುನ್ನೆಚ್ಚರಿಕೆ ನೀಡಲಾಗಿದೆ." }
+            { title: "ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಆಡಳಿತಾತ್ಮಕ ಸುಧಾರಣೆಗಳು", summary: "ರಾಜ್ಯದ ಅಭಿವೃದ್ಧಿ ಕಾಮಗಾರಿಗಳಿಗೆ ವೇಗ ನೀಡಲು ಹೊಸ ನೀತಿ ಜಾರಿಗೆ ತರಲು ಸರ್ಕಾರದಿಂದ ಮಹತ್ವದ ಸಿದ್ಧತೆ." },
+            { title: "ದೆಹಲಿಯಲ್ಲಿ ರಾಷ್ಟ್ರೀಯ ನೀತಿ ಸಮಾವೇಶ", summary: "ದೇಶದ ಪ್ರಮುಖ ಆರ್ಥಿಕ ಮತ್ತು ರಾಜಕೀಯ ತಜ್ಞರ ನೇತೃತ್ವದಲ್ಲಿ ಕೇಂದ್ರ ಮಟ್ಟದಲ್ಲಿ ಮಹತ್ವದ ಚರ್ಚೆಗಳು ಆರಂಭವಾಗಿವೆ." }
         ],
-        political: [
-            { text: "ಸಿದ್ಧರಾಮಯ್ಯ ಸರ್ಕಾರದ ಹೊಸ ಯೋಜನೆಗೆ ಚಾಲನೆ - ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಮೆರುಗು." },
-            { text: "ಡಿಕೆ ಶಿವಕುಮಾರ್ ವಿದೇಶ ಪ್ರವಾಸ: ರಾಜಕೀಯ ವಲಯದಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದ ನಡೆ!" },
-            { text: "ಕಾಂಗ್ರೆಸ್ ಶಾಸಕರ ಸಭೆಯಲ್ಲಿ ಮಹತ್ವದ ನಿರ್ಧಾರ; ಮುಂಬರುವ ಚುನಾವಣೆಗೆ ಸಿದ್ಧತೆ." },
-            { text: "ಬಿಜೆಪಿ ರಾಜ್ಯ ನಾಯಕರಿಗೆ ಕೇಂದ್ರ ನಾಯಕರ ಸೂಚನೆ; ಸಂಘಟನೆ ಬಲಪಡಿಸಲು ಕರೆ." },
-            { text: "ಗ್ರಾಮ ಪಂಚಾಯತ್ ಚುನಾವಣೆ: ಹಳ್ಳಿ ಹಳ್ಳಿಗಳಲ್ಲಿ ಗರಿಗೆದರಿದ ರಾಜಕೀಯ ಚಟುವಟಿಕೆ." }
+        trending: [
+            { text: "ಕರ್ನಾಟಕ ಬಜೆಟ್ ಮತ್ತು ಅಭಿವೃದ್ಧಿ ಯೋಜನೆಗಳ ಅನುಷ್ಠಾನದ ಬಗ್ಗೆ ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳಲ್ಲಿ ಭಾರಿ ಚರ್ಚೆ." },
+            { text: "ರಾಷ್ಟ್ರೀಯ ಹೆದ್ದಾರಿ ಯೋಜನೆಗಳ ವಿಸ್ತರಣೆಗೆ ರಾಜ್ಯ ಮತ್ತು ಕೇಂದ್ರ ಸಮನ್ವಯದ ಕ್ರಮ." }
         ],
-        cinema: [
-            { text: "ಕಿಚ್ಚ ಸುದೀಪ್ ಹೊಸ ಚಿತ್ರಕ್ಕೆ ಅಧಿಕೃತ ಘೋಷಣೆ - ಅಭಿಮಾನಿಗಳಲ್ಲಿ ಹಬ್ಬದ ಸಂಭ್ರಮ!" },
-            { text: "ರಶ್ಮಿಕಾ ಮಂದಣ್ಣ ಹೊಸ ಫೋಟೋಶೂಟ್ ಸೋಷಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ವೈರಲ್." },
-            { text: "ಯಶ್ ಮುಂದಿನ ಸಿನಿಮಾ ಬಗ್ಗೆ ಅಪ್ಡೇಟ್: ಭರ್ಜರಿ ತಯಾರಿಯಲ್ಲಿ ರಾಕಿ ಭಾಯ್!" },
-            { text: "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1: ರಿಲೀಸ್ ಡೇಟ್ ಫಿಕ್ಸ್ - ಕಾತರದಲ್ಲಿ ಸಿನಿಪ್ರಿಯರು." },
-            { text: "ಸ್ಯಾಂಡಲ್‌ವುಡ್‌ನಲ್ಲಿ ಹೊಸ ಕಥೆಗಳ ಟ್ರೆಂಡ್; ಯುವ ಪ್ರತಿಭೆಗಳಿಗೆ ಉತ್ತಮ ವೇದಿಕೆ." }
+        catchyLines: [
+            { text: "“ಜನಪರ ಧ್ವನಿಗೆ ಹೊಸ ಚೈತನ್ಯ - ಪ್ರಗತಿಯ ಹಾದಿಯಲ್ಲಿ ಮುನ್ನಡೆಯುವ ಸಂಕಲ್ಪ!”" },
+            { text: "“ನುಡಿದಂತೆ ನಡೆಯುವ ಆಡಳಿತ, ನಾಡಿನ ಸರ್ವಾಂಗೀಣ ವಿಕಾಸಕ್ಕೆ ಬದ್ಧತೆ!”" }
         ],
-        sports: [
-            { text: "ಟೀಮ್ ಇಂಡಿಯಾ ಪಂದ್ಯಾವಳಿಗೆ ಸಜ್ಜು - ಕಠಿಣ ತಾಲೀಮಿನಲ್ಲಿ ಆಟಗಾರರು." },
-            { text: "ವಿರಾಟ್ ಕೊಹ್ಲಿ ದಾಖಲೆ ಮತ್ತೊಂದು ಮೈಲುಗಲ್ಲು; ವಿಶ್ವ ಕ್ರಿಕೆಟ್‌ನಲ್ಲಿ ಹೊಸ ಇತಿಹಾಸ!" },
-            { text: "KPL ಪಂದ್ಯಾವಳಿ: ರೋಚಕ ಹಣಾಹಣಿಯಲ್ಲಿ ಅದ್ಭುತ ಜಯಗಳಿಸಿದ ತಂಡ." },
-            { text: "ಕರ್ನಾಟಕದ ಯುವ ಆಟಗಾರರಿಗೆ ರಾಷ್ಟ್ರೀಯ ಮಟ್ಟದಲ್ಲಿ ದೊಡ್ಡ ಅವಕಾಶ." },
-            { text: "ಇಂದು IPL ಹೈ-ವೋಲ್ಟೇಜ್ ಪಂದ್ಯ: ಅಭಿಮಾನಿಗಳಲ್ಲಿ ಹೆಚ್ಚಿದ ಕೌತುಕ!" }
+        majorPosts: [
+            { text: "ರಾಜ್ಯದ ಜನತೆಯ ಹಿತದೃಷ್ಟಿಯಿಂದ ಕೈಗೊಂಡ ಮಹತ್ವದ ನಿರ್ಧಾರಗಳು - ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ಪ್ರಮುಖ ಅಂಶಗಳ ವಿವರ." },
+            { text: "ಯುವ ಜನತೆಗೆ ಉದ್ಯೋಗಾವಕಾಶ ಮತ್ತು ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿಗೆ ಹೊಸ ಬಜೆಟ್‌ನಲ್ಲಿ ಆದ್ಯತೆ." }
         ]
     };
 
-    let currentAiCategory = 'political';
-
-    function initAdminPage2() {
+    function renderAllAiSections() {
         renderTopNews();
-        renderTrendingList();
+        renderTrending();
+        renderCatchy();
+        renderMajorPosts();
     }
 
     function renderTopNews() {
-        const container = document.getElementById('aiTopNewsContainer');
-        if (!container) return;
-        container.innerHTML = "";
-
-        automatedAiData.topNews.forEach((item, index) => {
+        const c = document.getElementById('aiTopNewsContainer');
+        if (!c) return;
+        c.innerHTML = "";
+        aiGeneratedContent.topNews.forEach((item, idx) => {
             const div = document.createElement('div');
             div.className = 'ai-card-item';
             div.innerHTML = `
                 <div style="font-size:12px; font-weight:800; color:var(--green-dark); margin-bottom:4px;">
-                    <span class="ai-badge-num">${index + 1}</span> ${item.title}
+                    <span class="ai-badge-num">${idx + 1}</span> ${item.title}
                 </div>
                 <div style="font-size:11px; color:#4a5568; line-height:1.4; margin-bottom:6px;">${item.summary}</div>
                 <div class="ai-action-btn-group-4">
                     <button class="btn-ai-copy" onclick="copyAiItem('${item.title}\\n\\n${item.summary}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="btn-ai-edit" onclick="editTopNews(${index})"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-ai-edit" onclick="editTopNews(${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
                     <button class="btn-ai-publish" onclick="directPublishAI('${item.title}: ${item.summary}', 'CATCHY')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-                    <button class="btn-ai-delete" onclick="deleteTopNews(${index})"><i class="fa-solid fa-trash"></i> Del</button>
+                    <button class="btn-ai-delete" onclick="deleteItem('topNews', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
                 </div>
             `;
-            container.appendChild(div);
+            c.appendChild(div);
         });
     }
 
-    function renderTrendingList() {
-        const container = document.getElementById('aiTrendingListContainer');
-        if (!container) return;
-        container.innerHTML = "";
-
-        const items = automatedAiData[currentAiCategory] || [];
-        items.forEach((item, index) => {
+    function renderTrending() {
+        const c = document.getElementById('aiTrendingListContainer');
+        if (!c) return;
+        c.innerHTML = "";
+        aiGeneratedContent.trending.forEach((item, idx) => {
             const div = document.createElement('div');
             div.className = 'ai-card-item';
             div.innerHTML = `
                 <div style="display:flex; align-items:flex-start;">
-                    <span class="ai-badge-num">${index + 1}</span>
+                    <span class="ai-badge-num">${idx + 1}</span>
                     <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${item.text}</div>
                 </div>
                 <div class="ai-action-btn-group-4">
                     <button class="btn-ai-copy" onclick="copyAiItem('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="btn-ai-edit" onclick="editTrendingItem(${index})"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-ai-edit" onclick="editItem('trending', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
                     <button class="btn-ai-publish" onclick="directPublishAI('${item.text}', 'CATCHY')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-                    <button class="btn-ai-delete" onclick="deleteTrendingItem(${index})"><i class="fa-solid fa-trash"></i> Del</button>
+                    <button class="btn-ai-delete" onclick="deleteItem('trending', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
                 </div>
             `;
-            container.appendChild(div);
+            c.appendChild(div);
         });
     }
 
-    function switchAiTab(cat) {
-        currentAiCategory = cat;
-        document.getElementById('tabPolBtn').classList.toggle('active', cat === 'political');
-        document.getElementById('tabCinemaBtn').classList.toggle('active', cat === 'cinema');
-        document.getElementById('tabSportsBtn').classList.toggle('active', cat === 'sports');
-        renderTrendingList();
+    function renderCatchy() {
+        const c = document.getElementById('aiCatchyContainer');
+        if (!c) return;
+        c.innerHTML = "";
+        aiGeneratedContent.catchyLines.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'ai-card-item';
+            div.innerHTML = `
+                <div style="display:flex; align-items:flex-start;">
+                    <span class="ai-badge-num" style="background:var(--orange);">${idx + 1}</span>
+                    <div style="font-size:12px; font-weight:700; color:var(--green-dark); flex:1;">${item.text}</div>
+                </div>
+                <div class="ai-action-btn-group-4">
+                    <button class="btn-ai-copy" onclick="copyAiItem('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-edit" onclick="editItem('catchyLines', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-ai-publish" onclick="directPublishAI('${item.text}', 'CATCHY')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+                    <button class="btn-ai-delete" onclick="deleteItem('catchyLines', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
+                </div>
+            `;
+            c.appendChild(div);
+        });
     }
 
-    // DIRECT PUBLISH FROM PAGE 2
+    function renderMajorPosts() {
+        const c = document.getElementById('aiMajorPostContainer');
+        if (!c) return;
+        c.innerHTML = "";
+        aiGeneratedContent.majorPosts.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'ai-card-item';
+            div.innerHTML = `
+                <div style="display:flex; align-items:flex-start;">
+                    <span class="ai-badge-num" style="background:#b8862b;">${idx + 1}</span>
+                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${item.text}</div>
+                </div>
+                <div class="ai-action-btn-group-4">
+                    <button class="btn-ai-copy" onclick="copyAiItem('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-edit" onclick="editItem('majorPosts', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-ai-publish" onclick="directPublishAI('${item.text}', 'POST')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+                    <button class="btn-ai-delete" onclick="deleteItem('majorPosts', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
+                </div>
+            `;
+            c.appendChild(div);
+        });
+    }
+
+    // Call Gemini Serverless Function
+    async function fetchLiveGeminiAI(customTopic = "") {
+        alert(customTopic ? "⏳ ನಿಮ್ಮ ವಿಷಯಕ್ಕೆ ತಕ್ಕಂತೆ AI ಕಂಟೆಂಟ್ ರಚಿಸುತ್ತಿದೆ..." : "⏳ ಇಂದಿನ ತಾಜಾ ಕರ್ನಾಟಕ & ದೇಶದ ಸುದ್ದಿಗಳನ್ನು Gemini AI ಪಡೆಯುತ್ತಿದೆ...");
+        try {
+            const res = await fetch('/api/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ topic: customTopic })
+            });
+
+            if (!res.ok) throw new Error("API request failed");
+            const data = await res.json();
+
+            if (data.topNews && data.trending) {
+                aiGeneratedContent = data;
+                localStorage.setItem("ai_content_cache", JSON.stringify(aiGeneratedContent));
+                renderAllAiSections();
+                alert("✨ Gemini AI ಲೈವ್ ಕಂಟೆಂಟ್ ಯಶಸ್ವಿಯಾಗಿ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!");
+            } else {
+                throw new Error("Invalid structure");
+            }
+        } catch (e) {
+            console.error(e);
+            alert("AI ಕಂಟೆಂಟ್ ಪಡೆಯುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ. ದಯವಿಟ್ಟು Vercel ನಲ್ಲಿ GEMINI_API_KEY ಸೆಟ್ ಆಗಿದೆಯೇ ಪರಿಶೀಲಿಸಿ.");
+        }
+    }
+
+    function generateCustomAiContent() {
+        const prompt = document.getElementById('customAiPrompt').value.trim();
+        if (!prompt) return alert("ದಯವಿಟ್ಟು ವಿಷಯ ನಮೂದಿಸಿ!");
+        fetchLiveGeminiAI(prompt);
+        document.getElementById('customAiPrompt').value = "";
+    }
+
+    // Edit/Delete Actions
+    function editTopNews(idx) {
+        const n = prompt("ಸಾರಾಂಶ ತಿದ್ದಿ:", aiGeneratedContent.topNews[idx].summary);
+        if (n !== null && n.trim()) {
+            aiGeneratedContent.topNews[idx].summary = n.trim();
+            renderTopNews();
+        }
+    }
+
+    function editItem(key, idx) {
+        const n = prompt("ವಿಷಯ ತಿದ್ದಿ:", aiGeneratedContent[key][idx].text);
+        if (n !== null && n.trim()) {
+            aiGeneratedContent[key][idx].text = n.trim();
+            renderAllAiSections();
+        }
+    }
+
+    function deleteItem(key, idx) {
+        if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
+            aiGeneratedContent[key].splice(idx, 1);
+            renderAllAiSections();
+        }
+    }
+
+    function copyAiItem(text) {
+        navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!"));
+    }
+
     async function directPublishAI(text, type = "CATCHY") {
         if (!confirm("ಈ ಕಂಟೆಂಟ್ ಅನ್ನು ನೇರವಾಗಿ ಲೈವ್ ಪ್ರಕಟಿಸಬೇಕೆ?")) return;
         try {
@@ -805,47 +755,6 @@
             console.error(e);
             alert("ಪ್ರಕಟಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ!");
         }
-    }
-
-    function copyAiItem(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!");
-        });
-    }
-
-    function editTopNews(idx) {
-        const newSummary = prompt("ಸಾರಾಂಶ ತಿದ್ದಿ:", automatedAiData.topNews[idx].summary);
-        if (newSummary !== null && newSummary.trim() !== "") {
-            automatedAiData.topNews[idx].summary = newSummary.trim();
-            renderTopNews();
-        }
-    }
-
-    function editTrendingItem(idx) {
-        const newText = prompt("ವಿಷಯ ತಿದ್ದಿ:", automatedAiData[currentAiCategory][idx].text);
-        if (newText !== null && newText.trim() !== "") {
-            automatedAiData[currentAiCategory][idx].text = newText.trim();
-            renderTrendingList();
-        }
-    }
-
-    function deleteTopNews(idx) {
-        if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
-            automatedAiData.topNews.splice(idx, 1);
-            renderTopNews();
-        }
-    }
-
-    function deleteTrendingItem(idx) {
-        if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
-            automatedAiData[currentAiCategory].splice(idx, 1);
-            renderTrendingList();
-        }
-    }
-
-    function fetchAutomatedAIContent() {
-        alert("🔄 ಲೈವ್ ವಿಷಯಗಳು ಅಪ್‌ಡೇಟ್ ಆಗಿವೆ!");
-        initAdminPage2();
     }
 
     // 4. Subscriber Auth & Session
