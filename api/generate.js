@@ -1,12 +1,8 @@
 export default async function handler(req, res) {
-  // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
@@ -19,18 +15,17 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'GEMINI_API_KEY is not configured in Vercel' });
+    return res.status(500).json({ error: 'GEMINI_API_KEY is missing' });
   }
 
   const { topic } = req.body || {};
   const promptTopic = topic ? `ವಿಷಯ: ${topic}` : `ಕರ್ನಾಟಕ ಹಾಗೂ ಭಾರತದ ಇಂದಿನ ಪ್ರಮುಖ ರಾಜಕೀಯ ಮತ್ತು ಸಾಮಾಜಿಕ ವಿದ್ಯಮಾನಗಳು`;
 
-  const prompt = `
+  const promptText = `
 ನೀವು ಕನ್ನಡದ ರಾಜಕೀಯ ಮತ್ತು ಸಾಮಾಜಿಕ ವಿಷಯಗಳ ತಜ್ಞ ಕ್ರಿಯೇಟರ್.
-ಈ ಕೆಳಗಿನ ವಿಷಯದ ಮೇಲೆ ನಿಖರವಾದ ಕನ್ನಡದಲ್ಲಿ ಕಂಟೆಂಟ್ ರಚಿಸಿ:
-"${promptTopic}"
+ಈ ವಿಷಯಕ್ಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ಅತ್ಯುತ್ತಮ ಕನ್ನಡದಲ್ಲಿ ಕಂಟೆಂಟ್ ನೀಡಿ: "${promptTopic}"
 
-ಕಡ್ಡಾಯವಾಗಿ ಕೇವಲ ಈ ಕೆಳಗಿನ JSON ಫಾರ್ಮ್ಯಾಟ್‌ನಲ್ಲಿ ಮಾತ್ರ ಉತ್ತರ ಕೊಡಿ (ಯಾವುದೇ extra text ಅಥವಾ markdown \`\`\`json ಹಾಕಬೇಡಿ):
+ಕಡ್ಡಾಯವಾಗಿ ಈ ಕೆಳಗಿನ JSON ರಚನೆಯಲ್ಲಿ ಮಾತ್ರ ಉತ್ತರ ನೀಡಿ:
 {
   "topNews": [
     { "title": "ಮುಖ್ಯಾಂಶ ಶೀರ್ಷಿಕೆ 1", "summary": "ವಿವರವಾದ ಸಾರಾಂಶ 1" },
@@ -56,25 +51,27 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
+        contents: [{ parts: [{ text: promptText }] }],
+        generationConfig: {
+          response_mime_type: "application/json"
+        }
       })
     });
 
     const data = await response.json();
-    
+
     if (!response.ok || !data.candidates || !data.candidates[0]) {
-      console.error('Gemini API Error:', JSON.stringify(data));
+      console.error('Gemini API Error details:', data);
       return res.status(500).json({ error: 'Gemini API Error', details: data });
     }
 
-    let textResponse = data.candidates[0].content.parts[0].text.trim();
-    textResponse = textResponse.replace(/^```json/i, '').replace(/^```/i, '').replace(/```$/i, '').trim();
+    const rawOutput = data.candidates[0].content.parts[0].text;
+    const jsonOutput = JSON.parse(rawOutput);
 
-    const result = JSON.parse(textResponse);
-    return res.status(200).json(result);
+    return res.status(200).json(jsonOutput);
 
-  } catch (error) {
-    console.error('Server Catch Error:', error);
-    return res.status(500).json({ error: 'Generation Failed', message: error.message });
+  } catch (err) {
+    console.error('Backend Catch Error:', err);
+    return res.status(500).json({ error: 'Failed to process AI request', message: err.message });
   }
 }
