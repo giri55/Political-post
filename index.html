@@ -24,7 +24,6 @@
             
             if (isWhatsApp || isFB) {
                 if (/android/i.test(ua)) {
-                    // Open directly in Chrome on Android
                     window.location.href = "intent://political-post.vercel.app#Intent;scheme=https;package=com.android.chrome;end";
                 }
             }
@@ -45,8 +44,8 @@
             --orange: #F07B1D;
             --gold: #E8B84B;
             --gold-dark: #B8862B;
-            --text: #2B2118;
-            --muted: #7A6F60;
+            --text: #1a1a1a;
+            --muted: #555555;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Kannada', 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -56,9 +55,9 @@
         .page-view.active { display: flex; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        .home-bg { background: linear-gradient(180deg, #ff9933 0%, #ffffff 22%, #ffffff 70%, #eef7ee 100%); min-height: 840px; }
+        .home-bg { background: linear-gradient(180deg, #ff9933 0%, #ffffff 20%, #ffffff 75%, #eef7ee 100%); min-height: 840px; }
         .header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 8px; position: relative; z-index: 2; }
-        .header-title-panel { font-size: 15px; font-weight: 800; color: var(--green-dark); }
+        .header-title-panel { font-size: 16px; font-weight: 900; color: var(--green-dark); }
         .icon-btn { background: none; border: none; font-size: 22px; color: #1a4d2e; cursor: pointer; }
 
         .brand-section { padding: 6px 16px 6px; position: relative; z-index: 2; }
@@ -79,37 +78,86 @@
         .slogan-box { text-align: center; padding: 6px 20px; position: relative; z-index: 2; }
         .star-divider { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; color: #ff9933; }
         .star-divider span { width: 45px; height: 1.5px; background: #d8c3a5; }
-        .slogan-quote { font-size: 15.5px; font-weight: 800; color: #1a1a1a; }
-        .slogan-sub { font-size: 11px; color: #4a5568; font-weight: 600; line-height: 1.4; margin-top: 2px; }
+        .slogan-quote { font-size: 16px; font-weight: 900; color: #1a1a1a; }
+        .slogan-sub { font-size: 12px; color: #334155; font-weight: 700; line-height: 1.4; margin-top: 2px; }
 
         .app-install-banner { margin: 6px 14px 10px; background: linear-gradient(135deg, #115740 0%, #075e2f 100%); border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; z-index: 2; position: relative; }
         .install-banner-text { display: flex; flex-direction: column; color: #ffffff; }
-        .install-banner-text b { font-size: 12px; }
-        .install-banner-text span { font-size: 9.5px; opacity: 0.85; }
+        .install-banner-text b { font-size: 13px; }
+        .install-banner-text span { font-size: 10px; opacity: 0.9; }
         .install-banner-btn { background: #ff7700; color: #ffffff; border: none; padding: 7px 14px; border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer; }
 
-        .cards-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 14px; position: relative; z-index: 2; }
-        .card { background: #ffffff; border: 1.5px solid #e2ece5; border-radius: 14px; padding: 10px 6px 8px; text-align: center; display: flex; flex-direction: column; align-items: center; min-height: 180px; cursor: pointer; }
-        .card-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; margin-bottom: 6px; }
-        .card:nth-child(1) .card-icon { background: #0b6623; }
-        .card:nth-child(2) .card-icon { background: #115740; }
-        .card:nth-child(3) .card-icon { background: #ff6f00; }
-        .card-title { font-size: 11.5px; font-weight: 800; margin-bottom: 4px; }
-        .card:nth-child(1) .card-title { color: #0b6623; }
-        .card:nth-child(2) .card-title { color: #115740; }
-        .card:nth-child(3) .card-title { color: #d85a00; }
-        .card-desc { font-size: 9.2px; color: #4a5568; font-weight: 600; line-height: 1.35; margin-bottom: auto; }
-        .card-btn { width: 20px; height: 20px; border-radius: 50%; border: 1px solid #d1d5db; background: #fff; display: flex; align-items: center; justify-content: center; margin-top: 4px; font-size: 8px; }
+        /* HOME FEED SECTIONS (LARGE BOLD FONT) */
+        .home-feed-container { padding: 4px 14px 10px; display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 2; }
+        
+        /* 1. ಸೂಪರ್ ಸಂದೇಶ Box */
+        .super-msg-box { 
+            background: #ffffff; 
+            border: 2px solid #d1fae5; 
+            border-left: 6px solid #059669; 
+            border-radius: 16px; 
+            padding: 14px 16px; 
+            box-shadow: 0 4px 12px rgba(5,150,105,0.06); 
+            cursor: pointer; 
+        }
+        .super-msg-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        .super-msg-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 900; color: #059669; }
+        .super-msg-content { font-size: 16px; font-weight: 700; color: #1e293b; line-height: 1.6; word-break: break-word; }
 
-        .simple-subscribe-prompt { margin: 12px 14px 10px; background: linear-gradient(145deg, #ffffff 0%, #f4faf4 100%); border-radius: 16px; padding: 14px; border: 1.5px solid #d0e5d5; z-index: 2; text-align: center; }
-        .prompt-text { font-size: 12px; font-weight: 700; color: #1a3d28; line-height: 1.5; margin-bottom: 10px; }
-        .prompt-btn { width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: #ffffff; border: none; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; }
+        /* 2. ಫೈನ್ ಪೋಸ್ಟ್ Box */
+        .fine-post-box { 
+            background: #ffffff; 
+            border: 2px solid #e2ece5; 
+            border-left: 6px solid #115740; 
+            border-radius: 16px; 
+            padding: 14px 16px; 
+            box-shadow: 0 4px 12px rgba(17,87,64,0.06); 
+            cursor: pointer; 
+        }
+        .fine-post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        .fine-post-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 900; color: #115740; }
+        .fine-post-content { font-size: 16px; font-weight: 700; color: #1e293b; line-height: 1.6; word-break: break-word; }
+
+        /* 3. ಸುಂದರ ಸಾಲು Box (1 & 2) */
+        .sundara-saalu-box { 
+            background: #ffffff; 
+            border: 2px solid #fed7aa; 
+            border-left: 6px solid #ff7700; 
+            border-radius: 16px; 
+            padding: 14px 16px; 
+            box-shadow: 0 4px 12px rgba(255,119,0,0.06); 
+            cursor: pointer; 
+        }
+        .sundara-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .sundara-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 900; color: #d85a00; }
+        
+        .sundara-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+        .sundara-item:last-child { margin-bottom: 0; }
+        .sundara-num { 
+            width: 26px; 
+            height: 26px; 
+            border-radius: 50%; 
+            background: #ff7700; 
+            color: #fff; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 13px; 
+            font-weight: 900; 
+            flex-shrink: 0; 
+            margin-top: 2px;
+        }
+        .sundara-text { font-size: 16px; font-weight: 700; color: #1a1a1a; line-height: 1.55; flex: 1; word-break: break-word; }
+
+        .simple-subscribe-prompt { margin: 4px 14px 10px; background: linear-gradient(145deg, #ffffff 0%, #f4faf4 100%); border-radius: 16px; padding: 14px; border: 1.5px solid #d0e5d5; z-index: 2; text-align: center; }
+        .prompt-text { font-size: 13px; font-weight: 800; color: #1a3d28; line-height: 1.5; margin-bottom: 10px; }
+        .prompt-btn { width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: #ffffff; border: none; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; }
 
         .ad-space-container { margin: 0 14px 14px; background: #fdfdfd; border: 1.5px dashed #cbd5e1; border-radius: 14px; padding: 10px; text-align: center; position: relative; z-index: 2; }
-        .ad-tag { font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; display: block; }
+        .ad-tag { font-size: 9.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; display: block; }
         .ad-content { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .ad-content img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 8px; }
-        .ad-text-box h5 { font-size: 12px; font-weight: 800; color: #1e293b; text-align: center; }
+        .ad-text-box h5 { font-size: 13px; font-weight: 800; color: #1e293b; text-align: center; }
 
         .sub-bg, .admin-bg { background: var(--cream); position: relative; min-height: 840px; }
         .splash-tl { position: absolute; top: 0; left: 0; width: 220px; height: 180px; background: linear-gradient(135deg, var(--orange) 0%, rgba(240,123,29,0) 70%); opacity: 0.85; z-index: 0; }
@@ -117,41 +165,43 @@
 
         .back-btn, .bell { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--green-dark); font-weight: 700; border: none; cursor: pointer; position: relative; }
 
-        .section-header-box { position: relative; z-index: 2; margin: 14px 14px 8px; background: #ffffff; padding: 8px 12px; border-radius: 10px; border-left: 4px solid var(--orange); font-weight: 800; font-size: 13px; color: var(--green-dark); display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
-        .content-card-box { position: relative; z-index: 2; margin: 0 14px 10px; padding: 12px; border-radius: 14px; background: #ffffff; border: 1px solid rgba(27,94,58,0.12); box-shadow: 0 3px 8px rgba(43,33,24,0.04); }
-        .line-text { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 600; margin-bottom: 8px; word-break: break-word; }
-        .post-display-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 8px; max-height: 240px; object-fit: cover; }
+        .section-header-box { position: relative; z-index: 2; margin: 14px 14px 8px; background: #ffffff; padding: 9px 12px; border-radius: 10px; border-left: 4px solid var(--orange); font-weight: 800; font-size: 14px; color: var(--green-dark); display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
         
-        .line-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 0.8fr; gap: 4px; }
-        .act-btn { display: flex; align-items: center; justify-content: center; gap: 3px; padding: 7px 2px; border-radius: 8px; font-size: 10.5px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer; }
+        /* SUBSCRIBER & GENERAL CONTENT CARDS (LARGE FONT) */
+        .content-card-box { position: relative; z-index: 2; margin: 0 14px 12px; padding: 14px; border-radius: 14px; background: #ffffff; border: 1.5px solid rgba(27,94,58,0.14); box-shadow: 0 4px 10px rgba(43,33,24,0.05); }
+        .line-text { font-size: 16px; color: var(--text); line-height: 1.6; font-weight: 700; margin-bottom: 10px; word-break: break-word; }
+        .post-display-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 10px; max-height: 250px; object-fit: cover; }
+        
+        .line-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 0.8fr; gap: 5px; }
+        .act-btn { display: flex; align-items: center; justify-content: center; gap: 3px; padding: 8px 2px; border-radius: 8px; font-size: 11px; font-weight: 800; border: 1.5px solid transparent; cursor: pointer; }
         .act-copy { background: #EAF3EC; color: var(--green-dark); border-color: rgba(27,94,58,0.25); }
         .act-whatsapp { background: #25D366; color: #fff; }
         .act-twitter { background: #000000; color: #fff; }
         .act-delete-pub { background: #fee2e2; color: #b91c1c; border-color: #fecaca; }
 
         .custom-card { position: relative; z-index: 2; margin: 0 14px 12px; padding: 14px; border-radius: 14px; background: #fff; border: 1px solid rgba(27,94,58,0.10); box-shadow: 0 3px 8px rgba(43,33,24,0.04); }
-        .custom-input { margin-top: 6px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2); border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--text); resize: none; background: #FBF6EC; outline: none; }
-        .custom-send { margin-top: 8px; width: 100%; text-align: center; background: var(--green); color: #fff; font-weight: 700; font-size: 12px; padding: 9px; border-radius: 8px; cursor: pointer; border: none; }
+        .custom-input { margin-top: 6px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2); border-radius: 8px; padding: 9px 10px; font-size: 13px; color: var(--text); resize: none; background: #FBF6EC; outline: none; }
+        .custom-send { margin-top: 8px; width: 100%; text-align: center; background: var(--green); color: #fff; font-weight: 800; font-size: 13px; padding: 10px; border-radius: 8px; cursor: pointer; border: none; }
 
         .auth-tab-switch { display: flex; background: #eef5f0; border-radius: 8px; padding: 3px; margin-bottom: 10px; }
-        .auth-tab { flex: 1; padding: 6px; font-size: 11px; font-weight: 800; border: none; background: none; color: var(--muted); border-radius: 6px; cursor: pointer; }
+        .auth-tab { flex: 1; padding: 7px; font-size: 11.5px; font-weight: 800; border: none; background: none; color: var(--muted); border-radius: 6px; cursor: pointer; }
         .auth-tab.active { background: #fff; color: var(--green-dark); box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
 
         .req-card { background: #ffffff; border-left: 3px solid var(--orange); border-radius: 10px; padding: 10px; margin-bottom: 8px; }
-        .req-header { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
-        .req-body { font-size: 12px; color: var(--text); margin-bottom: 6px; }
-        .req-btn { background: var(--orange); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer; }
+        .req-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: var(--green-dark); margin-bottom: 4px; }
+        .req-body { font-size: 13px; color: var(--text); margin-bottom: 6px; }
+        .req-btn { background: var(--orange); color: #fff; border: none; padding: 5px 9px; border-radius: 6px; font-size: 10.5px; font-weight: 800; cursor: pointer; }
 
-        .user-badge-item { background: #fff; padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; border: 1px solid #e2ece5; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; }
+        .user-badge-item { background: #fff; padding: 9px 11px; border-radius: 8px; margin-bottom: 6px; border: 1px solid #e2ece5; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
 
         .sub-panel { position: relative; z-index: 2; margin: 0 14px 6px; background: linear-gradient(135deg, #ffffff 0%, #F5EFE0 100%); border: 1px solid rgba(27,94,58,0.12); border-radius: 16px; padding: 12px; }
         .sub-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-bottom: 8px; }
-        .sub-cell { aspect-ratio: 1; border-radius: 6px; background: #FBF6EC; border: 1px solid rgba(27,94,58,0.18); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--green-dark); cursor: pointer; }
+        .sub-cell { aspect-ratio: 1; border-radius: 6px; background: #FBF6EC; border: 1px solid rgba(27,94,58,0.18); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--green-dark); cursor: pointer; }
         .sub-cell.active { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff; }
 
         /* AI PAGE 2 ACTION STYLES */
         .ai-card-item { background: #ffffff; border-radius: 12px; padding: 10px; margin-bottom: 8px; border: 1px solid #e2ece5; }
-        .ai-badge-num { width: 22px; height: 22px; background: #115740; color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; margin-right: 6px; }
+        .ai-badge-num { width: 24px; height: 24px; background: #115740; color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800; margin-right: 6px; }
         
         .ai-action-btn-group-4 { display: grid; grid-template-columns: 1fr 1fr 1.2fr 0.8fr; gap: 4px; margin-top: 8px; }
         .btn-ai-copy { background: #eef7ee; color: #115740; border: 1px solid #bbf7d0; border-radius: 6px; padding: 6px 0; font-size: 10.5px; font-weight: 700; cursor: pointer; }
@@ -162,14 +212,14 @@
         /* PAYMENT QR STYLES */
         .qr-box { background:#f8fafc; border:1.5px dashed #cbd5e1; border-radius:12px; padding:12px; text-align:center; margin-top:8px; }
         .qr-img { width:170px; height:170px; border-radius:8px; border:2px solid #fff; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin:6px auto; display:block; }
-        .badge-status { padding: 3px 6px; border-radius: 4px; font-size: 9.5px; font-weight: 800; }
+        .badge-status { padding: 3px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; }
         .badge-pending { background: #fef3c7; color: #b45309; }
         .badge-active { background: #dcfce7; color: #15803d; }
 
         .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; height: 64px; background: #ffffff; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-around; align-items: center; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); z-index: 100; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280; font-size: 10.5px; font-weight: 700; gap: 3px; position: relative; flex: 1; cursor: pointer; border: none; background: none; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280; font-size: 11px; font-weight: 800; gap: 3px; position: relative; flex: 1; cursor: pointer; border: none; background: none; }
         .nav-item.active { color: #0b6623; }
-        .nav-item i { font-size: 18px; }
+        .nav-item i { font-size: 19px; }
     </style>
 </head>
 <body>
@@ -226,25 +276,59 @@
             </button>
         </div>
 
-        <div class="cards-container">
-            <div class="card" onclick="switchPage('subscriber')">
-                <div class="card-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                <div class="card-title">ಸೂಪರ್ ಸಂದೇಶ</div>
-                <div class="card-desc" id="homeMsg1">ದೇಶ, ರಾಜ್ಯ ಮತ್ತು ರಾಜಕೀಯ ಸಂದೇಶಗಳು.</div>
-                <div class="card-btn"><i class="fa-solid fa-chevron-right"></i></div>
+        <!-- HOME FEED SECTIONS (SUPER MESSAGE + FINE POST + SUNDARA SAALU) -->
+        <div class="home-feed-container">
+            
+            <!-- 1. ಸೂಪರ್ ಸಂದೇಶ (Super Message) -->
+            <div class="super-msg-box" onclick="switchPage('subscriber')">
+                <div class="super-msg-header">
+                    <span class="super-msg-badge">
+                        <i class="fa-solid fa-bullhorn" style="color:#059669;"></i> ಸೂಪರ್ ಸಂದೇಶ
+                    </span>
+                    <i class="fa-solid fa-arrow-right" style="font-size:12px; color:#059669;"></i>
+                </div>
+                <div class="super-msg-content" id="homeMsg1">
+                    ದೇಶ, ರಾಜ್ಯ ಮತ್ತು ಪ್ರಚಲಿತ ರಾಜಕೀಯ ವಿಷಯಗಳ ಕ್ರಿಯೇಟಿವ್ ಸಂದೇಶಗಳು.
+                </div>
             </div>
-            <div class="card" onclick="switchPage('subscriber')">
-                <div class="card-icon"><i class="fa-solid fa-newspaper"></i></div>
-                <div class="card-title">ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ</div>
-                <div class="card-desc" id="homeMsg2">ರಾಜಕೀಯ ಬೆಳವಣಿಗೆಗಳು ಮತ್ತು ನಿಜ ಸಂಗತಿಗಳು.</div>
-                <div class="card-btn"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- 2. ಫೈನ್ ಪೋಸ್ಟ್ (Fine Post) -->
+            <div class="fine-post-box" onclick="switchPage('subscriber')">
+                <div class="fine-post-header">
+                    <span class="fine-post-badge">
+                        <i class="fa-solid fa-feather-pointed" style="color:#115740;"></i> ಫೈನ್ ಪೋಸ್ಟ್ (Fine Post)
+                    </span>
+                    <i class="fa-solid fa-arrow-right" style="font-size:12px; color:#115740;"></i>
+                </div>
+                <div class="fine-post-content" id="homeFinePost">
+                    ರಾಜ್ಯ ಮತ್ತು ದೇಶದ ಪ್ರಮುಖ ರಾಜಕೀಯ ವಿದ್ಯಮಾನಗಳ ಅತ್ಯುತ್ತಮ ಕ್ರಿಯೇಟಿವ್ ಪೋಸ್ಟ್‌ಗಳು ಇಲ್ಲಿ ಲಭ್ಯ.
+                </div>
             </div>
-            <div class="card" onclick="switchPage('subscriber')">
-                <div class="card-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
-                <div class="card-title">ಟ್ರೆಂಡಿಂಗ್...</div>
-                <div class="card-desc" id="homeMsg3">ವೈರಲ್ ವಿಷಯಗಳು ಮತ್ತು ಸಾಮಾಜಿಕ ಚರ್ಚೆಗಳು.</div>
-                <div class="card-btn"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- 3. ಸುಂದರ ಸಾಲು (Sundara Saalu - 1 & 2) -->
+            <div class="sundara-saalu-box" onclick="switchPage('subscriber')">
+                <div class="sundara-header">
+                    <span class="sundara-badge">
+                        <i class="fa-solid fa-quote-left" style="color:#ff7700;"></i> ಸುಂದರ ಸಾಲು
+                    </span>
+                    <i class="fa-solid fa-arrow-right" style="font-size:12px; color:#ff7700;"></i>
+                </div>
+                
+                <div class="sundara-item">
+                    <span class="sundara-num">1</span>
+                    <div class="sundara-text" id="homeSundara1">
+                        “ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಸರ್ವಾಂಗೀಣ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!”
+                    </div>
+                </div>
+
+                <div class="sundara-item">
+                    <span class="sundara-num">2</span>
+                    <div class="sundara-text" id="homeSundara2">
+                        “ಜನಪರ ಧ್ವನಿಗೆ ಹೊಸ ಬಲ - ನವ ಕರ್ನಾಟಕ ನಿರ್ಮಾಣದತ್ತ ದೃಢ ಸಂಕಲ್ಪ!”
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <div class="simple-subscribe-prompt">
@@ -262,13 +346,13 @@
                 <img id="homeAdImg" src="" style="display:none;" />
                 <div class="ad-text-box">
                     <h5 id="homeAdTitle">ಇಲ್ಲಿ ನಿಮ್ಮ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ</h5>
-                    <p style="font-size:10px; color:#64748b;" id="homeAdSub">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಸಂಪರ್ಕಿಸಿ: admin@politicalpost.in</p>
+                    <p style="font-size:11px; color:#64748b;" id="homeAdSub">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಸಂಪರ್ಕಿಸಿ: admin@politicalpost.in</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 2: SUBSCRIBER -->
+    <!-- PAGE 2: SUBSCRIBER & GENERAL FEED -->
     <div id="page-subscriber" class="page-view sub-bg">
         <div class="splash-tl"></div>
         <div class="splash-br"></div>
@@ -277,7 +361,7 @@
             <button class="back-btn" onclick="switchPage('home')">&#8592;</button>
             <div class="header-title-panel">ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿಭಾಗ</div>
             <button class="bell" id="subLogoutBtn" style="display:none;" onclick="subscriberLogout()" title="Logout">
-                <i class="fa-solid fa-right-from-bracket" style="font-size: 14px; color: var(--green-dark);"></i>
+                <i class="fa-solid fa-right-from-bracket" style="font-size: 15px; color: var(--green-dark);"></i>
             </button>
         </div>
 
@@ -289,8 +373,8 @@
 
             <!-- Login View -->
             <div id="loginView">
-                <div style="font-size: 11px; color:var(--muted); margin-bottom: 6px; text-align:center;">ನಿಮ್ಮ Subscriber ID ನಮೂದಿಸಿ ಪ್ರವೇಶಿಸಿ</div>
-                <input type="text" id="subIdInput" placeholder="ಉದಾ: SUB01 ಅಥವಾ 1" class="custom-input" style="background:#fff; text-align:center; font-weight:700;" />
+                <div style="font-size: 12px; font-weight:600; color:var(--muted); margin-bottom: 6px; text-align:center;">ನಿಮ್ಮ Subscriber ID ನಮೂದಿಸಿ ಪ್ರವೇಶಿಸಿ</div>
+                <input type="text" id="subIdInput" placeholder="ಉದಾ: SUB01 ಅಥವಾ 1" class="custom-input" style="background:#fff; text-align:center; font-weight:800; font-size:14px;" />
                 <button onclick="subscriberLogin()" class="custom-send" style="margin-top: 8px;">
                     <i class="fa-solid fa-unlock"></i> ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರವೇಶಿಸಿ
                 </button>
@@ -299,7 +383,7 @@
             <!-- Registration + Direct UPI Payment View -->
             <div id="registerView" style="display: none;">
                 <div id="regStep1">
-                    <div style="font-size: 11.5px; font-weight:700; color:var(--green-dark); margin-bottom: 4px; text-align:center;">1. ನಿಮ್ಮ ವಿವರ ನಮೂದಿಸಿ:</div>
+                    <div style="font-size: 12.5px; font-weight:800; color:var(--green-dark); margin-bottom: 4px; text-align:center;">1. ನಿಮ್ಮ ವಿವರ ನಮೂದಿಸಿ:</div>
                     <input type="text" id="regName" placeholder="ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು (Full Name)" class="custom-input" style="background:#fff;" />
                     <input type="tel" id="regPhone" placeholder="ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (Phone Number)" class="custom-input" style="background:#fff;" />
                     <input type="text" id="regLocation" placeholder="ಊರು / ಕ್ಷೇತ್ರ (Constituency)" class="custom-input" style="background:#fff;" />
@@ -310,19 +394,19 @@
 
                 <div id="regStep2" style="display: none;">
                     <div class="qr-box">
-                        <div style="font-size:13px; font-weight:800; color:var(--green-dark);">ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಪಾವತಿಸಿ: ₹9,999</div>
-                        <div style="font-size:10px; color:#64748b; margin-top:2px;">PhonePe / GPay / Paytm / BHIM</div>
+                        <div style="font-size:14px; font-weight:900; color:var(--green-dark);">ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಪಾವತಿಸಿ: ₹9,999</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:2px;">PhonePe / GPay / Paytm / BHIM</div>
                         <img id="upiQrCodeImg" class="qr-img" src="" alt="UPI QR Code" />
-                        <div style="font-size:11px; font-weight:700; color:#1e293b; margin-top:4px;">UPI ID: giricoolgili@okhdfcbank</div>
+                        <div style="font-size:12px; font-weight:800; color:#1e293b; margin-top:4px;">UPI ID: giricoolgili@okhdfcbank</div>
                     </div>
 
                     <div style="margin-top:8px;">
-                        <label style="font-size:11px; font-weight:700; color:var(--green-dark);">2. ಪಾವತಿಯ 12-ಅಂಕಿಯ UTR / Txn ID ಹಾಕಿ:</label>
-                        <input type="text" id="regUtr" placeholder="ಉದಾ: 423456789012" class="custom-input" style="background:#fff; font-weight:700; text-align:center;" />
+                        <label style="font-size:12px; font-weight:800; color:var(--green-dark);">2. ಪಾವತಿಯ 12-ಅಂಕಿಯ UTR / Txn ID ಹಾಕಿ:</label>
+                        <input type="text" id="regUtr" placeholder="ಉದಾ: 423456789012" class="custom-input" style="background:#fff; font-weight:800; text-align:center; font-size:14px;" />
                         <button onclick="submitSubscriptionWithPayment()" class="custom-send" style="margin-top: 8px; background:var(--green);">
                             <i class="fa-solid fa-circle-check"></i> ಪಾವತಿ ಸಲ್ಲಿಸಿ & ID ಪಡೆಯಿರಿ
                         </button>
-                        <button onclick="backToRegStep1()" style="background:none; border:none; color:var(--muted); font-size:10.5px; width:100%; margin-top:6px; cursor:pointer;">
+                        <button onclick="backToRegStep1()" style="background:none; border:none; color:var(--muted); font-size:11px; font-weight:700; width:100%; margin-top:6px; cursor:pointer;">
                             &larr; ಹಿಂದೆ ಹೋಗಿ ವಿವರ ತಿದ್ದಿ
                         </button>
                     </div>
@@ -331,8 +415,8 @@
         </div>
 
         <div id="subscriberDashboardContent" style="display: none; padding: 6px 16px 0;">
-            <div style="background:#fff; border:1px solid #d8e6dc; border-radius:12px; padding:8px 12px; text-align:center;">
-                <span style="font-size:12px; font-weight:800; color:var(--green-dark);" id="currentSubscriberLabel">Subscriber ID</span>
+            <div style="background:#fff; border:1.5px solid #d8e6dc; border-radius:12px; padding:9px 12px; text-align:center;">
+                <span style="font-size:13px; font-weight:900; color:var(--green-dark);" id="currentSubscriberLabel">Subscriber ID</span>
             </div>
         </div>
 
@@ -356,7 +440,7 @@
                 <span><i class="fa-solid fa-envelope-open-text" style="color:var(--orange);"></i> ನಿಮ್ಮ ಪೋಸ್ಟ್ ವಿನಂತಿ</span>
             </div>
             <div class="custom-card">
-                <div style="font-size:11.5px; color:var(--muted); margin-bottom:4px;">ನಿಮಗೆ ಬೇಕಾದ ವಿಷಯವನ್ನು ತಿಳಿಸಿ, ನಾವು ಸಿದ್ಧಪಡಿಸಿ ಕಳುಹಿಸುತ್ತೇವೆ.</div>
+                <div style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:4px;">ನಿಮಗೆ ಬೇಕಾದ ವಿಷಯವನ್ನು ತಿಳಿಸಿ, ನಾವು ಸಿದ್ಧಪಡಿಸಿ ಕಳುಹಿಸುತ್ತೇವೆ.</div>
                 <textarea id="customRequestInput" class="custom-input" rows="2" placeholder="ಉದಾ: ನಾಳಿನ ಸಮಾವೇಶದ ಬಗ್ಗೆ ಪೋಸ್ಟ್ ಬೇಕು..."></textarea>
                 <button onclick="sendUserRequest()" class="custom-send">ವಿನಂತಿ ಕಳುಹಿಸಿ</button>
             </div>
@@ -371,7 +455,7 @@
         <div class="header">
             <button class="back-btn" onclick="switchPage('home')">&#8592;</button>
             <div class="header-title-panel">ಅಡ್ಮಿನ್ ಪ್ಯಾನಲ್ (Page 1)</div>
-            <button class="bell" onclick="adminLogout()" title="ಅಡ್ಮಿನ್ ಲಾಗ್‌ಔಟ್"><i class="fa-solid fa-right-from-bracket" style="color:red; font-size:15px;"></i></button>
+            <button class="bell" onclick="adminLogout()" title="ಅಡ್ಮಿನ್ ಲಾಗ್‌ಔಟ್"><i class="fa-solid fa-right-from-bracket" style="color:red; font-size:16px;"></i></button>
         </div>
 
         <button onclick="switchPage('admin-ai')" class="custom-send" style="background:linear-gradient(135deg, #115740, #ff7700); margin:0 14px 10px; width:calc(100% - 28px); box-shadow:0 4px 10px rgba(0,0,0,0.15);">
@@ -399,42 +483,43 @@
             <span><i class="fa-solid fa-cloud-arrow-up" style="color:var(--orange);"></i> ವಿಷಯ & ಜಾಹೀರಾತು ಅಪ್‌ಲೋಡ್</span>
         </div>
         <div class="custom-card">
-            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">1. ಎಲ್ಲಿ ಪ್ರಕಟವಾಗಬೇಕು? (Category):</label>
-            <select id="contentTypeSelect" class="custom-input" style="background:#fff; font-weight:700;" onchange="toggleUploadType()">
-                <optgroup label="ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿಭಾಗಕ್ಕೆ:">
+            <label style="font-size:12px; font-weight:800; color:var(--green-dark);">1. ಎಲ್ಲಿ ಪ್ರಕಟವಾಗಬೇಕು? (Category):</label>
+            <select id="contentTypeSelect" class="custom-input" style="background:#fff; font-weight:800;" onchange="toggleUploadType()">
+                <optgroup label="ಹೋಮ್ ಪೇಜ್ ಮುಖಪುಟಕ್ಕೆ:">
+                    <option value="HOME_MSG1">📢 ಸೂಪರ್ ಸಂದೇಶ (Super Message)</option>
+                    <option value="HOME_FINE">✨ ಫೈನ್ ಪೋಸ್ಟ್ (Fine Post)</option>
+                    <option value="HOME_SUNDARA1">✍️ ಸುಂದರ ಸಾಲು (ಸಾಲು 1)</option>
+                    <option value="HOME_SUNDARA2">✍️ ಸುಂದರ ಸಾಲು (ಸಾಲು 2)</option>
+                </optgroup>
+                <optgroup label="ಸಬ್‌ಸ್ಕ್ರೈಬರ್ & ಜನರಲ್ ವಿಭಾಗಕ್ಕೆ:">
                     <option value="POST">🖼️ Political Post (ಫೋಟೋ + ಶೀರ್ಷಿಕೆ)</option>
                     <option value="CATCHY">✍️ Catchy Lines (ಕ್ಯಾಚಿ ಸಾಲುಗಳು)</option>
                     <option value="QUOTE">💎 Quotes (ನುಡಿಮುತ್ತು)</option>
-                </optgroup>
-                <optgroup label="ಹೋಮ್ ಪೇಜ್ 3 ಬಾಕ್ಸ್‌ಗಳಿಗೆ:">
-                    <option value="HOME_MSG1">📢 ಸೂಪರ್ ಸಂದೇಶ</option>
-                    <option value="HOME_MSG2">📰 ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ</option>
-                    <option value="HOME_MSG3">🔥 ಟ್ರೆಂಡಿಂಗ್...</option>
                 </optgroup>
                 <optgroup label="ಜಾಹೀರಾತು:">
                     <option value="HOME_AD">📢 ಜಾಹೀರಾತು (Ad Banner)</option>
                 </optgroup>
             </select>
 
-            <div id="targetSubscriberWrapper" style="margin-top:8px;">
-                <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">2. ಯಾರಿಗೆ ಕಳುಹಿಸಬೇಕು? (Target):</label>
-                <select id="targetSubscriberSelect" class="custom-input" style="background:#fff; font-weight:700;">
+            <div id="targetSubscriberWrapper" style="margin-top:8px; display:none;">
+                <label style="font-size:12px; font-weight:800; color:var(--green-dark);">2. ಯಾರಿಗೆ ಕಳುಹಿಸಬೇಕು? (Target):</label>
+                <select id="targetSubscriberSelect" class="custom-input" style="background:#fff; font-weight:800;">
                     <option value="ALL">📢 ಎಲ್ಲರಿಗೂ (All / Public)</option>
                 </select>
             </div>
 
-            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark); margin-top:8px; display:block;">3. ಶೀರ್ಷಿಕೆ / ಪಠ್ಯ (Content / Ad Text):</label>
-            <textarea id="contentText" rows="3" placeholder="ವಿಷಯ ಅಥವಾ ಜಾಹೀರಾತು ವಿವರ ಇಲ್ಲಿ ಪೇಸ್ಟ್ ಮಾಡಿ..." class="custom-input" style="background:#fff;"></textarea>
+            <label style="font-size:12px; font-weight:800; color:var(--green-dark); margin-top:8px; display:block;">3. ಶೀರ್ಷಿಕೆ / ಪಠ್ಯ (Content / Text):</label>
+            <textarea id="contentText" rows="3" placeholder="ವಿಷಯ ಅಥವಾ ಸಾಲುಗಳು ಇಲ್ಲಿ ಬರೆಯಿರಿ..." class="custom-input" style="background:#fff; font-size:13.5px;"></textarea>
 
-            <div id="imageUploadWrapper" style="margin-top:8px;">
-                <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">4. ಫೋಟೋ / ಆ್ಯಡ್ ಬ್ಯಾನರ್ (Optional):</label>
+            <div id="imageUploadWrapper" style="margin-top:8px; display:none;">
+                <label style="font-size:12px; font-weight:800; color:var(--green-dark);">4. ಫೋಟೋ / ಆ್ಯಡ್ ಬ್ಯಾನರ್ (Optional):</label>
                 <input type="file" id="imageInput" accept="image/*" class="custom-input" style="background:#fff; cursor:pointer;" />
             </div>
 
             <button onclick="publishContent()" class="custom-send" style="margin-top: 10px;">
                 <i class="fa-solid fa-paper-plane"></i> ವಿಷಯ ಪ್ರಕಟಿಸಿ
             </button>
-            <p id="status" style="font-size:11.5px; font-weight:700; color:var(--green-dark); margin-top:8px; text-align:center;"></p>
+            <p id="status" style="font-size:12px; font-weight:800; color:var(--green-dark); margin-top:8px; text-align:center;"></p>
         </div>
     </div>
 
@@ -451,7 +536,7 @@
 
         <!-- Custom Prompt Request Box -->
         <div class="custom-card" style="margin-top: 4px;">
-            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">
+            <label style="font-size:12px; font-weight:800; color:var(--green-dark);">
                 <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--orange);"></i> AI ಗೆ ನಿರ್ದಿಷ್ಟ ವಿಷಯದ ಮನವಿ (Custom Prompt):
             </label>
             <textarea id="customAiPrompt" rows="2" placeholder="ಉದಾ: ಮುಂಬರುವ ಚುನಾವಣೆ, ಕೃಷಿ ನೀತಿ, ಇಂದಿನ ಬ್ರೇಕಿಂಗ್ ರಾಜಕೀಯ ಬೆಳವಣಿಗೆ..." class="custom-input" style="background:#fff;"></textarea>
@@ -460,32 +545,38 @@
             </button>
         </div>
 
-        <!-- Section 1: ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯಗಳು -->
+        <!-- Section 1: ಸೂಪರ್ ಸಂದೇಶ -->
         <div class="section-header-box">
-            <span><i class="fa-solid fa-newspaper" style="color:var(--orange);"></i> 1. ಪ್ರಮುಖ ವಿಷಯಗಳು (ಮುಖಪುಟಕ್ಕೆ)</span>
+            <span><i class="fa-solid fa-bullhorn" style="color:var(--orange);"></i> 1. ಸೂಪರ್ ಸಂದೇಶಗಳು (ಮುಖಪುಟಕ್ಕೆ)</span>
         </div>
-        <div id="aiTopNewsContainer" style="padding: 0 14px 4px;"></div>
+        <div id="aiSuperMsgContainer" style="padding: 0 14px 4px;"></div>
 
-        <!-- Section 2: ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯಗಳು -->
+        <!-- Section 2: ಫೈನ್ ಪೋಸ್ಟ್ -->
         <div class="section-header-box" style="margin-top:4px;">
-            <span><i class="fa-solid fa-arrow-trend-up" style="color:var(--orange);"></i> 2. ಟ್ರೆಂಡಿಂಗ್ ಮುಖ್ಯಾಂಶಗಳು (ಮುಖಪುಟಕ್ಕೆ)</span>
+            <span><i class="fa-solid fa-feather-pointed" style="color:var(--orange);"></i> 2. ಫೈನ್ ಪೋಸ್ಟ್ (ಮುಖಪುಟಕ್ಕೆ)</span>
         </div>
-        <div id="aiTrendingListContainer" style="padding: 0 14px 4px;"></div>
+        <div id="aiFinePostContainer" style="padding: 0 14px 4px;"></div>
 
-        <!-- Section 3: ಕ್ಯಾಚಿ ಲೈನ್ಸ್‌ಗಳು -->
+        <!-- Section 3: ಸುಂದರ ಸಾಲು -->
         <div class="section-header-box" style="margin-top:4px;">
-            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> 3. ಸೋಷಿಯಲ್ ಮೀಡಿಯಾ ಕ್ಯಾಚಿ ಲೈನ್ಸ್ (ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ)</span>
+            <span><i class="fa-solid fa-quote-left" style="color:var(--orange);"></i> 3. ಸುಂದರ ಸಾಲುಗಳು (ಮುಖಪುಟಕ್ಕೆ)</span>
+        </div>
+        <div id="aiSundaraContainer" style="padding: 0 14px 4px;"></div>
+
+        <!-- Section 4: ಕ್ಯಾಚಿ ಲೈನ್ಸ್‌ಗಳು -->
+        <div class="section-header-box" style="margin-top:4px;">
+            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> 4. ಸೋಷಿಯಲ್ ಮೀಡಿಯಾ ಕ್ಯಾಚಿ ಲೈನ್ಸ್ (ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ)</span>
         </div>
         <div id="aiCatchyContainer" style="padding: 0 14px 4px;"></div>
 
-        <!-- Section 4: ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್‌ಗಳು -->
+        <!-- Section 5: ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್‌ಗಳು -->
         <div class="section-header-box" style="margin-top:4px;">
-            <span><i class="fa-solid fa-bullhorn" style="color:var(--orange);"></i> 4. ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ (ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ)</span>
+            <span><i class="fa-solid fa-layer-group" style="color:var(--orange);"></i> 5. ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ (ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ)</span>
         </div>
         <div id="aiMajorPostContainer" style="padding: 0 14px 4px;"></div>
 
-        <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:10.5px; color:#92400e;">
-            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ.
+        <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:11px; color:#92400e;">
+            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ.
         </div>
     </div>
 
@@ -527,13 +618,14 @@
     let loggedInSubscriberId = localStorage.getItem("current_sub_id") || null;
     let listenerUnsubscribe = null;
 
-    // Realtime Home Content
+    // Realtime Home Content Sync (Super Msg + Fine Post + Sundara Saalu)
     db.collection("home_content").doc("latest").onSnapshot((doc) => {
         if (doc.exists) {
             const data = doc.data();
             if (data.msg1) document.getElementById('homeMsg1').innerText = data.msg1;
-            if (data.msg2) document.getElementById('homeMsg2').innerText = data.msg2;
-            if (data.msg3) document.getElementById('homeMsg3').innerText = data.msg3;
+            if (data.finePost) document.getElementById('homeFinePost').innerText = data.finePost;
+            if (data.sundara1) document.getElementById('homeSundara1').innerText = data.sundara1;
+            if (data.sundara2) document.getElementById('homeSundara2').innerText = data.sundara2;
             if (data.adTitle) document.getElementById('homeAdTitle').innerText = data.adTitle;
             if (data.adSub) document.getElementById('homeAdSub').innerText = data.adSub;
             if (data.adImg) {
@@ -613,22 +705,26 @@
         }
     }
 
-    // 3. Gemini AI Live Data Store & Universal Safe Renderer
+    // 3. Gemini AI Live Data Store & Safe Renderer
     let defaultAiContent = {
-        topNews: [
-            { title: "ಕರ್ನಾಟಕ ಬಜೆಟ್ ಮತ್ತು ಹೊಸ ಯೋಜನೆಗಳು", summary: "ರಾಜ್ಯದ ಸಮಗ್ರ ಅಭಿವೃದ್ಧಿಗೆ ಹೊಸ ಅನುದಾನ ಮತ್ತು ಜನಪರ ಕಾರ್ಯಕ್ರಮಗಳ ಘೋಷಣೆ." },
-            { title: "ರಾಷ್ಟ್ರೀಯ ಹೆದ್ದಾರಿ ಅಭಿವೃದ್ಧಿ ಯೋಜನೆ", summary: "ದೇಶದ ಪ್ರಮುಖ ನಗರಗಳ ಸಂಪರ್ಕ ಸುಧಾರಣೆಗೆ ಕೇಂದ್ರದಿಂದ ಮಹತ್ವದ ಅನುಮೋದನೆ." }
+        superMsgs: [
+            { text: "ದೇಶ ಮತ್ತು ರಾಜ್ಯದ ರಾಜಕೀಯ ಬೆಳವಣಿಗೆಗಳ ನೈಜ ವಿಶ್ಲೇಷಣೆ ಇಲ್ಲಿದೆ." },
+            { text: "ಜನಪರ ಯೋಜನೆಗಳು ಮತ್ತು ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನಗಳ ಮುಖ್ಯಾಂಶಗಳು." }
         ],
-        trending: [
-            { text: "ಕರ್ನಾಟಕದ ಇತ್ತೀಚಿನ ರಾಜಕೀಯ ಸಮೀಕರಣಗಳ ಬಗ್ಗೆ ಸೋಷಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ತೀವ್ರ ಚರ್ಚೆ." },
-            { text: "ಯುವ ಜನತೆಗೆ ಹೊಸ ಉದ್ಯೋಗಾವಕಾಶ ಮತ್ತು ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿಗೆ ಹೆಚ್ಚಿನ ಆದ್ಯತೆ." }
+        finePosts: [
+            { text: "ಕರ್ನಾಟಕದ ಸಮಗ್ರ ಅಭಿವೃದ್ಧಿಗೆ ಹೊಸ ಅನುದಾನ ಮತ್ತು ಜನಪರ ಯೋಜನೆಗಳಿಗೆ ಭರ್ಜರಿ ಚಾಲನೆ." },
+            { text: "ದೇಶದ ಪ್ರಮುಖ ಹೆದ್ದಾರಿ ಮತ್ತು ಗ್ರಾಮೀಣ ಸಂಪರ್ಕ ಸುಧಾರಣೆಗೆ ಮಹತ್ವದ ಅನುಮೋದನೆ." }
         ],
-        catchyLines: [
+        sundaraSaalu: [
             { text: "“ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಸರ್ವಾಂಗೀಣ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!”" },
             { text: "“ಜನಪರ ಧ್ವನಿಗೆ ಹೊಸ ಬಲ - ನವ ಕರ್ನಾಟಕ ನಿರ್ಮಾಣದತ್ತ ದೃಢ ಸಂಕಲ್ಪ!”" }
         ],
+        catchyLines: [
+            { text: "“ರಾಜಕೀಯವೆಂದರೆ ಅಧಿಕಾರವಲ್ಲ, ಜನರ ಸೇವೆಯ ಪವಿತ್ರ ಮಾರ್ಗ!”" },
+            { text: "“ಸತ್ಯ ಮತ್ತು ಪ್ರಾಮಾಣಿಕತೆಯೇ ನವ ಭಾರತದ ಶಕ್ತಿ!”" }
+        ],
         majorPosts: [
-            { text: "ರಾಜ್ಯದ ರೈತರು ಹಾಗೂ ಜನಸಾಮಾನ್ಯರ ಹಿತದೃಷ್ಟಿಯಿಂದ ಸರ್ಕಾರ ಕೈಗೊಂಡ ಐತಿಹಾಸಿಕ ನಿರ್ಧಾರಗಳ ವಿವರ." },
+            { text: "ರಾಜ್ಯದ ರೈತರು ಹಾಗೂ ಜನಸಾಮಾನ್ಯರ ಹಿತದೃಷ್ಟಿಯಿಂದ ಸರ್ಕಾರ ಕೈಗೊಂಡ ಐತಿಹಾಸಿಕ ನಿರ್ಧಾರಗಳು." },
             { text: "ಮುಂಬರುವ ದಿನಗಳಲ್ಲಿ ರಾಜ್ಯದ ನೀರಾವರಿ ಮತ್ತು ಮೂಲಸೌಕರ್ಯ ಯೋಜನೆಗಳಿಗೆ ಭರ್ಜರಿ ವೇಗ." }
         ]
     };
@@ -638,8 +734,14 @@
         const cached = localStorage.getItem("ai_content_cache");
         if (cached) {
             const parsed = JSON.parse(cached);
-            if (parsed && parsed.majorPosts && parsed.topNews) {
-                aiGeneratedContent = parsed;
+            if (parsed && (parsed.finePosts || parsed.topNews)) {
+                aiGeneratedContent = {
+                    superMsgs: parsed.superMsgs || defaultAiContent.superMsgs,
+                    finePosts: parsed.finePosts || (parsed.topNews ? parsed.topNews.map(n => ({ text: `${n.title} - ${n.summary}` })) : defaultAiContent.finePosts),
+                    sundaraSaalu: parsed.sundaraSaalu || parsed.trending || defaultAiContent.sundaraSaalu,
+                    catchyLines: parsed.catchyLines || defaultAiContent.catchyLines,
+                    majorPosts: parsed.majorPosts || defaultAiContent.majorPosts
+                };
             }
         }
     } catch (e) {
@@ -647,8 +749,9 @@
     }
 
     function renderAllAiSections() {
-        renderGenericSection('aiTopNewsContainer', 'topNews', '#115740');
-        renderGenericSection('aiTrendingListContainer', 'trending', '#115740');
+        renderGenericSection('aiSuperMsgContainer', 'superMsgs', '#059669');
+        renderGenericSection('aiFinePostContainer', 'finePosts', '#115740');
+        renderGenericSection('aiSundaraContainer', 'sundaraSaalu', '#ff7700');
         renderGenericSection('aiCatchyContainer', 'catchyLines', 'var(--orange)');
         renderGenericSection('aiMajorPostContainer', 'majorPosts', '#b8862b');
     }
@@ -674,19 +777,11 @@
 
             const textSpan = document.createElement('div');
             textSpan.style.flex = "1";
-
-            if (sectionKey === 'topNews') {
-                textSpan.innerHTML = `
-                    <div style="font-size:12px; font-weight:800; color:var(--green-dark); margin-bottom:2px;">${item.title || ''}</div>
-                    <div style="font-size:11px; color:#4a5568; line-height:1.4;">${item.summary || ''}</div>
-                `;
-            } else {
-                const txt = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
-                textSpan.style.fontSize = "12px";
-                textSpan.style.fontWeight = sectionKey === 'catchyLines' ? "700" : "600";
-                textSpan.style.color = sectionKey === 'catchyLines' ? "var(--green-dark)" : "var(--text)";
-                textSpan.innerText = txt;
-            }
+            const txt = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
+            textSpan.style.fontSize = "14px";
+            textSpan.style.fontWeight = "700";
+            textSpan.style.color = "var(--text)";
+            textSpan.innerText = txt;
 
             headerRow.appendChild(badge);
             headerRow.appendChild(textSpan);
@@ -695,44 +790,36 @@
             const btnGroup = document.createElement('div');
             btnGroup.className = "ai-action-btn-group-4";
 
-            // 1. Copy Button
+            // 1. Copy
             const copyBtn = document.createElement('button');
             copyBtn.className = "btn-ai-copy";
             copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
             copyBtn.onclick = () => copyAiSectionItem(sectionKey, idx);
 
-            // 2. Edit Button
+            // 2. Edit
             const editBtn = document.createElement('button');
             editBtn.className = "btn-ai-edit";
             editBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Edit';
             editBtn.onclick = () => {
-                if (sectionKey === 'topNews') {
-                    const n = prompt("ಸಾರಾಂಶ ತಿದ್ದಿ:", aiGeneratedContent.topNews[idx].summary || '');
-                    if (n !== null && n.trim()) {
-                        aiGeneratedContent.topNews[idx].summary = n.trim();
-                        renderAllAiSections();
+                const curr = typeof aiGeneratedContent[sectionKey][idx] === 'object' ? (aiGeneratedContent[sectionKey][idx].text || '') : aiGeneratedContent[sectionKey][idx];
+                const n = prompt("ವಿಷಯ ತಿದ್ದಿ:", curr);
+                if (n !== null && n.trim()) {
+                    if (typeof aiGeneratedContent[sectionKey][idx] === 'object') {
+                        aiGeneratedContent[sectionKey][idx].text = n.trim();
+                    } else {
+                        aiGeneratedContent[sectionKey][idx] = n.trim();
                     }
-                } else {
-                    const curr = typeof aiGeneratedContent[sectionKey][idx] === 'object' ? (aiGeneratedContent[sectionKey][idx].text || '') : aiGeneratedContent[sectionKey][idx];
-                    const n = prompt("ವಿಷಯ ತಿದ್ದಿ:", curr);
-                    if (n !== null && n.trim()) {
-                        if (typeof aiGeneratedContent[sectionKey][idx] === 'object') {
-                            aiGeneratedContent[sectionKey][idx].text = n.trim();
-                        } else {
-                            aiGeneratedContent[sectionKey][idx] = n.trim();
-                        }
-                        renderAllAiSections();
-                    }
+                    renderAllAiSections();
                 }
             };
 
-            // 3. Publish Button
+            // 3. Publish
             const pubBtn = document.createElement('button');
             pubBtn.className = "btn-ai-publish";
             pubBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Publish';
             pubBtn.onclick = () => publishSectionItem(sectionKey, idx);
 
-            // 4. Delete Button
+            // 4. Delete
             const delBtn = document.createElement('button');
             delBtn.className = "btn-ai-delete";
             delBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Del';
@@ -758,21 +845,21 @@
         let type = "";
         let targetDescription = "";
         const item = aiGeneratedContent[section][idx];
+        text = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
 
-        if (section === 'topNews') {
-            text = `${item.title || ''} - ${item.summary || ''}`;
-            type = 'HOME_MSG2';
-            targetDescription = "ಮುಖಪುಟದ 'ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ'";
-        } else if (section === 'trending') {
-            text = typeof item === 'object' ? (item.text || item.summary || '') : item;
-            type = 'HOME_MSG3';
-            targetDescription = "ಮುಖಪುಟದ 'ಟ್ರೆಂಡಿಂಗ್...'";
+        if (section === 'superMsgs') {
+            type = 'HOME_MSG1';
+            targetDescription = "ಮುಖಪುಟದ 'ಸೂಪರ್ ಸಂದೇಶ'";
+        } else if (section === 'finePosts') {
+            type = 'HOME_FINE';
+            targetDescription = "ಮುಖಪುಟದ 'ಫೈನ್ ಪೋಸ್ಟ್'";
+        } else if (section === 'sundaraSaalu') {
+            type = (idx === 0) ? 'HOME_SUNDARA1' : 'HOME_SUNDARA2';
+            targetDescription = `ಮುಖಪುಟದ 'ಸುಂದರ ಸಾಲು ${idx === 0 ? "1" : "2"}'`;
         } else if (section === 'catchyLines') {
-            text = typeof item === 'object' ? (item.text || item.summary || '') : item;
             type = 'CATCHY';
             targetDescription = "ಸಬ್‌ಸ್ಕ್ರೈಬರ್ 'ಕ್ಯಾಚಿ ಸಾಲುಗಳು'";
         } else if (section === 'majorPosts') {
-            text = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
             type = 'POST';
             targetDescription = "ಸಬ್‌ಸ್ಕ್ರೈಬರ್ 'Political Posts'";
         }
@@ -780,11 +867,14 @@
         if (!confirm(`ಈ ವಿಷಯವನ್ನು ${targetDescription} ವಿಭಾಗಕ್ಕೆ ಪ್ರಕಟಿಸಬೇಕೆ?`)) return;
 
         try {
-            if (type.startsWith('HOME_MSG')) {
-                const updateField = type === 'HOME_MSG2' ? 'msg2' : 'msg3';
-                await db.collection("home_content").doc("latest").set({
-                    [updateField]: text
-                }, { merge: true });
+            if (type === 'HOME_MSG1') {
+                await db.collection("home_content").doc("latest").set({ msg1: text }, { merge: true });
+            } else if (type === 'HOME_FINE') {
+                await db.collection("home_content").doc("latest").set({ finePost: text }, { merge: true });
+            } else if (type === 'HOME_SUNDARA1') {
+                await db.collection("home_content").doc("latest").set({ sundara1: text }, { merge: true });
+            } else if (type === 'HOME_SUNDARA2') {
+                await db.collection("home_content").doc("latest").set({ sundara2: text }, { merge: true });
             } else {
                 await db.collection("contents").add({
                     type: type,
@@ -802,26 +892,16 @@
     }
 
     function copyAiSectionItem(section, idx) {
-        let text = "";
         const item = aiGeneratedContent[section][idx];
-        
-        if (section === 'topNews') {
-            text = `${item.title || ''}\n\n${item.summary || ''}`;
-        } else if (typeof item === 'object') {
-            text = item.text || item.title || item.summary || JSON.stringify(item);
-        } else {
-            text = item;
-        }
-        
+        const text = typeof item === 'object' ? (item.text || item.title || item.summary || JSON.stringify(item)) : item;
         navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!")).catch(err => {
             console.error(err);
             alert("ಕಾಪಿ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.");
         });
     }
 
-    // Call Gemini Serverless Function with Detailed Error Reporting
     async function fetchLiveGeminiAI(customTopic = "") {
-        alert(customTopic ? "⏳ ನಿಮ್ಮ ವಿಷಯಕ್ಕೆ ತಕ್ಕಂತೆ AI ಕಂಟೆಂಟ್ ರಚಿಸುತ್ತಿದೆ..." : "⏳ ಇಂದಿನ ತಾಜಾ ಕರ್ನಾಟಕ & ದೇಶದ ಸುದ್ದಿಗಳನ್ನು Gemini AI ಪಡೆಯುತ್ತಿದೆ...");
+        alert(customTopic ? "⏳ ನಿಮ್ಮ ವಿಷಯಕ್ಕೆ ತಕ್ಕಂತೆ AI ಕಂಟೆಂಟ್ ರಚಿಸುತ್ತಿದೆ..." : "⏳ ಇಂದಿನ ತಾಜಾ ವಿಷಯಗಳನ್ನು Gemini AI ಪಡೆಯುತ್ತಿದೆ...");
         try {
             const res = await fetch('/api/generate', {
                 method: 'POST',
@@ -836,14 +916,17 @@
                 return;
             }
 
-            if (data.topNews && data.trending) {
-                aiGeneratedContent = data;
-                localStorage.setItem("ai_content_cache", JSON.stringify(aiGeneratedContent));
-                renderAllAiSections();
-                alert("✨ Gemini AI ಲೈವ್ ಕಂಟೆಂಟ್ ಯಶಸ್ವಿಯಾಗಿ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!");
-            } else {
-                alert("❌ Invalid Data Format received from server.");
-            }
+            aiGeneratedContent = {
+                superMsgs: data.superMsgs || defaultAiContent.superMsgs,
+                finePosts: data.finePosts || (data.topNews ? data.topNews.map(n => ({ text: `${n.title} - ${n.summary}` })) : defaultAiContent.finePosts),
+                sundaraSaalu: data.sundaraSaalu || data.trending || defaultAiContent.sundaraSaalu,
+                catchyLines: data.catchyLines || defaultAiContent.catchyLines,
+                majorPosts: data.majorPosts || defaultAiContent.majorPosts
+            };
+
+            localStorage.setItem("ai_content_cache", JSON.stringify(aiGeneratedContent));
+            renderAllAiSections();
+            alert("✨ Gemini AI ಲೈವ್ ಕಂಟೆಂಟ್ ಯಶಸ್ವಿಯಾಗಿ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!");
         } catch (e) {
             console.error(e);
             alert("❌ Network Error: " + e.message);
@@ -978,6 +1061,8 @@
         const fileInput = document.getElementById('imageInput');
         const statusText = document.getElementById('status');
 
+        if (!text && !fileInput.files.length) return alert("ದಯವಿಟ್ಟು ವಿಷಯ ನಮೂದಿಸಿ!");
+
         statusText.innerText = "ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
 
         try {
@@ -993,10 +1078,30 @@
                 imageUrl = imgData.secure_url;
             }
 
-            if (type.startsWith('HOME_MSG')) {
-                const updateField = type === 'HOME_MSG1' ? 'msg1' : (type === 'HOME_MSG2' ? 'msg2' : 'msg3');
-                await db.collection("home_content").doc("latest").set({ [updateField]: text }, { merge: true });
-                statusText.innerText = "ಹೋಮ್ ಪೇಜ್ ಸಂದೇಶ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!";
+            if (type === 'HOME_MSG1') {
+                await db.collection("home_content").doc("latest").set({ msg1: text }, { merge: true });
+                statusText.innerText = "ಸೂಪರ್ ಸಂದೇಶ ಪ್ರಕಟವಾಗಿದೆ!";
+                document.getElementById('contentText').value = "";
+                return;
+            }
+
+            if (type === 'HOME_FINE') {
+                await db.collection("home_content").doc("latest").set({ finePost: text }, { merge: true });
+                statusText.innerText = "ಫೈನ್ ಪೋಸ್ಟ್ ಪ್ರಕಟವಾಗಿದೆ!";
+                document.getElementById('contentText').value = "";
+                return;
+            }
+
+            if (type === 'HOME_SUNDARA1') {
+                await db.collection("home_content").doc("latest").set({ sundara1: text }, { merge: true });
+                statusText.innerText = "ಸುಂದರ ಸಾಲು (1) ಪ್ರಕಟವಾಗಿದೆ!";
+                document.getElementById('contentText').value = "";
+                return;
+            }
+
+            if (type === 'HOME_SUNDARA2') {
+                await db.collection("home_content").doc("latest").set({ sundara2: text }, { merge: true });
+                statusText.innerText = "ಸುಂದರ ಸಾಲು (2) ಪ್ರಕಟವಾಗಿದೆ!";
                 document.getElementById('contentText').value = "";
                 return;
             }
@@ -1027,7 +1132,7 @@
         db.collection("subscribers").orderBy("joinedAt", "desc").onSnapshot((snapshot) => {
             const list = document.getElementById('adminSubscribersDirectory');
             list.innerHTML = "";
-            if (snapshot.empty) return list.innerHTML = '<div style="font-size:11px; text-align:center; padding:8px;">ಯಾವುದೇ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳಿಲ್ಲ.</div>';
+            if (snapshot.empty) return list.innerHTML = '<div style="font-size:12px; text-align:center; padding:8px;">ಯಾವುದೇ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳಿಲ್ಲ.</div>';
             
             snapshot.forEach(doc => {
                 const u = doc.data();
@@ -1043,8 +1148,8 @@
                         <div><b>${u.name}</b> (${u.subscriberId})</div>
                         <span class="badge-status ${isPending ? 'badge-pending' : 'badge-active'}">${isPending ? 'PENDING' : 'ACTIVE'}</span>
                     </div>
-                    <div style="font-size:10.5px; color:#64748b;">📞 ${u.phone} | 📍 ${u.location || ''}</div>
-                    ${u.utrNumber ? `<div style="font-size:10px; color:#1e293b; background:#f1f5f9; padding:2px 4px; border-radius:4px;">💳 UTR: <b>${u.utrNumber}</b> (₹${u.amount || '9999'})</div>` : ''}
+                    <div style="font-size:11px; color:#64748b;">📞 ${u.phone} | 📍 ${u.location || ''}</div>
+                    ${u.utrNumber ? `<div style="font-size:11px; color:#1e293b; background:#f1f5f9; padding:2px 4px; border-radius:4px;">💳 UTR: <b>${u.utrNumber}</b> (₹${u.amount || '9999'})</div>` : ''}
                     <div style="display:flex; gap:4px; margin-top:4px;">
                         ${isPending ? `<button class="req-btn" style="background:#16a34a; flex:1;" onclick="approveSubscriber('${u.subscriberId}')"><i class="fa-solid fa-check"></i> Approve (ಸಕ್ರಿಯಗೊಳಿಸಿ)</button>` : ''}
                         <button class="req-btn" style="flex:1;" onclick="prepareReply('${u.subscriberId}')">Select (ಸಂದೇಶ ಕಳುಹಿಸಿ)</button>
@@ -1073,7 +1178,7 @@
         db.collection("requests").orderBy("createdAt", "desc").limit(10).onSnapshot((snapshot) => {
             const list = document.getElementById('adminRequestsList');
             list.innerHTML = "";
-            if (snapshot.empty) return list.innerHTML = '<div style="font-size:11px; text-align:center; padding:8px;">ಯಾವುದೇ ವಿನಂತಿಗಳಿಲ್ಲ.</div>';
+            if (snapshot.empty) return list.innerHTML = '<div style="font-size:12px; text-align:center; padding:8px;">ಯಾವುದೇ ವಿನಂತಿಗಳಿಲ್ಲ.</div>';
             snapshot.forEach(doc => {
                 const data = doc.data();
                 const div = document.createElement('div');
@@ -1089,7 +1194,7 @@
         alert(`${subId} ಆಯ್ಕೆಯಾಗಿದೆ.`);
     }
 
-    // 6. Content Loader for Subscriber Page
+    // 6. Content Loader for Subscriber & General Public View
     function loadSubscriberData(subId) {
         if (listenerUnsubscribe) listenerUnsubscribe();
         const targets = (subId === "ALL") ? ["ALL"] : ["ALL", subId];
