@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POLITICAL POST - ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್</title>
     
-    <!-- PWA & Apple Mobile Web App Settings -->
+    <!-- PWA & Mobile Settings -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0b6623">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,7 +127,6 @@
         .slogan-quote { font-size: 15.5px; font-weight: 800; color: #1a1a1a; }
         .slogan-sub { font-size: 11px; color: #4a5568; font-weight: 600; line-height: 1.4; margin-top: 2px; }
 
-        /* IN-APP DIRECT INSTALL BANNER */
         .app-install-banner {
             margin: 6px 14px 10px;
             background: linear-gradient(135deg, #115740 0%, #075e2f 100%);
@@ -140,26 +139,12 @@
             z-index: 2;
             position: relative;
         }
-        .install-banner-text {
-            display: flex;
-            flex-direction: column;
-            color: #ffffff;
-        }
+        .install-banner-text { display: flex; flex-direction: column; color: #ffffff; }
         .install-banner-text b { font-size: 12px; }
         .install-banner-text span { font-size: 9.5px; opacity: 0.85; }
         .install-banner-btn {
-            background: #ff7700;
-            color: #ffffff;
-            border: none;
-            padding: 7px 14px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            background: #ff7700; color: #ffffff; border: none; padding: 7px 14px; border-radius: 8px;
+            font-size: 11px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px;
         }
 
         .cards-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 14px; position: relative; z-index: 2; }
@@ -188,67 +173,22 @@
         .simple-subscribe-prompt {
             margin: 12px 14px 10px;
             background: linear-gradient(145deg, #ffffff 0%, #f4faf4 100%);
-            border-radius: 16px;
-            padding: 14px;
-            border: 1.5px solid #d0e5d5;
-            box-shadow: 0 4px 14px rgba(27,94,58,0.07);
-            z-index: 2;
-            text-align: center;
+            border-radius: 16px; padding: 14px; border: 1.5px solid #d0e5d5;
+            box-shadow: 0 4px 14px rgba(27,94,58,0.07); z-index: 2; text-align: center;
         }
-        .prompt-text {
-            font-size: 12px;
-            font-weight: 700;
-            color: #1a3d28;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
+        .prompt-text { font-size: 12px; font-weight: 700; color: #1a3d28; line-height: 1.5; margin-bottom: 10px; }
         .prompt-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-            color: #ffffff;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            box-shadow: 0 3px 8px rgba(15,61,38,0.2);
+            width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            color: #ffffff; border: none; padding: 10px; border-radius: 10px; font-size: 12px;
+            font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
         }
 
-        /* DYNAMIC ADVERTISEMENT BANNER BOX */
         .ad-space-container {
-            margin: 0 14px 14px;
-            background: #fdfdfd;
-            border: 1.5px dashed #cbd5e1;
-            border-radius: 14px;
-            padding: 10px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
+            margin: 0 14px 14px; background: #fdfdfd; border: 1.5px dashed #cbd5e1;
+            border-radius: 14px; padding: 10px; text-align: center; position: relative; z-index: 2;
         }
-        .ad-tag {
-            font-size: 9px;
-            font-weight: 800;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-            display: block;
-        }
-        .ad-content {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 10px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
+        .ad-tag { font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; display: block; }
+        .ad-content { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .ad-content img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 8px; }
         .ad-text-box h5 { font-size: 12px; font-weight: 800; color: #1e293b; text-align: center; }
 
@@ -269,43 +209,23 @@
         }
 
         .section-header-box {
-            position: relative;
-            z-index: 2;
-            margin: 14px 14px 8px;
-            background: #ffffff;
-            padding: 8px 12px;
-            border-radius: 10px;
-            border-left: 4px solid var(--orange);
-            font-weight: 800;
-            font-size: 13px;
-            color: var(--green-dark);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            position: relative; z-index: 2; margin: 14px 14px 8px; background: #ffffff; padding: 8px 12px;
+            border-radius: 10px; border-left: 4px solid var(--orange); font-weight: 800; font-size: 13px;
+            color: var(--green-dark); display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
 
         .content-card-box {
-            position: relative;
-            z-index: 2;
-            margin: 0 14px 10px;
-            padding: 12px;
-            border-radius: 14px;
-            background: #ffffff;
-            border: 1px solid rgba(27,94,58,0.12);
-            box-shadow: 0 3px 8px rgba(43,33,24,0.04);
+            position: relative; z-index: 2; margin: 0 14px 10px; padding: 12px; border-radius: 14px;
+            background: #ffffff; border: 1px solid rgba(27,94,58,0.12); box-shadow: 0 3px 8px rgba(43,33,24,0.04);
         }
-
         .line-text { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 600; margin-bottom: 8px; word-break: break-word; }
         .post-display-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 8px; max-height: 240px; object-fit: cover; }
         
         .line-actions { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 5px; }
-
         .act-btn {
             display: flex; align-items: center; justify-content: center; gap: 4px;
             padding: 7px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer;
         }
-
         .act-copy { background: #EAF3EC; color: var(--green-dark); border-color: rgba(27,94,58,0.25); }
         .act-whatsapp { background: #25D366; color: #fff; }
         .act-twitter { background: #000000; color: #fff; }
@@ -323,57 +243,16 @@
             font-weight: 700; font-size: 12px; padding: 9px; border-radius: 8px; cursor: pointer; border: none;
         }
 
-        /* USER REGISTRATION / LOGIN TABS */
-        .auth-tab-switch {
-            display: flex;
-            background: #eef5f0;
-            border-radius: 8px;
-            padding: 3px;
-            margin-bottom: 10px;
-        }
-        .auth-tab {
-            flex: 1;
-            padding: 6px;
-            font-size: 11px;
-            font-weight: 800;
-            border: none;
-            background: none;
-            color: var(--muted);
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .auth-tab.active {
-            background: #fff;
-            color: var(--green-dark);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-        }
+        .auth-tab-switch { display: flex; background: #eef5f0; border-radius: 8px; padding: 3px; margin-bottom: 10px; }
+        .auth-tab { flex: 1; padding: 6px; font-size: 11px; font-weight: 800; border: none; background: none; color: var(--muted); border-radius: 6px; cursor: pointer; }
+        .auth-tab.active { background: #fff; color: var(--green-dark); box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
 
-        /* ADMIN CARDS */
-        .req-card {
-            background: #ffffff;
-            border-left: 3px solid var(--orange);
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-        }
+        .req-card { background: #ffffff; border-left: 3px solid var(--orange); border-radius: 10px; padding: 10px; margin-bottom: 8px; }
         .req-header { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
         .req-body { font-size: 12px; color: var(--text); margin-bottom: 6px; }
-        .req-btn {
-            background: var(--orange); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer;
-        }
+        .req-btn { background: var(--orange); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer; }
 
-        .user-badge-item {
-            background: #fff;
-            padding: 8px 10px;
-            border-radius: 8px;
-            margin-bottom: 6px;
-            border: 1px solid #e2ece5;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 11.5px;
-        }
+        .user-badge-item { background: #fff; padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; border: 1px solid #e2ece5; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; }
 
         .sub-panel {
             position: relative; z-index: 2; margin: 0 14px 6px; background: linear-gradient(135deg, #ffffff 0%, #F5EFE0 100%);
@@ -385,6 +264,14 @@
             display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--green-dark); cursor: pointer;
         }
         .sub-cell.active { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff; }
+
+        /* AI PAGE 2 STYLES */
+        .ai-card-item { background: #ffffff; border-radius: 12px; padding: 10px; margin-bottom: 8px; border: 1px solid #e2ece5; }
+        .ai-badge-num { width: 22px; height: 22px; background: #115740; color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; margin-right: 6px; }
+        .ai-action-btn-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 8px; }
+        .btn-ai-copy { background: #eef7ee; color: #115740; border: 1px solid #bbf7d0; border-radius: 6px; padding: 6px 0; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .btn-ai-edit { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; border-radius: 6px; padding: 6px 0; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .btn-ai-delete { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; border-radius: 6px; padding: 6px 0; font-size: 11px; font-weight: 700; cursor: pointer; }
 
         .bottom-nav {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 64px; background: #ffffff;
@@ -403,6 +290,7 @@
 
 <div class="mobile-container">
 
+    <!-- PAGE 1: HOME -->
     <div id="page-home" class="page-view home-bg active">
         <div class="header">
             <button class="icon-btn" title="ಮೆನು"><i class="fa-solid fa-bars"></i></button>
@@ -442,7 +330,6 @@
             <div class="slogan-sub">ಸೋಷಿಯಲ್ ಮೀಡಿಯಾಗಳಿಗಾಗಿ ನವಚಿಂತನೆಯ ಪೋಸ್ಟ್‌ಗಳು ಇಲ್ಲಿ ಸಿಗುತ್ತವೆ..</div>
         </div>
 
-        <!-- NEW DIRECT APP INSTALL BANNER -->
         <div class="app-install-banner" id="appInstallBanner">
             <div class="install-banner-text">
                 <b>📲 Official Mobile App</b>
@@ -486,7 +373,7 @@
         <div class="ad-space-container">
             <span class="ad-tag">Advertisement / ಪ್ರಾಯೋಜಿತ</span>
             <div class="ad-content" id="homeAdContainer">
-                <img id="homeAdImg" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format&fit=crop&q=60" style="display:none;" />
+                <img id="homeAdImg" src="" style="display:none;" />
                 <div class="ad-text-box">
                     <h5 id="homeAdTitle">ಇಲ್ಲಿ ನಿಮ್ಮ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ</h5>
                     <p style="font-size:10px; color:#64748b;" id="homeAdSub">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಸಂಪರ್ಕಿಸಿ: admin@politicalpost.in</p>
@@ -495,6 +382,7 @@
         </div>
     </div>
 
+    <!-- PAGE 2: SUBSCRIBER -->
     <div id="page-subscriber" class="page-view sub-bg">
         <div class="splash-tl"></div>
         <div class="splash-br"></div>
@@ -540,112 +428,82 @@
 
         <div class="section-header-box">
             <span><i class="fa-solid fa-image" style="color:var(--orange);"></i> Political Posts (ಪೋಸ್ಟರ್ & ಫೋಟೋಗಳು)</span>
-            <span style="font-size:10px; color:var(--muted);">ದೈನಂದಿನ</span>
         </div>
-        <div id="postsListContainer">
-            <div class="content-card-box">
-                <div class="line-text">ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ - ಇಂದಿನ ರಾಜಕೀಯ ಬೆಳವಣಿಗೆ</div>
-                <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60" class="post-display-img" alt="Post" />
-                <div class="line-actions">
-                    <button class="act-btn act-copy" onclick="copyText('ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ\nhttps://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60')"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="act-btn act-whatsapp" onclick="shareWhatsApp('ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                    <button class="act-btn act-twitter" onclick="shareTwitter('ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಹೆಜ್ಜೆ')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                </div>
-            </div>
-        </div>
+        <div id="postsListContainer"></div>
 
         <div class="section-header-box">
-            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> ನಿಮಗಾಗಿ Catchy Lines (Twitter & FB)</span>
-            <span style="font-size:10px; color:var(--muted);">ಕ್ಯಾಚಿ ಸಾಲುಗಳು</span>
+            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> Catchy Lines (Twitter & FB)</span>
         </div>
-        <div id="catchyListContainer">
-            <div class="content-card-box">
-                <div class="line-text">“ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!”</div>
-                <div class="line-actions">
-                    <button class="act-btn act-copy" onclick="copyText('ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!')"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="act-btn act-whatsapp" onclick="shareWhatsApp('ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                    <button class="act-btn act-twitter" onclick="shareTwitter('ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                </div>
-            </div>
-        </div>
+        <div id="catchyListContainer"></div>
 
         <div class="section-header-box">
             <span><i class="fa-solid fa-quote-left" style="color:var(--orange);"></i> ಮುತ್ತಿನಂತ ಮಾತು (Quotes)</span>
-            <span style="font-size:10px; color:var(--muted);">ನುಡಿಮುತ್ತು</span>
         </div>
-        <div id="quotesListContainer">
-            <div class="content-card-box">
-                <div class="line-text" style="font-style:italic;">“ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.”</div>
-                <div class="line-actions">
-                    <button class="act-btn act-copy" onclick="copyText('ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.')"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="act-btn act-whatsapp" onclick="shareWhatsApp('ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                    <button class="act-btn act-twitter" onclick="shareTwitter('ಅಧಿಕಾರ ಅನ್ನೋದು ಸೇವೆಯ ಸಾಧನವಾಗಬೇಕೇ ಹೊರತು, ಸ್ವಾರ್ಥದ ಮೆಟ್ಟಿಲಾಗಬಾರದು.')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                </div>
-            </div>
-        </div>
+        <div id="quotesListContainer"></div>
 
         <div id="customRequestBox" style="display:none; margin-top: 10px;">
             <div class="section-header-box">
                 <span><i class="fa-solid fa-envelope-open-text" style="color:var(--orange);"></i> ನಿಮ್ಮ ಪೋಸ್ಟ್ ವಿನಂತಿ</span>
             </div>
             <div class="custom-card">
-                <div style="font-size:11.5px; color:var(--muted); margin-bottom:4px;">ನಿಮಗೆ ಬೇಕಾದ ವಿಷಯವನ್ನು ತಿಳಿಸಿ, ನಾವು ಸಿದ್ಧಪಡಿಸಿ ನಿಮ್ಮ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಕಳುಹಿಸುತ್ತೇವೆ.</div>
+                <div style="font-size:11.5px; color:var(--muted); margin-bottom:4px;">ನಿಮಗೆ ಬೇಕಾದ ವಿಷಯವನ್ನು ತಿಳಿಸಿ, ನಾವು ಸಿದ್ಧಪಡಿಸಿ ಕಳುಹಿಸುತ್ತೇವೆ.</div>
                 <textarea id="customRequestInput" class="custom-input" rows="2" placeholder="ಉದಾ: ನಾಳಿನ ಸಮಾವೇಶದ ಬಗ್ಗೆ ಪೋಸ್ಟ್ ಬೇಕು..."></textarea>
                 <button onclick="sendUserRequest()" class="custom-send">ವಿನಂತಿ ಕಳುಹಿಸಿ</button>
             </div>
         </div>
     </div>
 
+    <!-- PAGE 3: ADMIN PAGE 1 -->
     <div id="page-admin" class="page-view admin-bg">
         <div class="splash-tl"></div>
         <div class="splash-br"></div>
 
         <div class="header">
             <button class="back-btn" onclick="switchPage('home')">&#8592;</button>
-            <div class="header-title-panel">ಅಡ್ಮಿನ್ ಪ್ಯಾನಲ್</div>
+            <div class="header-title-panel">ಅಡ್ಮಿನ್ ಪ್ಯಾನಲ್ (Page 1)</div>
             <button class="bell"><i class="fa-solid fa-shield-halved"></i></button>
         </div>
 
-        <div class="section-header-box">
-            <span><i class="fa-solid fa-address-book" style="color:var(--orange);"></i> ನೋಂದಾಯಿತ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳ ವಿವರ</span>
-        </div>
-        <div style="padding: 0 14px; max-height: 180px; overflow-y: auto;" id="adminSubscribersDirectory">
-            <div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿದ್ದಾರೆ...</div>
-        </div>
+        <!-- AI Assistant Banner Link -->
+        <button onclick="switchPage('admin-ai')" class="custom-send" style="background:linear-gradient(135deg, #115740, #ff7700); margin:0 14px 10px; width:calc(100% - 28px); box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+            <i class="fa-solid fa-robot"></i> 🤖 AI CONTENT ASSISTANT (Page 2)
+        </button>
 
         <div class="section-header-box">
-            <span><i class="fa-solid fa-bell" style="color:var(--orange);"></i> ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿನಂತಿಗಳು (User Requests)</span>
+            <span><i class="fa-solid fa-address-book" style="color:var(--orange);"></i> ನೋಂದಾಯಿತ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗಳು</span>
         </div>
-        <div style="padding: 0 14px;" id="adminRequestsList">
-            <div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ವಿನಂತಿಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</div>
+        <div style="padding: 0 14px; max-height: 150px; overflow-y: auto;" id="adminSubscribersDirectory"></div>
+
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-bell" style="color:var(--orange);"></i> ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿನಂತಿಗಳು</span>
         </div>
+        <div style="padding: 0 14px;" id="adminRequestsList"></div>
 
         <div class="section-header-box">
             <span><i class="fa-solid fa-users" style="color:var(--orange);"></i> Quick Subscriber Grid (50)</span>
         </div>
         <div class="sub-panel">
             <div class="sub-grid" id="subGrid"></div>
-            <div style="font-size:9.5px; color:var(--muted); text-align:center;">ಯಾವುದೇ ಸಂಖ್ಯೆ ಒತ್ತಿ, ಆ ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ ವಿಷಯ ಕಳುಹಿಸಿ</div>
         </div>
 
         <div class="section-header-box">
             <span><i class="fa-solid fa-cloud-arrow-up" style="color:var(--orange);"></i> ವಿಷಯ & ಜಾಹೀರಾತು ಅಪ್‌ಲೋಡ್</span>
         </div>
         <div class="custom-card">
-            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">1. ವಿಷಯ ಎಲ್ಲಿ ಪ್ರಕಟವಾಗಬೇಕು? (Category):</label>
+            <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">1. ಎಲ್ಲಿ ಪ್ರಕಟವಾಗಬೇಕು? (Category):</label>
             <select id="contentTypeSelect" class="custom-input" style="background:#fff; font-weight:700;" onchange="toggleUploadType()">
                 <optgroup label="ಸಬ್‌ಸ್ಕ್ರೈಬರ್ ವಿಭಾಗಕ್ಕೆ:">
                     <option value="POST">🖼️ Political Post (ಫೋಟೋ + ಶೀರ್ಷಿಕೆ)</option>
                     <option value="CATCHY">✍️ Catchy Lines (ಕ್ಯಾಚಿ ಸಾಲುಗಳು)</option>
-                    <option value="QUOTE">💎 ಮುತ್ತಿನಂತ ಮಾತು (Quotes)</option>
+                    <option value="QUOTE">💎 Quotes (ನುಡಿಮುತ್ತು)</option>
                 </optgroup>
                 <optgroup label="ಹೋಮ್ ಪೇಜ್ 3 ಬಾಕ್ಸ್‌ಗಳಿಗೆ:">
-                    <option value="HOME_MSG1">📢 ಹೋಮ್ ಪೇಜ್ - ಸೂಪರ್ ಸಂದೇಶ</option>
-                    <option value="HOME_MSG2">📰 ಹೋಮ್ ಪೇಜ್ - ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ</option>
-                    <option value="HOME_MSG3">🔥 ಹೋಮ್ ಪೇಜ್ - ಟ್ರೆಂಡಿಂಗ್...</option>
+                    <option value="HOME_MSG1">📢 ಸೂಪರ್ ಸಂದೇಶ</option>
+                    <option value="HOME_MSG2">📰 ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ</option>
+                    <option value="HOME_MSG3">🔥 ಟ್ರೆಂಡಿಂಗ್...</option>
                 </optgroup>
-                <optgroup label="ಜಾಹೀರಾತು ಪ್ರಕಟಣೆ:">
-                    <option value="HOME_AD">📢 ಹೋಮ್ ಪೇಜ್ - ಜಾಹೀರಾತು (Ad Banner)</option>
+                <optgroup label="ಜಾಹೀರಾತು:">
+                    <option value="HOME_AD">📢 ಜಾಹೀರಾತು (Ad Banner)</option>
                 </optgroup>
             </select>
 
@@ -657,21 +515,58 @@
             </div>
 
             <label style="font-size:11.5px; font-weight:700; color:var(--green-dark); margin-top:8px; display:block;">3. ಶೀರ್ಷಿಕೆ / ಪಠ್ಯ (Content / Ad Text):</label>
-            <textarea id="contentText" rows="2" placeholder="ವಿಷಯ ಅಥವಾ ಜಾಹೀರಾತು ವಿವರ ಬರೆಯಿರಿ..." class="custom-input" style="background:#fff;"></textarea>
+            <textarea id="contentText" rows="3" placeholder="ವಿಷಯ ಅಥವಾ ಜಾಹೀರಾತು ವಿವರ ಇಲ್ಲಿ ಪೇಸ್ಟ್ ಮಾಡಿ..." class="custom-input" style="background:#fff;"></textarea>
 
             <div id="imageUploadWrapper" style="margin-top:8px;">
-                <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">4. ಫೋಟೋ / ಆ್ಯಡ್ ಬ್ಯಾನರ್ ಆಯ್ಕೆ ಮಾಡಿ:</label>
+                <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">4. ಫೋಟೋ / ಆ್ಯಡ್ ಬ್ಯಾನರ್ (Optional):</label>
                 <input type="file" id="imageInput" accept="image/*" class="custom-input" style="background:#fff; cursor:pointer;" />
             </div>
 
             <button onclick="publishContent()" class="custom-send" style="margin-top: 10px;">
                 <i class="fa-solid fa-paper-plane"></i> ವಿಷಯ ಪ್ರಕಟಿಸಿ
             </button>
-            
             <p id="status" style="font-size:11.5px; font-weight:700; color:var(--green-dark); margin-top:8px; text-align:center;"></p>
         </div>
     </div>
 
+    <!-- PAGE 4: ADMIN PAGE 2 (AI CONTENT ASSISTANT) -->
+    <div id="page-admin-ai" class="page-view admin-bg">
+        <div class="splash-tl"></div>
+        <div class="splash-br"></div>
+
+        <div class="header">
+            <button class="back-btn" onclick="switchPage('admin')">&#8592;</button>
+            <div class="header-title-panel">🤖 AI Assistant (Page 2)</div>
+            <button class="bell" onclick="fetchAutomatedAIContent()" title="ರಿಫ್ರೆಶ್"><i class="fa-solid fa-arrows-rotate"></i></button>
+        </div>
+
+        <div class="section-header-box">
+            <span><i class="fa-solid fa-newspaper" style="color:var(--orange);"></i> ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ (AI Feed)</span>
+            <button onclick="fetchAutomatedAIContent()" style="background:none; border:none; color:var(--green); font-size:11px; font-weight:800; cursor:pointer;">
+                <i class="fa-solid fa-arrows-rotate"></i> ರಿಫ್ರೆಶ್
+            </button>
+        </div>
+        <div id="aiTopNewsContainer" style="padding: 0 14px 6px;"></div>
+
+        <div class="section-header-box" style="margin-top:6px;">
+            <span><i class="fa-solid fa-fire" style="color:var(--orange);"></i> ಟ್ರೆಂಡಿಂಗ್ ಪೋಸ್ಟ್‌ಗಳು</span>
+        </div>
+
+        <div style="padding: 0 14px;">
+            <div class="auth-tab-switch" style="margin-bottom:8px;">
+                <button class="auth-tab active" id="tabPolBtn" onclick="switchAiTab('political')">🏛️ ರಾಜಕೀಯ</button>
+                <button class="auth-tab" id="tabCinemaBtn" onclick="switchAiTab('cinema')">🎬 ಸಿನಿಮಾ</button>
+                <button class="auth-tab" id="tabSportsBtn" onclick="switchAiTab('sports')">🏃 ಕ್ರೀಡೆ</button>
+            </div>
+            <div id="aiTrendingListContainer"></div>
+        </div>
+
+        <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:10.5px; color:#92400e;">
+            💡 <b>Workflow:</b> ಇಲ್ಲಿ Copy ಮಾಡಿ ➜ Page 1 ಗೆ ಹೋಗಿ 'Content Upload' ನಲ್ಲಿ ಪೇಸ್ಟ್ ಮಾಡಿ ಪ್ರಕಟಿಸಿ.
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchPage('home')">
             <i class="fa-solid fa-house"></i><span>ಮುಖಪುಟ</span>
@@ -689,7 +584,7 @@
 </div>
 
 <script>
-    // 1. Firebase Config
+    // 1. Firebase Configuration
     const firebaseConfig = {
         apiKey: "AIzaSyAYTN1Ux8FHHaCPIAjkaQozIT72T1u8I9k",
         authDomain: "political-post-51649.firebaseapp.com",
@@ -706,7 +601,7 @@
     let loggedInSubscriberId = localStorage.getItem("current_sub_id") || null;
     let listenerUnsubscribe = null;
 
-    // Realtime Home Content & Ads
+    // Realtime Home Content
     db.collection("home_content").doc("latest").onSnapshot((doc) => {
         if (doc.exists) {
             const data = doc.data();
@@ -723,9 +618,9 @@
         }
     });
 
-    // 2. Tab & Page Navigation with Secure Vercel Serverless Authentication
+    // 2. Navigation & Serverless API Auth
     async function switchPage(pageName) {
-        if (pageName === 'admin') {
+        if (pageName === 'admin' || pageName === 'admin-ai') {
             const enteredPass = prompt("ಅಡ್ಮಿನ್ ಪ್ರವೇಶಕ್ಕಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ:");
             if (enteredPass === null) return;
             if (!enteredPass.trim()) {
@@ -734,7 +629,6 @@
             }
 
             try {
-                // Vercel Serverless API ಮೂಲಕ ಸುರಕ್ಷಿತ ದೃಢೀಕರಣ
                 const response = await fetch('/api/auth', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -742,19 +636,22 @@
                 });
 
                 const result = await response.json();
-
                 if (!response.ok || !result.success) {
                     alert("ತಪ್ಪಾದ ಪಾಸ್‌ವರ್ಡ್!");
                     return;
                 }
             } catch (err) {
                 console.error("Auth error:", err);
-                alert("ದೃಢೀಕರಣದಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ! ದಯವಿಟ್ಟು ಸರ್ವರ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ.");
+                alert("ದೃಢೀಕರಣದಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ!");
                 return;
             }
 
-            loadAdminRequests();
-            loadAdminSubscribers();
+            if (pageName === 'admin') {
+                loadAdminRequests();
+                loadAdminSubscribers();
+            } else if (pageName === 'admin-ai') {
+                initAdminPage2();
+            }
         }
 
         document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
@@ -770,10 +667,147 @@
         } else if (pageName === 'admin') {
             document.getElementById('page-admin').classList.add('active');
             document.querySelectorAll('.nav-item')[2].classList.add('active');
+        } else if (pageName === 'admin-ai') {
+            document.getElementById('page-admin-ai').classList.add('active');
+            document.querySelectorAll('.nav-item')[2].classList.add('active');
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // 3. AI Page 2 Automated Logic
+    let automatedAiData = {
+        topNews: [
+            { id: 'tn1', title: "ಕರ್ನಾಟಕ ಬಜೆಟ್: ಪ್ರಮುಖ ಘೋಷಣೆಗಳು", summary: "ರಾಜ್ಯ ಸರ್ಕಾರ ಇಂದು ಹೊಸ ಬಜೆಟ್ ಮಂಡನೆ ಮಾಡಿದ್ದು, ಶಿಕ್ಷಣ, ಕೃಷಿ, ಮಹಿಳಾ ಹಾಗೂ ಯುವಕರಿಗೆ ವಿಶೇಷ ಅನುದಾನ ಘೋಷಿಸಿದೆ." },
+            { id: 'tn2', title: "ವಿಧಾನಸಭಾ ಅಧಿವೇಶನ: ವಿರೋಧ ಪಕ್ಷದ ಆಕ್ರೋಶ", summary: "ವಿಧಾನಸಭೆಯಲ್ಲಿ ಹಲವು ವಿಷಯಗಳ ಮೇಲೆ ವಿರೋಧ ಪಕ್ಷದ ಸದಸ್ಯರು ಸರ್ಕಾರದ ಮೇಲೆ ತೀಕ್ಷ್ಣ ಪ್ರಹಾರ ಮಾಡಿದರು." },
+            { id: 'tn3', title: "ರಾಜ್ಯದಲ್ಲಿ ಮಳೆಯ ಅಬ್ಬರ: ಹಲವು ಜಿಲ್ಲೆಗಳಿಗೆ ಎಚ್ಚರಿಕೆ", summary: "ಮುಂದಿನ 3 ದಿನಗಳ ಕಾಲ ಭಾರಿ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ, ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡು ಭಾಗಗಳಲ್ಲಿ ಮುನ್ನೆಚ್ಚರಿಕೆ ನೀಡಲಾಗಿದೆ." }
+        ],
+        political: [
+            { text: "ಸಿದ್ಧರಾಮಯ್ಯ ಸರ್ಕಾರದ ಹೊಸ ಯೋಜನೆಗೆ ಚಾಲನೆ - ಜನಪರ ಆಡಳಿತಕ್ಕೆ ಹೊಸ ಮೆರುಗು." },
+            { text: "ಡಿಕೆ ಶಿವಕುಮಾರ್ ವಿದೇಶ ಪ್ರವಾಸ: ರಾಜಕೀಯ ವಲಯದಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದ ನಡೆ!" },
+            { text: "ಕಾಂಗ್ರೆಸ್ ಶಾಸಕರ ಸಭೆಯಲ್ಲಿ ಮಹತ್ವದ ನಿರ್ಧಾರ; ಮುಂಬರುವ ಚುನಾವಣೆಗೆ ಸಿದ್ಧತೆ." },
+            { text: "ಬಿಜೆಪಿ ರಾಜ್ಯ ನಾಯಕರಿಗೆ ಕೇಂದ್ರ ನಾಯಕರ ಸೂಚನೆ; ಸಂಘಟನೆ ಬಲಪಡಿಸಲು ಕರೆ." },
+            { text: "ಗ್ರಾಮ ಪಂಚಾಯತ್ ಚುನಾವಣೆ: ಹಳ್ಳಿ ಹಳ್ಳಿಗಳಲ್ಲಿ ಗರಿಗೆದರಿದ ರಾಜಕೀಯ ಚಟುವಟಿಕೆ." }
+        ],
+        cinema: [
+            { text: "ಕಿಚ್ಚ ಸುದೀಪ್ ಹೊಸ ಚಿತ್ರಕ್ಕೆ ಅಧಿಕೃತ ಘೋಷಣೆ - ಅಭಿಮಾನಿಗಳಲ್ಲಿ ಹಬ್ಬದ ಸಂಭ್ರಮ!" },
+            { text: "ರಶ್ಮಿಕಾ ಮಂದಣ್ಣ ಹೊಸ ಫೋಟೋಶೂಟ್ ಸೋಷಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ವೈರಲ್." },
+            { text: "ಯಶ್ ಮುಂದಿನ ಸಿನಿಮಾ ಬಗ್ಗೆ ಅಪ್ಡೇಟ್: ಭರ್ಜರಿ ತಯಾರಿಯಲ್ಲಿ ರಾಕಿ ಭಾಯ್!" },
+            { text: "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1: ರಿಲೀಸ್ ಡೇಟ್ ಫಿಕ್ಸ್ - ಕಾತರದಲ್ಲಿ ಸಿನಿಪ್ರಿಯರು." },
+            { text: "ಸ್ಯಾಂಡಲ್‌ವುಡ್‌ನಲ್ಲಿ ಹೊಸ ಕಥೆಗಳ ಟ್ರೆಂಡ್; ಯುವ ಪ್ರತಿಭೆಗಳಿಗೆ ಉತ್ತಮ ವೇದಿಕೆ." }
+        ],
+        sports: [
+            { text: "ಟೀಮ್ ಇಂಡಿಯಾ ಪಂದ್ಯಾವಳಿಗೆ ಸಜ್ಜು - ಕಠಿಣ ತಾಲೀಮಿನಲ್ಲಿ ಆಟಗಾರರು." },
+            { text: "ವಿರಾಟ್ ಕೊಹ್ಲಿ ದಾಖಲೆ ಮತ್ತೊಂದು ಮೈಲುಗಲ್ಲು; ವಿಶ್ವ ಕ್ರಿಕೆಟ್‌ನಲ್ಲಿ ಹೊಸ ಇತಿಹಾಸ!" },
+            { text: "KPL ಪಂದ್ಯಾವಳಿ: ರೋಚಕ ಹಣಾಹಣಿಯಲ್ಲಿ ಅದ್ಭುತ ಜಯಗಳಿಸಿದ ತಂಡ." },
+            { text: "ಕರ್ನಾಟಕದ ಯುವ ಆಟಗಾರರಿಗೆ ರಾಷ್ಟ್ರೀಯ ಮಟ್ಟದಲ್ಲಿ ದೊಡ್ಡ ಅವಕಾಶ." },
+            { text: "ಇಂದು IPL ಹೈ-ವೋಲ್ಟೇಜ್ ಪಂದ್ಯ: ಅಭಿಮಾನಿಗಳಲ್ಲಿ ಹೆಚ್ಚಿದ ಕೌತುಕ!" }
+        ]
+    };
+
+    let currentAiCategory = 'political';
+
+    function initAdminPage2() {
+        renderTopNews();
+        renderTrendingList();
+    }
+
+    function renderTopNews() {
+        const container = document.getElementById('aiTopNewsContainer');
+        if (!container) return;
+        container.innerHTML = "";
+
+        automatedAiData.topNews.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'ai-card-item';
+            div.innerHTML = `
+                <div style="font-size:12px; font-weight:800; color:var(--green-dark); margin-bottom:4px;">
+                    <span class="ai-badge-num">${index + 1}</span> ${item.title}
+                </div>
+                <div style="font-size:11px; color:#4a5568; line-height:1.4; margin-bottom:6px;">${item.summary}</div>
+                <div class="ai-action-btn-group">
+                    <button class="btn-ai-copy" onclick="copyAiItem('${item.title}\\n\\n${item.summary}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-edit" onclick="editTopNews(${index})"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-ai-delete" onclick="deleteTopNews(${index})"><i class="fa-solid fa-trash"></i> Delete</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function renderTrendingList() {
+        const container = document.getElementById('aiTrendingListContainer');
+        if (!container) return;
+        container.innerHTML = "";
+
+        const items = automatedAiData[currentAiCategory] || [];
+        items.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'ai-card-item';
+            div.innerHTML = `
+                <div style="display:flex; align-items:flex-start;">
+                    <span class="ai-badge-num">${index + 1}</span>
+                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${item.text}</div>
+                </div>
+                <div class="ai-action-btn-group">
+                    <button class="btn-ai-copy" onclick="copyAiItem('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-edit" onclick="editTrendingItem(${index})"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-ai-delete" onclick="deleteTrendingItem(${index})"><i class="fa-solid fa-trash"></i> Delete</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function switchAiTab(cat) {
+        currentAiCategory = cat;
+        document.getElementById('tabPolBtn').classList.toggle('active', cat === 'political');
+        document.getElementById('tabCinemaBtn').classList.toggle('active', cat === 'cinema');
+        document.getElementById('tabSportsBtn').classList.toggle('active', cat === 'sports');
+        renderTrendingList();
+    }
+
+    function copyAiItem(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!\nಈಗ Page 1 ಗೆ ಹೋಗಿ 'Content Upload' ಬಾಕ್ಸ್‌ನಲ್ಲಿ ಪೇಸ್ಟ್ ಮಾಡಿ.");
+        });
+    }
+
+    function editTopNews(idx) {
+        const newSummary = prompt("ಸಾರಾಂಶ ತಿದ್ದಿ:", automatedAiData.topNews[idx].summary);
+        if (newSummary !== null && newSummary.trim() !== "") {
+            automatedAiData.topNews[idx].summary = newSummary.trim();
+            renderTopNews();
+        }
+    }
+
+    function editTrendingItem(idx) {
+        const newText = prompt("ವಿಷಯ ತಿದ್ದಿ:", automatedAiData[currentAiCategory][idx].text);
+        if (newText !== null && newText.trim() !== "") {
+            automatedAiData[currentAiCategory][idx].text = newText.trim();
+            renderTrendingList();
+        }
+    }
+
+    function deleteTopNews(idx) {
+        if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
+            automatedAiData.topNews.splice(idx, 1);
+            renderTopNews();
+        }
+    }
+
+    function deleteTrendingItem(idx) {
+        if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
+            automatedAiData[currentAiCategory].splice(idx, 1);
+            renderTrendingList();
+        }
+    }
+
+    function fetchAutomatedAIContent() {
+        alert("🔄 ಲೈವ್ ವಿಷಯಗಳು ಅಪ್‌ಡೇಟ್ ಆಗಿವೆ!");
+        initAdminPage2();
+    }
+
+    // 4. Subscriber Auth & Session
     function switchAuthTab(tab) {
         document.getElementById('tabLoginBtn').classList.toggle('active', tab === 'login');
         document.getElementById('tabRegBtn').classList.toggle('active', tab === 'register');
@@ -781,32 +815,42 @@
         document.getElementById('registerView').style.display = tab === 'register' ? 'block' : 'none';
     }
 
-    // 3. Registration & Login Session
     async function registerSubscriber() {
         const name = document.getElementById('regName').value.trim();
         const phone = document.getElementById('regPhone').value.trim();
         const location = document.getElementById('regLocation').value.trim();
 
-        if (!name || !phone) {
-            alert("ದಯವಿಟ್ಟು ಹೆಸರು ಮತ್ತು ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ!");
-            return;
-        }
+        if (!name || !phone) return alert("ಹೆಸರು ಮತ್ತು ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಹಾಕಿ!");
 
         const usersSnap = await db.collection("subscribers").get();
         const nextId = "SUB" + (usersSnap.size + 1).toString().padStart(2, '0');
 
         await db.collection("subscribers").doc(nextId).set({
-            subscriberId: nextId,
-            name: name,
-            phone: phone,
-            location: location || "Karnataka",
+            subscriberId: nextId, name, phone, location: location || "Karnataka",
             joinedAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        alert(`🎉 ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ!\nನಿಮ್ಮ Subscriber ID: ${nextId}\nದಯವಿಟ್ಟು ಈ ID ಯನ್ನು ನೆನಪಿನಲ್ಲಿಡಿ.`);
+        alert(`🎉 ನೋಂದಣಿ ಯಶಸ್ವಿ! ID: ${nextId}`);
         loggedInSubscriberId = nextId;
         localStorage.setItem("current_sub_id", nextId);
         checkSubscriberSession();
+    }
+
+    function subscriberLogin() {
+        const input = document.getElementById('subIdInput').value.trim().toUpperCase();
+        if (!input) return alert("Subscriber ID ಹಾಕಿ!");
+        loggedInSubscriberId = input.startsWith("SUB") ? input : "SUB" + input.padStart(2, '0');
+        localStorage.setItem("current_sub_id", loggedInSubscriberId);
+        checkSubscriberSession();
+    }
+
+    function subscriberLogout() {
+        if (confirm("Logout ಆಗಬೇಕೆ?")) {
+            localStorage.removeItem("current_sub_id");
+            loggedInSubscriberId = null;
+            if (listenerUnsubscribe) listenerUnsubscribe();
+            checkSubscriberSession();
+        }
     }
 
     function checkSubscriberSession() {
@@ -829,33 +873,13 @@
         }
     }
 
-    function subscriberLogin() {
-        const input = document.getElementById('subIdInput').value.trim().toUpperCase();
-        if (!input) {
-            alert("ದಯವಿಟ್ಟು Subscriber ID ನಮೂದಿಸಿ!");
-            return;
-        }
-        loggedInSubscriberId = input.startsWith("SUB") ? input : "SUB" + input.padStart(2, '0');
-        localStorage.setItem("current_sub_id", loggedInSubscriberId);
-        checkSubscriberSession();
-    }
-
-    function subscriberLogout() {
-        if (confirm("ಲಾಗಿನ್‌ನಿಂದ ಹೊರಬರಬೇಕೆ?")) {
-            localStorage.removeItem("current_sub_id");
-            loggedInSubscriberId = null;
-            if (listenerUnsubscribe) listenerUnsubscribe();
-            checkSubscriberSession();
-        }
-    }
-
+    // 5. Admin Publish Actions
     function toggleUploadType() {
         const type = document.getElementById('contentTypeSelect').value;
         document.getElementById('imageUploadWrapper').style.display = (type === 'POST' || type === 'HOME_AD') ? 'block' : 'none';
         document.getElementById('targetSubscriberWrapper').style.display = (type.startsWith('HOME_')) ? 'none' : 'block';
     }
 
-    // 4. Admin Publish Content & Ads
     async function publishContent() {
         const type = document.getElementById('contentTypeSelect').value;
         const target = document.getElementById('targetSubscriberSelect').value;
@@ -871,7 +895,6 @@
                 const formData = new FormData();
                 formData.append('file', fileInput.files[0]);
                 formData.append('upload_preset', 'Politicalpost');
-
                 const res = await fetch('https://api.cloudinary.com/v1_1/mkuurlzy/image/upload', {
                     method: 'POST', body: formData
                 });
@@ -881,34 +904,26 @@
 
             if (type.startsWith('HOME_MSG')) {
                 const updateField = type === 'HOME_MSG1' ? 'msg1' : (type === 'HOME_MSG2' ? 'msg2' : 'msg3');
-                await db.collection("home_content").doc("latest").set({
-                    [updateField]: text
-                }, { merge: true });
+                await db.collection("home_content").doc("latest").set({ [updateField]: text }, { merge: true });
                 statusText.innerText = "ಹೋಮ್ ಪೇಜ್ ಸಂದೇಶ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!";
                 document.getElementById('contentText').value = "";
                 return;
             }
 
             if (type === 'HOME_AD') {
-                await db.collection("home_content").doc("latest").set({
-                    adTitle: text || "ವಿಶೇಷ ಜಾಹೀರಾತು",
-                    adImg: imageUrl || ""
-                }, { merge: true });
-                statusText.innerText = "ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!";
+                await db.collection("home_content").doc("latest").set({ adTitle: text || "ಜಾಹೀರಾತು", adImg: imageUrl || "" }, { merge: true });
+                statusText.innerText = "ಜಾಹೀರಾತು ಪ್ರಕಟವಾಗಿದೆ!";
                 document.getElementById('contentText').value = "";
                 fileInput.value = "";
                 return;
             }
 
             await db.collection("contents").add({
-                type: type,
-                target: target,
-                text: text || "Political Post",
-                imageUrl: imageUrl,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                type: type, target: target, text: text || "Political Post",
+                imageUrl: imageUrl, createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
 
-            statusText.innerText = "ವಿಷಯ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!";
+            statusText.innerText = "ಪ್ರಕಟಿಸಲಾಗಿದೆ!";
             document.getElementById('contentText').value = "";
             fileInput.value = "";
         } catch (err) {
@@ -917,28 +932,16 @@
         }
     }
 
-    // 5. Admin - View Registered Subscribers & Requests
     function loadAdminSubscribers() {
         db.collection("subscribers").orderBy("joinedAt", "desc").onSnapshot((snapshot) => {
             const list = document.getElementById('adminSubscribersDirectory');
             list.innerHTML = "";
-
-            if (snapshot.empty) {
-                list.innerHTML = '<div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ಯಾರೂ ನೋಂದಾಯಿಸಿಕೊಂಡಿಲ್ಲ.</div>';
-                return;
-            }
-
+            if (snapshot.empty) return list.innerHTML = '<div style="font-size:11px; text-align:center; padding:8px;">ಖಾಲಿಯಿದೆ.</div>';
             snapshot.forEach(doc => {
                 const u = doc.data();
                 const div = document.createElement('div');
                 div.className = "user-badge-item";
-                div.innerHTML = `
-                    <div>
-                        <b>${u.name}</b> (${u.subscriberId})
-                        <div style="font-size:10px; color:var(--muted);">${u.phone} | ${u.location}</div>
-                    </div>
-                    <button class="req-btn" onclick="prepareReply('${u.subscriberId}')">Select</button>
-                `;
+                div.innerHTML = `<div><b>${u.name}</b> (${u.subscriberId})</div><button class="req-btn" onclick="prepareReply('${u.subscriberId}')">Select</button>`;
                 list.appendChild(div);
             });
         });
@@ -948,23 +951,12 @@
         db.collection("requests").orderBy("createdAt", "desc").limit(10).onSnapshot((snapshot) => {
             const list = document.getElementById('adminRequestsList');
             list.innerHTML = "";
-
-            if (snapshot.empty) {
-                list.innerHTML = '<div style="font-size:11px; color:var(--muted); text-align:center; padding:8px;">ಯಾವುದೇ ಹೊಸ ವಿನಂತಿಗಳಿಲ್ಲ.</div>';
-                return;
-            }
-
+            if (snapshot.empty) return list.innerHTML = '<div style="font-size:11px; text-align:center; padding:8px;">ಯಾವುದೇ ವಿನಂತಿಗಳಿಲ್ಲ.</div>';
             snapshot.forEach(doc => {
                 const data = doc.data();
                 const div = document.createElement('div');
                 div.className = "req-card";
-                div.innerHTML = `
-                    <div class="req-header">
-                        <span>👤 <b>${data.subscriberId || 'Unknown'}</b></span>
-                        <button class="req-btn" onclick="prepareReply('${data.subscriberId}')"><i class="fa-solid fa-reply"></i> ಪೋಸ್ಟ್ ಮಾಡಿ</button>
-                    </div>
-                    <div class="req-body">${data.requestText}</div>
-                `;
+                div.innerHTML = `<div class="req-header"><span>👤 <b>${data.subscriberId}</b></span><button class="req-btn" onclick="prepareReply('${data.subscriberId}')">Reply</button></div><div>${data.requestText}</div>`;
                 list.appendChild(div);
             });
         });
@@ -972,100 +964,75 @@
 
     function prepareReply(subId) {
         document.getElementById('targetSubscriberSelect').value = subId;
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        alert(`${subId} ಗೆ ಪೋಸ್ಟ್ ಮಾಡಲು ಸೆಲೆಕ್ಟ್ ಆಗಿದೆ.`);
+        alert(`${subId} ಆಯ್ಕೆಯಾಗಿದೆ.`);
     }
 
-    // 6. Realtime Content Loader
+    // 6. Content Loader
     function loadSubscriberData(subId) {
         if (listenerUnsubscribe) listenerUnsubscribe();
-
         const targets = (subId === "ALL") ? ["ALL"] : ["ALL", subId];
 
-        listenerUnsubscribe = db.collection("contents")
-            .where("target", "in", targets)
-            .onSnapshot((snapshot) => {
-                const postsList = document.getElementById('postsListContainer');
-                const catchyList = document.getElementById('catchyListContainer');
-                const quotesList = document.getElementById('quotesListContainer');
+        listenerUnsubscribe = db.collection("contents").where("target", "in", targets).onSnapshot((snapshot) => {
+            const postsList = document.getElementById('postsListContainer');
+            const catchyList = document.getElementById('catchyListContainer');
+            const quotesList = document.getElementById('quotesListContainer');
 
-                if (snapshot.empty) return;
+            postsList.innerHTML = ""; catchyList.innerHTML = ""; quotesList.innerHTML = "";
 
-                postsList.innerHTML = "";
-                catchyList.innerHTML = "";
-                quotesList.innerHTML = "";
+            const docs = [];
+            snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+            docs.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
 
-                const docs = [];
-                snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
-                docs.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
-
-                docs.forEach((item) => {
-                    if (item.type === 'POST') {
-                        const div = document.createElement('div');
-                        div.className = "content-card-box";
-                        div.innerHTML = `
-                            <div class="line-text">${item.text}</div>
-                            <img src="${item.imageUrl}" class="post-display-img" alt="Post" />
-                            <div class="line-actions">
-                                <button class="act-btn act-copy" onclick="copyText('${item.text}\\n${item.imageUrl}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                                <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                                <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                            </div>
-                        `;
-                        postsList.appendChild(div);
-                    } else if (item.type === 'CATCHY') {
-                        const div = document.createElement('div');
-                        div.className = "content-card-box";
-                        div.innerHTML = `
-                            <div class="line-text">${item.text}</div>
-                            <div class="line-actions">
-                                <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                                <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                                <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                            </div>
-                        `;
-                        catchyList.appendChild(div);
-                    } else if (item.type === 'QUOTE') {
-                        const div = document.createElement('div');
-                        div.className = "content-card-box";
-                        div.innerHTML = `
-                            <div class="line-text" style="font-style:italic;">“${item.text}”</div>
-                            <div class="line-actions">
-                                <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                                <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                                <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                            </div>
-                        `;
-                        quotesList.appendChild(div);
-                    }
-                });
+            docs.forEach((item) => {
+                const div = document.createElement('div');
+                div.className = "content-card-box";
+                if (item.type === 'POST') {
+                    div.innerHTML = `
+                        <div class="line-text">${item.text}</div>
+                        <img src="${item.imageUrl}" class="post-display-img" alt="Post" />
+                        <div class="line-actions">
+                            <button class="act-btn act-copy" onclick="copyText('${item.text}\\n${item.imageUrl}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                        </div>
+                    `;
+                    postsList.appendChild(div);
+                } else if (item.type === 'CATCHY') {
+                    div.innerHTML = `
+                        <div class="line-text">${item.text}</div>
+                        <div class="line-actions">
+                            <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                        </div>
+                    `;
+                    catchyList.appendChild(div);
+                } else if (item.type === 'QUOTE') {
+                    div.innerHTML = `
+                        <div class="line-text" style="font-style:italic;">“${item.text}”</div>
+                        <div class="line-actions">
+                            <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                        </div>
+                    `;
+                    quotesList.appendChild(div);
+                }
             });
+        });
     }
 
-    // 7. Actions & Grid Loader
-    function copyText(text) {
-        navigator.clipboard.writeText(text).then(() => alert('✅ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!'));
-    }
-
-    function shareWhatsApp(text, url = "") {
-        const fullMsg = url ? `${text}\n\n${url}` : text;
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(fullMsg)}`, '_blank');
-    }
-
-    function shareTwitter(text, url = "") {
-        const fullMsg = url ? `${text}\n\n${url}` : text;
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(fullMsg)}`, '_blank');
-    }
+    function copyText(text) { navigator.clipboard.writeText(text).then(() => alert('✅ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!')); }
+    function shareWhatsApp(text, url = "") { window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url ? `${text}\n\n${url}` : text)}`, '_blank'); }
+    function shareTwitter(text, url = "") { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(url ? `${text}\n\n${url}` : text)}`, '_blank'); }
 
     async function sendUserRequest() {
         const req = document.getElementById('customRequestInput').value.trim();
-        if(!req) return alert("ದಯವಿಟ್ಟು ವಿಷಯ ಬರೆಯಿರಿ!");
+        if(!req) return alert("ವಿಷಯ ಬರೆಯಿರಿ!");
         await db.collection("requests").add({
-            subscriberId: loggedInSubscriberId,
-            requestText: req,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            subscriberId: loggedInSubscriberId, requestText: req, createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
-        alert("ನಿಮ್ಮ ವಿನಂತಿ ಅಡ್ಮಿನ್‌ಗೆ ತಲುಪಿದೆ!");
+        alert("ವಿನಂತಿ ಕಳುಹಿಸಲಾಗಿದೆ!");
         document.getElementById('customRequestInput').value = "";
     }
 
@@ -1073,29 +1040,25 @@
     const grid = document.getElementById('subGrid');
     for(let i = 1; i <= 50; i++) {
         const subCode = "SUB" + i.toString().padStart(2, '0');
-        const opt = document.createElement('option');
-        opt.value = subCode;
-        opt.textContent = `👤 Subscriber #${i} (${subCode})`;
-        if (select) select.appendChild(opt);
-
+        if (select) {
+            const opt = document.createElement('option');
+            opt.value = subCode;
+            opt.textContent = `👤 Subscriber #${i} (${subCode})`;
+            select.appendChild(opt);
+        }
         if (grid) {
             const cell = document.createElement('div');
             cell.className = 'sub-cell';
             cell.textContent = i.toString().padStart(2, '0');
-            cell.onclick = () => {
-                if (select) select.value = subCode;
-                alert(`ಅಪ್‌ಲೋಡ್ ಸೆಲೆಕ್ಟರ್‌ನಲ್ಲಿ ${subCode} ಆಯ್ಕೆಯಾಗಿದೆ.`);
-            };
+            cell.onclick = () => { select.value = subCode; alert(`${subCode} ಆಯ್ಕೆಯಾಗಿದೆ.`); };
             grid.appendChild(cell);
         }
     }
 
-    // 8. Service Worker & Direct Install Function
+    // 7. Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-                .then((reg) => console.log('Service Worker Registered:', reg.scope))
-                .catch((err) => console.error('Service Worker Registration failed:', err));
+            navigator.serviceWorker.register('/sw.js').catch(err => console.error(err));
         });
     }
 
@@ -1103,29 +1066,16 @@
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         installPromptEvent = e;
-        const banner = document.getElementById('appInstallBanner');
-        if (banner) banner.style.display = 'flex';
     });
 
     function triggerAppInstall() {
         if (installPromptEvent) {
             installPromptEvent.prompt();
-            installPromptEvent.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    document.getElementById('appInstallBanner').style.display = 'none';
-                }
-                installPromptEvent = null;
-            });
+            installPromptEvent.userChoice.then(() => installPromptEvent = null);
         } else {
-            alert("ನಿಮ್ಮ ಬ್ರೌಸರ್ ಮೆನುವಿನಲ್ಲಿ (3 ಚುಕ್ಕೆಗಳು ಅಥವಾ Share ಬಟನ್) 'Install App' ಅಥವಾ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
+            alert("ಬ್ರೌಸರ್ ಮೆನುವಿನಲ್ಲಿ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
         }
     }
-
-    // ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಆದ ತಕ್ಷಣ ಬ್ಯಾನರ್ ಹೈಡ್ ಮಾಡುವುದು
-    window.addEventListener('appinstalled', () => {
-        const banner = document.getElementById('appInstallBanner');
-        if (banner) banner.style.display = 'none';
-    });
 </script>
 
 </body>
