@@ -103,11 +103,13 @@
         .line-text { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 600; margin-bottom: 8px; word-break: break-word; }
         .post-display-img { width: 100%; border-radius: 10px; display: block; margin-bottom: 8px; max-height: 240px; object-fit: cover; }
         
-        .line-actions { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 5px; }
-        .act-btn { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 7px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer; }
+        /* Updated Grid for 4 buttons (Copy, WhatsApp, Post, Delete) */
+        .line-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 0.8fr; gap: 4px; }
+        .act-btn { display: flex; align-items: center; justify-content: center; gap: 3px; padding: 7px 2px; border-radius: 8px; font-size: 10.5px; font-weight: 700; border: 1.5px solid transparent; cursor: pointer; }
         .act-copy { background: #EAF3EC; color: var(--green-dark); border-color: rgba(27,94,58,0.25); }
         .act-whatsapp { background: #25D366; color: #fff; }
         .act-twitter { background: #000000; color: #fff; }
+        .act-delete-pub { background: #fee2e2; color: #b91c1c; border-color: #fecaca; }
 
         .custom-card { position: relative; z-index: 2; margin: 0 14px 12px; padding: 14px; border-radius: 14px; background: #fff; border: 1px solid rgba(27,94,58,0.10); box-shadow: 0 3px 8px rgba(43,33,24,0.04); }
         .custom-input { margin-top: 6px; width: 100%; border: 1.5px solid rgba(27,94,58,0.2); border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--text); resize: none; background: #FBF6EC; outline: none; }
@@ -403,7 +405,7 @@
             <label style="font-size:11.5px; font-weight:700; color:var(--green-dark);">
                 <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--orange);"></i> AI ಗೆ ನಿರ್ದಿಷ್ಟ ವಿಷಯದ ಮನವಿ (Custom Prompt):
             </label>
-            <textarea id="customAiPrompt" rows="2" placeholder="ಉದಾ: ಮುಂಬರುವ ಲೋಕಸಭೆ/ವಿಧಾನಸಭೆ ಚುನಾವಣೆ ಬಗ್ಗೆ, ಅಥವಾ ಇಂದಿನ ರಾಷ್ಟ್ರೀಯ ರಾಜಕೀಯ ಬೆಳವಣಿಗೆ..." class="custom-input" style="background:#fff;"></textarea>
+            <textarea id="customAiPrompt" rows="2" placeholder="ಉದಾ: ಮುಂಬರುವ ಚುನಾವಣೆ, ಕೃಷಿ ನೀತಿ, ಇಂದಿನ ಬ್ರೇಕಿಂಗ್ ರಾಜಕೀಯ ಬೆಳವಣಿಗೆ..." class="custom-input" style="background:#fff;"></textarea>
             <button onclick="generateCustomAiContent()" class="custom-send" style="background:linear-gradient(135deg, #ff7700, #b8862b); margin-top:6px;">
                 <i class="fa-solid fa-bolt"></i> ಈ ವಿಷಯಕ್ಕೆ AI ಕಂಟೆಂಟ್ ರಚಿಸಿ
             </button>
@@ -411,30 +413,30 @@
 
         <!-- Section 1: ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯಗಳು -->
         <div class="section-header-box">
-            <span><i class="fa-solid fa-newspaper" style="color:var(--orange);"></i> 1. ಪ್ರಮುಖ ವಿಷಯಗಳು (ಕರ್ನಾಟಕ & ದೇಶ)</span>
+            <span><i class="fa-solid fa-newspaper" style="color:var(--orange);"></i> 1. ಪ್ರಮುಖ ವಿಷಯಗಳು (ಮುಖಪುಟಕ್ಕೆ)</span>
         </div>
         <div id="aiTopNewsContainer" style="padding: 0 14px 4px;"></div>
 
         <!-- Section 2: ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯಗಳು -->
         <div class="section-header-box" style="margin-top:4px;">
-            <span><i class="fa-solid fa-arrow-trend-up" style="color:var(--orange);"></i> 2. ಟ್ರೆಂಡಿಂಗ್ ಮುಖ್ಯಾಂಶಗಳು</span>
+            <span><i class="fa-solid fa-arrow-trend-up" style="color:var(--orange);"></i> 2. ಟ್ರೆಂಡಿಂಗ್ ಮುಖ್ಯಾಂಶಗಳು (ಮುಖಪುಟಕ್ಕೆ)</span>
         </div>
         <div id="aiTrendingListContainer" style="padding: 0 14px 4px;"></div>
 
         <!-- Section 3: ಕ್ಯಾಚಿ ಲೈನ್ಸ್‌ಗಳು -->
         <div class="section-header-box" style="margin-top:4px;">
-            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> 3. ಸೋಷಿಯಲ್ ಮೀಡಿಯಾ ಕ್ಯಾಚಿ ಲೈನ್ಸ್</span>
+            <span><i class="fa-solid fa-feather" style="color:var(--orange);"></i> 3. ಸೋಷಿಯಲ್ ಮೀಡಿಯಾ ಕ್ಯಾಚಿ ಲೈನ್ಸ್ (ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ)</span>
         </div>
         <div id="aiCatchyContainer" style="padding: 0 14px 4px;"></div>
 
         <!-- Section 4: ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್‌ಗಳು -->
         <div class="section-header-box" style="margin-top:4px;">
-            <span><i class="fa-solid fa-bullhorn" style="color:var(--orange);"></i> 4. ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ ಸ್ಕ್ರಿಪ್ಟ್</span>
+            <span><i class="fa-solid fa-bullhorn" style="color:var(--orange);"></i> 4. ಮೇಜರ್ ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ (ಸಬ್‌ಸ್ಕ್ರೈಬರ್‌ಗೆ)</span>
         </div>
         <div id="aiMajorPostContainer" style="padding: 0 14px 4px;"></div>
 
         <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:10.5px; color:#92400e;">
-            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿ ನೇರವಾಗಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಪ್ರಕಟಿಸಬಹುದು ಅಥವಾ <b>Copy/Edit</b> ಮಾಡಿಕೊಳ್ಳಬಹುದು.
+            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ.
         </div>
     </div>
 
@@ -559,23 +561,23 @@
         }
     }
 
-    // 3. Gemini AI Live Integration Logic
+    // 3. Gemini AI Live Data Store & Render Logic
     let aiGeneratedContent = JSON.parse(localStorage.getItem("ai_content_cache")) || {
         topNews: [
-            { title: "ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಆಡಳಿತಾತ್ಮಕ ಸುಧಾರಣೆಗಳು", summary: "ರಾಜ್ಯದ ಅಭಿವೃದ್ಧಿ ಕಾಮಗಾರಿಗಳಿಗೆ ವೇಗ ನೀಡಲು ಹೊಸ ನೀತಿ ಜಾರಿಗೆ ತರಲು ಸರ್ಕಾರದಿಂದ ಮಹತ್ವದ ಸಿದ್ಧತೆ." },
-            { title: "ದೆಹಲಿಯಲ್ಲಿ ರಾಷ್ಟ್ರೀಯ ನೀತಿ ಸಮಾವೇಶ", summary: "ದೇಶದ ಪ್ರಮುಖ ಆರ್ಥಿಕ ಮತ್ತು ರಾಜಕೀಯ ತಜ್ಞರ ನೇತೃತ್ವದಲ್ಲಿ ಕೇಂದ್ರ ಮಟ್ಟದಲ್ಲಿ ಮಹತ್ವದ ಚರ್ಚೆಗಳು ಆರಂಭವಾಗಿವೆ." }
+            { title: "ಕರ್ನಾಟಕ ಬಜೆಟ್ ಮತ್ತು ಹೊಸ ಯೋಜನೆಗಳು", summary: "ರಾಜ್ಯದ ಸಮಗ್ರ ಅಭಿವೃದ್ಧಿಗೆ ಹೊಸ ಅನುದಾನ ಮತ್ತು ಜನಪರ ಕಾರ್ಯಕ್ರಮಗಳ ಘೋಷಣೆ." },
+            { title: "ರಾಷ್ಟ್ರೀಯ ಹೆದ್ದಾರಿ ಅಭಿವೃದ್ಧಿ ಯೋಜನೆ", summary: "ದೇಶದ ಪ್ರಮುಖ ನಗರಗಳ ಸಂಪರ್ಕ ಸುಧಾರಣೆಗೆ ಕೇಂದ್ರದಿಂದ ಮಹತ್ವದ ಅನುಮೋದನೆ." }
         ],
         trending: [
-            { text: "ಕರ್ನಾಟಕ ಬಜೆಟ್ ಮತ್ತು ಅಭಿವೃದ್ಧಿ ಯೋಜನೆಗಳ ಅನುಷ್ಠಾನದ ಬಗ್ಗೆ ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳಲ್ಲಿ ಭಾರಿ ಚರ್ಚೆ." },
-            { text: "ರಾಷ್ಟ್ರೀಯ ಹೆದ್ದಾರಿ ಯೋಜನೆಗಳ ವಿಸ್ತರಣೆಗೆ ರಾಜ್ಯ ಮತ್ತು ಕೇಂದ್ರ ಸಮನ್ವಯದ ಕ್ರಮ." }
+            { text: "ಕರ್ನಾಟಕದ ಇತ್ತೀಚಿನ ರಾಜಕೀಯ ಸಮೀಕರಣಗಳ ಬಗ್ಗೆ ಸೋಷಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ತೀವ್ರ ಚರ್ಚೆ." },
+            { text: "ಯುವ ಜನತೆಗೆ ಹೊಸ ಉದ್ಯೋಗಾವಕಾಶ ಮತ್ತು ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿಗೆ ಹೆಚ್ಚಿನ ಆದ್ಯತೆ." }
         ],
         catchyLines: [
-            { text: "“ಜನಪರ ಧ್ವನಿಗೆ ಹೊಸ ಚೈತನ್ಯ - ಪ್ರಗತಿಯ ಹಾದಿಯಲ್ಲಿ ಮುನ್ನಡೆಯುವ ಸಂಕಲ್ಪ!”" },
-            { text: "“ನುಡಿದಂತೆ ನಡೆಯುವ ಆಡಳಿತ, ನಾಡಿನ ಸರ್ವಾಂಗೀಣ ವಿಕಾಸಕ್ಕೆ ಬದ್ಧತೆ!”" }
+            { text: "“ನುಡಿದಂತೆ ನಡೆಯುವ ನಾಯಕತ್ವ, ನಾಡಿನ ಸರ್ವಾಂಗೀಣ ಪ್ರಗತಿಗೆ ಹೊಸ ಚೈತನ್ಯ!”" },
+            { text: "“ಜನಪರ ಧ್ವನಿಗೆ ಹೊಸ ಬಲ - ನವ ಕರ್ನಾಟಕ ನಿರ್ಮಾಣದತ್ತ ದೃಢ ಸಂಕಲ್ಪ!”" }
         ],
         majorPosts: [
-            { text: "ರಾಜ್ಯದ ಜನತೆಯ ಹಿತದೃಷ್ಟಿಯಿಂದ ಕೈಗೊಂಡ ಮಹತ್ವದ ನಿರ್ಧಾರಗಳು - ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ಪ್ರಮುಖ ಅಂಶಗಳ ವಿವರ." },
-            { text: "ಯುವ ಜನತೆಗೆ ಉದ್ಯೋಗಾವಕಾಶ ಮತ್ತು ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿಗೆ ಹೊಸ ಬಜೆಟ್‌ನಲ್ಲಿ ಆದ್ಯತೆ." }
+            { text: "ರಾಜ್ಯದ ರೈತರು ಹಾಗೂ ಜನಸಾಮಾನ್ಯರ ಹಿತದೃಷ್ಟಿಯಿಂದ ಸರ್ಕಾರ ಕೈಗೊಂಡ ಐತಿಹಾಸಿಕ ನಿರ್ಧಾರಗಳ ವಿವರ." },
+            { text: "ಮುಂಬರುವ ದಿನಗಳಲ್ಲಿ ರಾಜ್ಯದ ನೀರಾವರಿ ಮತ್ತು ಮೂಲಸೌಕರ್ಯ ಯೋಜನೆಗಳಿಗೆ ಭರ್ಜರಿ ವೇಗ." }
         ]
     };
 
@@ -599,9 +601,9 @@
                 </div>
                 <div style="font-size:11px; color:#4a5568; line-height:1.4; margin-bottom:6px;">${item.summary}</div>
                 <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiItem('${item.title}\\n\\n${item.summary}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-copy" onclick="copyAiSectionItem('topNews', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
                     <button class="btn-ai-edit" onclick="editTopNews(${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="directPublishAI('${item.title}: ${item.summary}', 'CATCHY')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+                    <button class="btn-ai-publish" onclick="publishSectionItem('topNews', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
                     <button class="btn-ai-delete" onclick="deleteItem('topNews', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
                 </div>
             `;
@@ -622,9 +624,9 @@
                     <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${item.text}</div>
                 </div>
                 <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiItem('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-copy" onclick="copyAiSectionItem('trending', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
                     <button class="btn-ai-edit" onclick="editItem('trending', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="directPublishAI('${item.text}', 'CATCHY')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+                    <button class="btn-ai-publish" onclick="publishSectionItem('trending', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
                     <button class="btn-ai-delete" onclick="deleteItem('trending', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
                 </div>
             `;
@@ -645,9 +647,9 @@
                     <div style="font-size:12px; font-weight:700; color:var(--green-dark); flex:1;">${item.text}</div>
                 </div>
                 <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiItem('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-copy" onclick="copyAiSectionItem('catchyLines', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
                     <button class="btn-ai-edit" onclick="editItem('catchyLines', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="directPublishAI('${item.text}', 'CATCHY')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+                    <button class="btn-ai-publish" onclick="publishSectionItem('catchyLines', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
                     <button class="btn-ai-delete" onclick="deleteItem('catchyLines', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
                 </div>
             `;
@@ -668,14 +670,63 @@
                     <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${item.text}</div>
                 </div>
                 <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiItem('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn-ai-copy" onclick="copyAiSectionItem('majorPosts', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
                     <button class="btn-ai-edit" onclick="editItem('majorPosts', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="directPublishAI('${item.text}', 'POST')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+                    <button class="btn-ai-publish" onclick="publishSectionItem('majorPosts', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
                     <button class="btn-ai-delete" onclick="deleteItem('majorPosts', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
                 </div>
             `;
             c.appendChild(div);
         });
+    }
+
+    // DIRECT SMART PUBLISH ACTION FOR EACH SECTION
+    async function publishSectionItem(section, idx) {
+        let text = "";
+        let type = "";
+        let targetDescription = "";
+
+        if (section === 'topNews') {
+            const item = aiGeneratedContent.topNews[idx];
+            text = `${item.title} - ${item.summary}`;
+            type = 'HOME_MSG2';
+            targetDescription = "ಮುಖಪುಟದ 'ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ'";
+        } else if (section === 'trending') {
+            text = aiGeneratedContent.trending[idx].text;
+            type = 'HOME_MSG3';
+            targetDescription = "ಮುಖಪುಟದ 'ಟ್ರೆಂಡಿಂಗ್...'";
+        } else if (section === 'catchyLines') {
+            text = aiGeneratedContent.catchyLines[idx].text;
+            type = 'CATCHY';
+            targetDescription = "ಸಬ್‌ಸ್ಕ್ರೈಬರ್ 'ಕ್ಯಾಚಿ ಸಾಲುಗಳು'";
+        } else if (section === 'majorPosts') {
+            text = aiGeneratedContent.majorPosts[idx].text;
+            type = 'POST';
+            targetDescription = "ಸಬ್‌ಸ್ಕ್ರೈಬರ್ 'Political Posts'";
+        }
+
+        if (!confirm(`ಈ ವಿಷಯವನ್ನು ${targetDescription} ವಿಭಾಗಕ್ಕೆ ಪ್ರಕಟಿಸಬೇಕೆ?`)) return;
+
+        try {
+            if (type.startsWith('HOME_MSG')) {
+                const updateField = type === 'HOME_MSG2' ? 'msg2' : 'msg3';
+                await db.collection("home_content").doc("latest").set({
+                    [updateField]: text
+                }, { merge: true });
+            } else {
+                await db.collection("contents").add({
+                    type: type,
+                    target: "ALL",
+                    text: text,
+                    imageUrl: "",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
+            alert(`🚀 ಯಶಸ್ವಿಯಾಗಿ ${targetDescription} ವಿಭಾಗಕ್ಕೆ ಪ್ರಕಟಿಸಲಾಗಿದೆ!`);
+        } catch (e) {
+            console.error(e);
+            alert("ಪ್ರಕಟಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ!");
+        }
     }
 
     // Call Gemini Serverless Function
@@ -701,7 +752,7 @@
             }
         } catch (e) {
             console.error(e);
-            alert("AI ಕಂಟೆಂಟ್ ಪಡೆಯುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ. ದಯವಿಟ್ಟು Vercel ನಲ್ಲಿ GEMINI_API_KEY ಸೆಟ್ ಆಗಿದೆಯೇ ಪರಿಶೀಲಿಸಿ.");
+            alert("AI ಕಂಟೆಂಟ್ ಪಡೆಯುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ. ದಯವಿಟ್ಟು Vercel ನಲ್ಲಿ GEMINI_API_KEY ಸರಿಯಾಗಿದೆಯೇ ಪರಿಶೀಲಿಸಿ.");
         }
     }
 
@@ -712,7 +763,17 @@
         document.getElementById('customAiPrompt').value = "";
     }
 
-    // Edit/Delete Actions
+    function copyAiSectionItem(section, idx) {
+        let text = "";
+        if (section === 'topNews') {
+            const item = aiGeneratedContent.topNews[idx];
+            text = `${item.title}\n\n${item.summary}`;
+        } else {
+            text = aiGeneratedContent[section][idx].text;
+        }
+        navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!"));
+    }
+
     function editTopNews(idx) {
         const n = prompt("ಸಾರಾಂಶ ತಿದ್ದಿ:", aiGeneratedContent.topNews[idx].summary);
         if (n !== null && n.trim()) {
@@ -733,27 +794,6 @@
         if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
             aiGeneratedContent[key].splice(idx, 1);
             renderAllAiSections();
-        }
-    }
-
-    function copyAiItem(text) {
-        navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!"));
-    }
-
-    async function directPublishAI(text, type = "CATCHY") {
-        if (!confirm("ಈ ಕಂಟೆಂಟ್ ಅನ್ನು ನೇರವಾಗಿ ಲೈವ್ ಪ್ರಕಟಿಸಬೇಕೆ?")) return;
-        try {
-            await db.collection("contents").add({
-                type: type,
-                target: "ALL",
-                text: text,
-                imageUrl: "",
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            alert("🚀 ಯಶಸ್ವಿಯಾಗಿ ಲೈವ್ ಪ್ರಕಟಿಸಲಾಗಿದೆ!");
-        } catch (e) {
-            console.error(e);
-            alert("ಪ್ರಕಟಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ!");
         }
     }
 
@@ -917,7 +957,7 @@
         alert(`${subId} ಆಯ್ಕೆಯಾಗಿದೆ.`);
     }
 
-    // 6. Content Loader
+    // 6. Content Loader with DELETE Option for Published Posts
     function loadSubscriberData(subId) {
         if (listenerUnsubscribe) listenerUnsubscribe();
         const targets = (subId === "ALL") ? ["ALL"] : ["ALL", subId];
@@ -939,11 +979,12 @@
                 if (item.type === 'POST') {
                     div.innerHTML = `
                         <div class="line-text">${item.text}</div>
-                        <img src="${item.imageUrl}" class="post-display-img" alt="Post" />
+                        ${item.imageUrl ? `<img src="${item.imageUrl}" class="post-display-img" alt="Post" />` : ''}
                         <div class="line-actions">
-                            <button class="act-btn act-copy" onclick="copyText('${item.text}\\n${item.imageUrl}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}', '${item.imageUrl}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                            <button class="act-btn act-copy" onclick="copyText('${item.text}${item.imageUrl ? '\\n' + item.imageUrl : ''}')"><i class="fa-solid fa-copy"></i> Copy</button>
+                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}', '${item.imageUrl || ''}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}', '${item.imageUrl || ''}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                            <button class="act-btn act-delete-pub" onclick="deletePublishedItem('${item.id}')" title="ಡಿಲೀಟ್"><i class="fa-solid fa-trash"></i> Del</button>
                         </div>
                     `;
                     postsList.appendChild(div);
@@ -954,6 +995,7 @@
                             <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
                             <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
                             <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                            <button class="act-btn act-delete-pub" onclick="deletePublishedItem('${item.id}')" title="ಡಿಲೀಟ್"><i class="fa-solid fa-trash"></i> Del</button>
                         </div>
                     `;
                     catchyList.appendChild(div);
@@ -964,12 +1006,25 @@
                             <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
                             <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
                             <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
+                            <button class="act-btn act-delete-pub" onclick="deletePublishedItem('${item.id}')" title="ಡಿಲೀಟ್"><i class="fa-solid fa-trash"></i> Del</button>
                         </div>
                     `;
                     quotesList.appendChild(div);
                 }
             });
         });
+    }
+
+    // FUNCTION TO DELETE PUBLISHED CONTENT FROM FIREBASE
+    async function deletePublishedItem(docId) {
+        if (!confirm("ಈ ಪ್ರಕಟಿತ ಪೋಸ್ಟ್ ಅನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ತೆಗೆದುಹಾಕಬೇಕೆ?")) return;
+        try {
+            await db.collection("contents").doc(docId).delete();
+            alert("🗑️ ಪೋಸ್ಟ್ ಯಶಸ್ವಿಯಾಗಿ ಡಿಲೀಟ್ ಆಗಿದೆ!");
+        } catch (e) {
+            console.error(e);
+            alert("ಡಿಲೀಟ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ!");
+        }
     }
 
     function copyText(text) { navigator.clipboard.writeText(text).then(() => alert('✅ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!')); }
