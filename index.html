@@ -435,7 +435,7 @@
         <div id="aiMajorPostContainer" style="padding: 0 14px 4px;"></div>
 
         <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:10.5px; color:#92400e;">
-            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ.
+            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ[cite: 1].
         </div>
     </div>
 
@@ -473,7 +473,6 @@
 
     let loggedInSubscriberId = localStorage.getItem("current_sub_id") || null;
     let listenerUnsubscribe = null;
-    let currentLoadedDocs = {};
 
     // Realtime Home Content
     db.collection("home_content").doc("latest").onSnapshot((doc) => {
@@ -561,8 +560,8 @@
         }
     }
 
-    // 3. Gemini AI Live Data Store & Render Logic
-    let aiGeneratedContent = JSON.parse(localStorage.getItem("ai_content_cache")) || {
+    // 3. Gemini AI Live Data Store & Universal Safe Renderer
+    let defaultAiContent = {
         topNews: [
             { title: "ಕರ್ನಾಟಕ ಬಜೆಟ್ ಮತ್ತು ಹೊಸ ಯೋಜನೆಗಳು", summary: "ರಾಜ್ಯದ ಸಮಗ್ರ ಅಭಿವೃದ್ಧಿಗೆ ಹೊಸ ಅನುದಾನ ಮತ್ತು ಜನಪರ ಕಾರ್ಯಕ್ರಮಗಳ ಘೋಷಣೆ." },
             { title: "ರಾಷ್ಟ್ರೀಯ ಹೆದ್ದಾರಿ ಅಭಿವೃದ್ಧಿ ಯೋಜನೆ", summary: "ದೇಶದ ಪ್ರಮುಖ ನಗರಗಳ ಸಂಪರ್ಕ ಸುಧಾರಣೆಗೆ ಕೇಂದ್ರದಿಂದ ಮಹತ್ವದ ಅನುಮೋದನೆ." }
@@ -581,109 +580,126 @@
         ]
     };
 
+    let aiGeneratedContent = defaultAiContent;
+    try {
+        const cached = localStorage.getItem("ai_content_cache");
+        if (cached) {
+            const parsed = JSON.parse(cached);
+            if (parsed && parsed.majorPosts && parsed.topNews) {
+                aiGeneratedContent = parsed;
+            }
+        }
+    } catch (e) {
+        aiGeneratedContent = defaultAiContent;
+    }
+
     function renderAllAiSections() {
-        renderTopNews();
-        renderTrending();
-        renderCatchy();
-        renderMajorPosts();
+        renderGenericSection('aiTopNewsContainer', 'topNews', '#115740');
+        renderGenericSection('aiTrendingListContainer', 'trending', '#115740');
+        renderGenericSection('aiCatchyContainer', 'catchyLines', 'var(--orange)');
+        renderGenericSection('aiMajorPostContainer', 'majorPosts', '#b8862b');
     }
 
-    function renderTopNews() {
-        const c = document.getElementById('aiTopNewsContainer');
-        if (!c) return;
-        c.innerHTML = "";
-        aiGeneratedContent.topNews.forEach((item, idx) => {
+    function renderGenericSection(containerId, sectionKey, badgeColor) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = "";
+
+        const items = aiGeneratedContent[sectionKey] || [];
+        items.forEach((item, idx) => {
             const div = document.createElement('div');
             div.className = 'ai-card-item';
-            div.innerHTML = `
-                <div style="font-size:12px; font-weight:800; color:var(--green-dark); margin-bottom:4px;">
-                    <span class="ai-badge-num">${idx + 1}</span> ${item.title || ''}
-                </div>
-                <div style="font-size:11px; color:#4a5568; line-height:1.4; margin-bottom:6px;">${item.summary || ''}</div>
-                <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiSectionItem('topNews', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="btn-ai-edit" onclick="editTopNews(${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="publishSectionItem('topNews', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-                    <button class="btn-ai-delete" onclick="deleteItem('topNews', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
-                </div>
-            `;
-            c.appendChild(div);
+
+            const headerRow = document.createElement('div');
+            headerRow.style.display = "flex";
+            headerRow.style.alignItems = "flex-start";
+
+            const badge = document.createElement('span');
+            badge.className = "ai-badge-num";
+            badge.style.background = badgeColor;
+            badge.innerText = idx + 1;
+
+            const textSpan = document.createElement('div');
+            textSpan.style.flex = "1";
+
+            if (sectionKey === 'topNews') {
+                textSpan.innerHTML = `
+                    <div style="font-size:12px; font-weight:800; color:var(--green-dark); margin-bottom:2px;">${item.title || ''}</div>
+                    <div style="font-size:11px; color:#4a5568; line-height:1.4;">${item.summary || ''}</div>
+                `;
+            } else {
+                const txt = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
+                textSpan.style.fontSize = "12px";
+                textSpan.style.fontWeight = sectionKey === 'catchyLines' ? "700" : "600";
+                textSpan.style.color = sectionKey === 'catchyLines' ? "var(--green-dark)" : "var(--text)";
+                textSpan.innerText = txt;
+            }
+
+            headerRow.appendChild(badge);
+            headerRow.appendChild(textSpan);
+            div.appendChild(headerRow);
+
+            const btnGroup = document.createElement('div');
+            btnGroup.className = "ai-action-btn-group-4";
+
+            // 1. Copy
+            const copyBtn = document.createElement('button');
+            copyBtn.className = "btn-ai-copy";
+            copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+            copyBtn.onclick = () => copyAiSectionItem(sectionKey, idx);
+
+            // 2. Edit
+            const editBtn = document.createElement('button');
+            editBtn.className = "btn-ai-edit";
+            editBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Edit';
+            editBtn.onclick = () => {
+                if (sectionKey === 'topNews') {
+                    const n = prompt("ಸಾರಾಂಶ ತಿದ್ದಿ:", aiGeneratedContent.topNews[idx].summary || '');
+                    if (n !== null && n.trim()) {
+                        aiGeneratedContent.topNews[idx].summary = n.trim();
+                        renderAllAiSections();
+                    }
+                } else {
+                    const curr = typeof aiGeneratedContent[sectionKey][idx] === 'object' ? (aiGeneratedContent[sectionKey][idx].text || '') : aiGeneratedContent[sectionKey][idx];
+                    const n = prompt("ವಿಷಯ ತಿದ್ದಿ:", curr);
+                    if (n !== null && n.trim()) {
+                        if (typeof aiGeneratedContent[sectionKey][idx] === 'object') {
+                            aiGeneratedContent[sectionKey][idx].text = n.trim();
+                        } else {
+                            aiGeneratedContent[sectionKey][idx] = n.trim();
+                        }
+                        renderAllAiSections();
+                    }
+                }
+            };
+
+            // 3. Publish
+            const pubBtn = document.createElement('button');
+            pubBtn.className = "btn-ai-publish";
+            pubBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Publish';
+            pubBtn.onclick = () => publishSectionItem(sectionKey, idx);
+
+            // 4. Delete
+            const delBtn = document.createElement('button');
+            delBtn.className = "btn-ai-delete";
+            delBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Del';
+            delBtn.onclick = () => {
+                if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
+                    aiGeneratedContent[sectionKey].splice(idx, 1);
+                    renderAllAiSections();
+                }
+            };
+
+            btnGroup.appendChild(copyBtn);
+            btnGroup.appendChild(editBtn);
+            btnGroup.appendChild(pubBtn);
+            btnGroup.appendChild(delBtn);
+
+            div.appendChild(btnGroup);
+            container.appendChild(div);
         });
     }
 
-    function renderTrending() {
-        const c = document.getElementById('aiTrendingListContainer');
-        if (!c) return;
-        c.innerHTML = "";
-        aiGeneratedContent.trending.forEach((item, idx) => {
-            const displayText = typeof item === 'object' ? (item.text || item.summary || '') : item;
-            const div = document.createElement('div');
-            div.className = 'ai-card-item';
-            div.innerHTML = `
-                <div style="display:flex; align-items:flex-start;">
-                    <span class="ai-badge-num">${idx + 1}</span>
-                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${displayText}</div>
-                </div>
-                <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiSectionItem('trending', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="btn-ai-edit" onclick="editItem('trending', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="publishSectionItem('trending', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-                    <button class="btn-ai-delete" onclick="deleteItem('trending', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
-                </div>
-            `;
-            c.appendChild(div);
-        });
-    }
-
-    function renderCatchy() {
-        const c = document.getElementById('aiCatchyContainer');
-        if (!c) return;
-        c.innerHTML = "";
-        aiGeneratedContent.catchyLines.forEach((item, idx) => {
-            const displayText = typeof item === 'object' ? (item.text || item.summary || '') : item;
-            const div = document.createElement('div');
-            div.className = 'ai-card-item';
-            div.innerHTML = `
-                <div style="display:flex; align-items:flex-start;">
-                    <span class="ai-badge-num" style="background:var(--orange);">${idx + 1}</span>
-                    <div style="font-size:12px; font-weight:700; color:var(--green-dark); flex:1;">${displayText}</div>
-                </div>
-                <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiSectionItem('catchyLines', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="btn-ai-edit" onclick="editItem('catchyLines', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="publishSectionItem('catchyLines', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-                    <button class="btn-ai-delete" onclick="deleteItem('catchyLines', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
-                </div>
-            `;
-            c.appendChild(div);
-        });
-    }
-
-    function renderMajorPosts() {
-        const c = document.getElementById('aiMajorPostContainer');
-        if (!c) return;
-        c.innerHTML = "";
-        aiGeneratedContent.majorPosts.forEach((item, idx) => {
-            const displayText = typeof item === 'object' ? (item.text || item.summary || item.title || '') : item;
-            const div = document.createElement('div');
-            div.className = 'ai-card-item';
-            div.innerHTML = `
-                <div style="display:flex; align-items:flex-start;">
-                    <span class="ai-badge-num" style="background:#b8862b;">${idx + 1}</span>
-                    <div style="font-size:12px; font-weight:600; color:var(--text); flex:1;">${displayText}</div>
-                </div>
-                <div class="ai-action-btn-group-4">
-                    <button class="btn-ai-copy" onclick="copyAiSectionItem('majorPosts', ${idx})"><i class="fa-solid fa-copy"></i> Copy</button>
-                    <button class="btn-ai-edit" onclick="editItem('majorPosts', ${idx})"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-ai-publish" onclick="publishSectionItem('majorPosts', ${idx})"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-                    <button class="btn-ai-delete" onclick="deleteItem('majorPosts', ${idx})"><i class="fa-solid fa-trash"></i> Del</button>
-                </div>
-            `;
-            c.appendChild(div);
-        });
-    }
-
-    // DIRECT SMART PUBLISH ACTION FOR EACH SECTION
     async function publishSectionItem(section, idx) {
         let text = "";
         let type = "";
@@ -732,7 +748,24 @@
         }
     }
 
-    // Call Gemini Serverless Function
+    function copyAiSectionItem(section, idx) {
+        let text = "";
+        const item = aiGeneratedContent[section][idx];
+        
+        if (section === 'topNews') {
+            text = `${item.title || ''}\n\n${item.summary || ''}`;
+        } else if (typeof item === 'object') {
+            text = item.text || item.title || item.summary || JSON.stringify(item);
+        } else {
+            text = item;
+        }
+        
+        navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!")).catch(err => {
+            console.error(err);
+            alert("ಕಾಪಿ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.");
+        });
+    }
+
     async function fetchLiveGeminiAI(customTopic = "") {
         alert(customTopic ? "⏳ ನಿಮ್ಮ ವಿಷಯಕ್ಕೆ ತಕ್ಕಂತೆ AI ಕಂಟೆಂಟ್ ರಚಿಸುತ್ತಿದೆ..." : "⏳ ಇಂದಿನ ತಾಜಾ ಕರ್ನಾಟಕ & ದೇಶದ ಸುದ್ದಿಗಳನ್ನು Gemini AI ಪಡೆಯುತ್ತಿದೆ...");
         try {
@@ -764,52 +797,6 @@
         if (!prompt) return alert("ದಯವಿಟ್ಟು ವಿಷಯ ನಮೂದಿಸಿ!");
         fetchLiveGeminiAI(prompt);
         document.getElementById('customAiPrompt').value = "";
-    }
-
-    function copyAiSectionItem(section, idx) {
-        let text = "";
-        const item = aiGeneratedContent[section][idx];
-        
-        if (section === 'topNews') {
-            text = `${item.title || ''}\n\n${item.summary || ''}`;
-        } else if (typeof item === 'object') {
-            text = item.text || item.title || item.summary || JSON.stringify(item);
-        } else {
-            text = item;
-        }
-        
-        navigator.clipboard.writeText(text).then(() => alert("📋 ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!")).catch(err => {
-            console.error(err);
-            alert("ಕಾಪಿ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.");
-        });
-    }
-
-    function editTopNews(idx) {
-        const n = prompt("ಸಾರಾಂಶ ತಿದ್ದಿ:", aiGeneratedContent.topNews[idx].summary);
-        if (n !== null && n.trim()) {
-            aiGeneratedContent.topNews[idx].summary = n.trim();
-            renderTopNews();
-        }
-    }
-
-    function editItem(key, idx) {
-        const currentVal = typeof aiGeneratedContent[key][idx] === 'object' ? (aiGeneratedContent[key][idx].text || '') : aiGeneratedContent[key][idx];
-        const n = prompt("ವಿಷಯ ತಿದ್ದಿ:", currentVal);
-        if (n !== null && n.trim()) {
-            if (typeof aiGeneratedContent[key][idx] === 'object') {
-                aiGeneratedContent[key][idx].text = n.trim();
-            } else {
-                aiGeneratedContent[key][idx] = n.trim();
-            }
-            renderAllAiSections();
-        }
-    }
-
-    function deleteItem(key, idx) {
-        if (confirm("ತೆಗೆದುಹಾಕಬೇಕೆ?")) {
-            aiGeneratedContent[key].splice(idx, 1);
-            renderAllAiSections();
-        }
     }
 
     // 4. Subscriber Auth & Session
@@ -972,7 +959,7 @@
         alert(`${subId} ಆಯ್ಕೆಯಾಗಿದೆ.`);
     }
 
-    // 6. Content Loader with SAFE Handlers (No quote breaks)
+    // 6. Content Loader for Subscriber Page
     function loadSubscriberData(subId) {
         if (listenerUnsubscribe) listenerUnsubscribe();
         const targets = (subId === "ALL") ? ["ALL"] : ["ALL", subId];
@@ -983,13 +970,10 @@
             const quotesList = document.getElementById('quotesListContainer');
 
             postsList.innerHTML = ""; catchyList.innerHTML = ""; quotesList.innerHTML = "";
-            currentLoadedDocs = {};
 
             const docs = [];
             snapshot.forEach(doc => {
-                const docData = { id: doc.id, ...doc.data() };
-                docs.push(docData);
-                currentLoadedDocs[doc.id] = docData;
+                docs.push({ id: doc.id, ...doc.data() });
             });
             docs.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
 
@@ -1014,7 +998,6 @@
                 const actionsDiv = document.createElement('div');
                 actionsDiv.className = "line-actions";
 
-                // Safe Copy Button
                 const copyBtn = document.createElement('button');
                 copyBtn.className = "act-btn act-copy";
                 copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
@@ -1023,7 +1006,6 @@
                     navigator.clipboard.writeText(fullCopy).then(() => alert('✅ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!'));
                 };
 
-                // Safe WhatsApp Button
                 const waBtn = document.createElement('button');
                 waBtn.className = "act-btn act-whatsapp";
                 waBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> WhatsApp';
@@ -1032,7 +1014,6 @@
                     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
                 };
 
-                // Safe Twitter Button
                 const twBtn = document.createElement('button');
                 twBtn.className = "act-btn act-twitter";
                 twBtn.innerHTML = '<i class="fa-brands fa-x-twitter"></i> Post';
@@ -1041,7 +1022,6 @@
                     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(msg)}`, '_blank');
                 };
 
-                // Safe Del Button
                 const delBtn = document.createElement('button');
                 delBtn.className = "act-btn act-delete-pub";
                 delBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Del';
@@ -1064,7 +1044,6 @@
         });
     }
 
-    // FUNCTION TO DELETE PUBLISHED CONTENT FROM FIREBASE
     async function deletePublishedItem(docId) {
         if (!confirm("ಈ ಪ್ರಕಟಿತ ಪೋಸ್ಟ್ ಅನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ತೆಗೆದುಹಾಕಬೇಕೆ?")) return;
         try {
