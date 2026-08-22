@@ -1,67 +1,80 @@
 export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'GEMINI_API_KEY is missing in Vercel environment' });
+    return res.status(500).json({ error: 'GEMINI_API_KEY is not configured in Vercel' });
   }
 
-  const { topic } = req.body;
+  const { topic } = req.body || {};
   const promptTopic = topic ? `ವಿಷಯ: ${topic}` : `ಕರ್ನಾಟಕ ಹಾಗೂ ಭಾರತದ ಇಂದಿನ ಪ್ರಮುಖ ರಾಜಕೀಯ ಮತ್ತು ಸಾಮಾಜಿಕ ವಿದ್ಯಮಾನಗಳು`;
 
-  const systemPrompt = `
+  const prompt = `
 ನೀವು ಕನ್ನಡದ ರಾಜಕೀಯ ಮತ್ತು ಸಾಮಾಜಿಕ ವಿಷಯಗಳ ತಜ್ಞ ಕ್ರಿಯೇಟರ್.
 ಈ ಕೆಳಗಿನ ವಿಷಯದ ಮೇಲೆ ನಿಖರವಾದ ಕನ್ನಡದಲ್ಲಿ ಕಂಟೆಂಟ್ ರಚಿಸಿ:
 "${promptTopic}"
 
-ದಯವಿಟ್ಟು ಕೆಳಗಿನ JSON ಮಾದರಿಯಲ್ಲೇ ಮಾತ್ರ ಉತ್ತರ ನೀಡಿ. ಯಾವುದೇ ಹೆಚ್ಚುವರಿ ವಿವರಣೆ, Markdown ಅಥವಾ Backticks (\`\`\`json) ಹಾಕಬೇಡಿ:
+ಕಡ್ಡಾಯವಾಗಿ ಕೇವಲ ಈ ಕೆಳಗಿನ JSON ಫಾರ್ಮ್ಯಾಟ್‌ನಲ್ಲಿ ಮಾತ್ರ ಉತ್ತರ ಕೊಡಿ (ಯಾವುದೇ extra text ಅಥವಾ markdown \`\`\`json ಹಾಕಬೇಡಿ):
 {
   "topNews": [
-    { "title": "ಶೀರ್ಷಿಕೆ 1", "summary": "ಸಾರಾಂಶ 1" },
-    { "title": "ಶೀರ್ಷಿಕೆ 2", "summary": "ಸಾರಾಂಶ 2" }
+    { "title": "ಮುಖ್ಯಾಂಶ ಶೀರ್ಷಿಕೆ 1", "summary": "ವಿವರವಾದ ಸಾರಾಂಶ 1" },
+    { "title": "ಮುಖ್ಯಾಂಶ ಶೀರ್ಷಿಕೆ 2", "summary": "ವಿವರವಾದ ಸಾರಾಂಶ 2" }
   ],
   "trending": [
-    { "text": "ಟ್ರೆಂಡಿಂಗ್ ಸಾಲು 1" },
-    { "text": "ಟ್ರೆಂಡಿಂಗ್ ಸಾಲು 2" }
+    { "text": "ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯ 1" },
+    { "text": "ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯ 2" }
   ],
   "catchyLines": [
     { "text": "ಕ್ಯಾಚಿ ಸಾಲು 1" },
     { "text": "ಕ್ಯಾಚಿ ಸಾಲು 2" }
   ],
   "majorPosts": [
-    { "text": "ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ ವಿಷಯ 1" },
-    { "text": "ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ ವಿಷಯ 2" }
+    { "text": "ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ ವಿವರ 1" },
+    { "text": "ಪೊಲಿಟಿಕಲ್ ಪೋಸ್ಟ್ ವಿವರ 2" }
   ]
 }
 `;
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: systemPrompt }] }]
+        contents: [{ parts: [{ text: prompt }] }]
       })
     });
 
     const data = await response.json();
+    
     if (!response.ok || !data.candidates || !data.candidates[0]) {
-      console.error('Gemini API Error:', data);
-      return res.status(500).json({ error: 'Gemini API call failed', details: data });
+      console.error('Gemini API Error:', JSON.stringify(data));
+      return res.status(500).json({ error: 'Gemini API Error', details: data });
     }
 
-    let rawText = data.candidates[0].content.parts[0].text.trim();
-    
-    // Clean markdown code blocks if Gemini returns them
-    rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
+    let textResponse = data.candidates[0].content.parts[0].text.trim();
+    textResponse = textResponse.replace(/^```json/i, '').replace(/^```/i, '').replace(/```$/i, '').trim();
 
-    const parsedJson = JSON.parse(rawText);
-    return res.status(200).json(parsedJson);
+    const result = JSON.parse(textResponse);
+    return res.status(200).json(result);
 
-  } catch (err) {
-    console.error('Generation Error:', err);
-    return res.status(500).json({ error: 'Failed to parse AI content', message: err.message });
+  } catch (error) {
+    console.error('Server Catch Error:', error);
+    return res.status(500).json({ error: 'Generation Failed', message: error.message });
   }
 }
