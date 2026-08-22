@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'GEMINI_API_KEY is missing' });
+    return res.status(500).json({ error: 'GEMINI_API_KEY is not configured in Vercel' });
   }
 
   const { topic } = req.body || {};
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 ನೀವು ಕನ್ನಡದ ರಾಜಕೀಯ ಮತ್ತು ಸಾಮಾಜಿಕ ವಿಷಯಗಳ ತಜ್ಞ ಕ್ರಿಯೇಟರ್.
 ಈ ವಿಷಯಕ್ಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ಅತ್ಯುತ್ತಮ ಕನ್ನಡದಲ್ಲಿ ಕಂಟೆಂಟ್ ನೀಡಿ: "${promptTopic}"
 
-ಕಡ್ಡಾಯವಾಗಿ ಈ ಕೆಳಗಿನ JSON ರಚನೆಯಲ್ಲಿ ಮಾತ್ರ ಉತ್ತರ ನೀಡಿ:
+ಕಡ್ಡಾಯವಾಗಿ ಈ ಕೆಳಗಿನ JSON ರಚನೆಯಲ್ಲಿ ಮಾತ್ರ ಉತ್ತರ ನೀಡಿ (ಯಾವುದೇ extra text ಅಥವಾ markdown \`\`\`json ಹಾಕಬೇಡಿ):
 {
   "topNews": [
     { "title": "ಮುಖ್ಯಾಂಶ ಶೀರ್ಷಿಕೆ 1", "summary": "ವಿವರವಾದ ಸಾರಾಂಶ 1" },
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
 `;
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
