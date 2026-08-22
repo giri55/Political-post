@@ -1195,10 +1195,10 @@
         }
     }
 
-    // 7. Service Worker
+    // 7. Robust Cross-Browser PWA & Service Worker Logic
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').catch(err => console.error(err));
+            navigator.serviceWorker.register('/sw.js').catch(err => console.error("SW Error:", err));
         });
     }
 
@@ -1211,9 +1211,15 @@
     function triggerAppInstall() {
         if (installPromptEvent) {
             installPromptEvent.prompt();
-            installPromptEvent.userChoice.then(() => installPromptEvent = null);
+            installPromptEvent.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted install');
+                }
+                installPromptEvent = null;
+            });
         } else {
-            alert("ಬ್ರೌಸರ್ ಮೆನುವಿನಲ್ಲಿ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
+            // Fallback for Samsung Internet, Safari, etc.
+            alert("📲 ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\n\n1. ಬ್ರೌಸರ್ ಮೆನು ಒತ್ತಿ (3 ಚುಕ್ಕೆಗಳು ⋮ ಅಥವಾ 3 ಗೆರೆಗಳು ≡)\n2. 'Add page to' ಅಥವಾ 'Install app' / 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
         }
     }
 </script>
