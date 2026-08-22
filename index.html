@@ -473,6 +473,7 @@
 
     let loggedInSubscriberId = localStorage.getItem("current_sub_id") || null;
     let listenerUnsubscribe = null;
+    let currentLoadedDocs = {};
 
     // Realtime Home Content
     db.collection("home_content").doc("latest").onSnapshot((doc) => {
@@ -690,7 +691,7 @@
         const item = aiGeneratedContent[section][idx];
 
         if (section === 'topNews') {
-            text = `${item.title} - ${item.summary}`;
+            text = `${item.title || ''} - ${item.summary || ''}`;
             type = 'HOME_MSG2';
             targetDescription = "ಮುಖಪುಟದ 'ಇಂದಿನ ಪ್ರಮುಖ ವಿಷಯ'";
         } else if (section === 'trending') {
@@ -971,7 +972,7 @@
         alert(`${subId} ಆಯ್ಕೆಯಾಗಿದೆ.`);
     }
 
-    // 6. Content Loader with DELETE Option for Published Posts
+    // 6. Content Loader with SAFE Handlers (No quote breaks)
     function loadSubscriberData(subId) {
         if (listenerUnsubscribe) listenerUnsubscribe();
         const targets = (subId === "ALL") ? ["ALL"] : ["ALL", subId];
@@ -982,47 +983,81 @@
             const quotesList = document.getElementById('quotesListContainer');
 
             postsList.innerHTML = ""; catchyList.innerHTML = ""; quotesList.innerHTML = "";
+            currentLoadedDocs = {};
 
             const docs = [];
-            snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+            snapshot.forEach(doc => {
+                const docData = { id: doc.id, ...doc.data() };
+                docs.push(docData);
+                currentLoadedDocs[doc.id] = docData;
+            });
             docs.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
 
             docs.forEach((item) => {
                 const div = document.createElement('div');
                 div.className = "content-card-box";
+                
+                const textDiv = document.createElement('div');
+                textDiv.className = "line-text";
+                if (item.type === 'QUOTE') textDiv.style.fontStyle = "italic";
+                textDiv.innerText = item.type === 'QUOTE' ? `“${item.text}”` : item.text;
+                div.appendChild(textDiv);
+
+                if (item.imageUrl) {
+                    const img = document.createElement('img');
+                    img.src = item.imageUrl;
+                    img.className = "post-display-img";
+                    img.alt = "Post";
+                    div.appendChild(img);
+                }
+
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = "line-actions";
+
+                // Safe Copy Button
+                const copyBtn = document.createElement('button');
+                copyBtn.className = "act-btn act-copy";
+                copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+                copyBtn.onclick = () => {
+                    const fullCopy = item.imageUrl ? `${item.text}\n${item.imageUrl}` : item.text;
+                    navigator.clipboard.writeText(fullCopy).then(() => alert('✅ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!'));
+                };
+
+                // Safe WhatsApp Button
+                const waBtn = document.createElement('button');
+                waBtn.className = "act-btn act-whatsapp";
+                waBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> WhatsApp';
+                waBtn.onclick = () => {
+                    const msg = item.imageUrl ? `${item.text}\n\n${item.imageUrl}` : item.text;
+                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+                };
+
+                // Safe Twitter Button
+                const twBtn = document.createElement('button');
+                twBtn.className = "act-btn act-twitter";
+                twBtn.innerHTML = '<i class="fa-brands fa-x-twitter"></i> Post';
+                twBtn.onclick = () => {
+                    const msg = item.imageUrl ? `${item.text}\n\n${item.imageUrl}` : item.text;
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(msg)}`, '_blank');
+                };
+
+                // Safe Del Button
+                const delBtn = document.createElement('button');
+                delBtn.className = "act-btn act-delete-pub";
+                delBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Del';
+                delBtn.onclick = () => deletePublishedItem(item.id);
+
+                actionsDiv.appendChild(copyBtn);
+                actionsDiv.appendChild(waBtn);
+                actionsDiv.appendChild(twBtn);
+                actionsDiv.appendChild(delBtn);
+                div.appendChild(actionsDiv);
+
                 if (item.type === 'POST') {
-                    div.innerHTML = `
-                        <div class="line-text">${item.text}</div>
-                        ${item.imageUrl ? `<img src="${item.imageUrl}" class="post-display-img" alt="Post" />` : ''}
-                        <div class="line-actions">
-                            <button class="act-btn act-copy" onclick="copyText('${item.text}${item.imageUrl ? '\\n' + item.imageUrl : ''}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}', '${item.imageUrl || ''}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}', '${item.imageUrl || ''}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                            <button class="act-btn act-delete-pub" onclick="deletePublishedItem('${item.id}')" title="ಡಿಲೀಟ್"><i class="fa-solid fa-trash"></i> Del</button>
-                        </div>
-                    `;
                     postsList.appendChild(div);
                 } else if (item.type === 'CATCHY') {
-                    div.innerHTML = `
-                        <div class="line-text">${item.text}</div>
-                        <div class="line-actions">
-                            <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                            <button class="act-btn act-delete-pub" onclick="deletePublishedItem('${item.id}')" title="ಡಿಲೀಟ್"><i class="fa-solid fa-trash"></i> Del</button>
-                        </div>
-                    `;
                     catchyList.appendChild(div);
                 } else if (item.type === 'QUOTE') {
-                    div.innerHTML = `
-                        <div class="line-text" style="font-style:italic;">“${item.text}”</div>
-                        <div class="line-actions">
-                            <button class="act-btn act-copy" onclick="copyText('${item.text}')"><i class="fa-solid fa-copy"></i> Copy</button>
-                            <button class="act-btn act-whatsapp" onclick="shareWhatsApp('${item.text}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                            <button class="act-btn act-twitter" onclick="shareTwitter('${item.text}')"><i class="fa-brands fa-x-twitter"></i> Post</button>
-                            <button class="act-btn act-delete-pub" onclick="deletePublishedItem('${item.id}')" title="ಡಿಲೀಟ್"><i class="fa-solid fa-trash"></i> Del</button>
-                        </div>
-                    `;
                     quotesList.appendChild(div);
                 }
             });
@@ -1040,10 +1075,6 @@
             alert("ಡಿಲೀಟ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ!");
         }
     }
-
-    function copyText(text) { navigator.clipboard.writeText(text).then(() => alert('✅ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!')); }
-    function shareWhatsApp(text, url = "") { window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url ? `${text}\n\n${url}` : text)}`, '_blank'); }
-    function shareTwitter(text, url = "") { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(url ? `${text}\n\n${url}` : text)}`, '_blank'); }
 
     async function sendUserRequest() {
         const req = document.getElementById('customRequestInput').value.trim();
