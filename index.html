@@ -435,7 +435,7 @@
         <div id="aiMajorPostContainer" style="padding: 0 14px 4px;"></div>
 
         <div style="margin: 12px 14px 20px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 12px; font-size:10.5px; color:#92400e;">
-            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ[cite: 1].
+            💡 <b>ಸೂಚನೆ:</b> ಯಾವುದೇ ಕಂಟೆಂಟ್ ಅನ್ನು ಇಲ್ಲಿಂದಲೇ <b>🚀 Publish</b> ಒತ್ತಿದರೆ ಅದು ತಾನಾಗಿಯೇ ಸಂಬಂಧಪಟ್ಟ ಸರಿಯಾದ ವಿಭಾಗಕ್ಕೆ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ.
         </div>
     </div>
 
@@ -766,6 +766,7 @@
         });
     }
 
+    // Call Gemini Serverless Function with Detailed Error Reporting
     async function fetchLiveGeminiAI(customTopic = "") {
         alert(customTopic ? "⏳ ನಿಮ್ಮ ವಿಷಯಕ್ಕೆ ತಕ್ಕಂತೆ AI ಕಂಟೆಂಟ್ ರಚಿಸುತ್ತಿದೆ..." : "⏳ ಇಂದಿನ ತಾಜಾ ಕರ್ನಾಟಕ & ದೇಶದ ಸುದ್ದಿಗಳನ್ನು Gemini AI ಪಡೆಯುತ್ತಿದೆ...");
         try {
@@ -775,8 +776,12 @@
                 body: JSON.stringify({ topic: customTopic })
             });
 
-            if (!res.ok) throw new Error("API request failed");
             const data = await res.json();
+
+            if (!res.ok) {
+                alert("❌ Server Error: " + (data.error || "Request failed") + "\nDetails: " + JSON.stringify(data.details || data.message || ""));
+                return;
+            }
 
             if (data.topNews && data.trending) {
                 aiGeneratedContent = data;
@@ -784,11 +789,11 @@
                 renderAllAiSections();
                 alert("✨ Gemini AI ಲೈವ್ ಕಂಟೆಂಟ್ ಯಶಸ್ವಿಯಾಗಿ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!");
             } else {
-                throw new Error("Invalid structure");
+                alert("❌ Invalid Data Format received from server.");
             }
         } catch (e) {
             console.error(e);
-            alert("AI ಕಂಟೆಂಟ್ ಪಡೆಯುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ. ದಯವಿಟ್ಟು Vercel ನಲ್ಲಿ GEMINI_API_KEY ಸರಿಯಾಗಿದೆಯೇ ಪರಿಶೀಲಿಸಿ.");
+            alert("❌ Network Error: " + e.message);
         }
     }
 
